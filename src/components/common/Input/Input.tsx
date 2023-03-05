@@ -9,7 +9,15 @@ interface InputProps {
 }
 
 function Input({ id, type, value, onChange }: InputProps) {
-  return <StyledInput id={id} type={type} value={value} onChange={onChange} />;
+  return (
+    <StyledInput
+      id={id}
+      type={type}
+      value={value}
+      onChange={onChange}
+      autoComplete="off"
+    />
+  );
 }
 
 export default memo(Input);

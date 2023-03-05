@@ -4,8 +4,8 @@ import { setTitle } from "../../../store/surveySlice";
 import Input from "../../common/Input/Input";
 
 function TitleInput() {
-  const dispatch = useAppDispatch();
   const title = useAppSelector((state) => state.survey.title);
+  const dispatch = useAppDispatch();
 
   const handleTitleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) =>

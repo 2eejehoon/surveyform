@@ -1,35 +1,25 @@
 import { memo } from "react";
-import Input from "../../common/Input/Input";
-import {
-  QuestionBody,
-  QuestionFooter,
-  QuestionHeader,
-  QuestionTypeSelect,
-} from "./QuestionStyle";
+import CopyQuestionButton from "../CopyQuestionButton/CopyQuestionButton";
+import DeleteQuestionButton from "../DeleteQuestionButton/DeleteQuestionButton";
+import QuestionTitleInput from "../QuestionTitleInput/QuestionTitleInput";
+import QuestionTypeSelect from "../QuestionTypeSelect/QuestionTypeSelect";
+import { QuestionBody, QuestionFooter, QuestionHeader } from "./QuestionStyle";
 
 interface QuestionProps {
-  id: string;
+  index: number;
 }
 
-function Question({ id }: QuestionProps) {
+function Question({ index }: QuestionProps) {
   return (
     <>
       <QuestionHeader>
-        <Input
-          id="question-title"
-          type="text"
-          value={"1"}
-          onChange={() => console.log(id)}
-        />
-        <QuestionTypeSelect>
-          <option>단답형</option>
-          <option>장문형</option>
-          <option>객관식</option>
-          <option>체크박스</option>
-          <option>드롭다운</option>
-        </QuestionTypeSelect>
+        <QuestionTitleInput index={index} />
+        <QuestionTypeSelect index={index} />
       </QuestionHeader>
-      <QuestionBody></QuestionBody>
+      <QuestionBody>
+        <CopyQuestionButton index={index} />
+        <DeleteQuestionButton index={index} />
+      </QuestionBody>
       <QuestionFooter></QuestionFooter>
     </>
   );

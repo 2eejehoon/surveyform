@@ -8,8 +8,8 @@ function QuestionList() {
 
   return (
     <StyledList>
-      {questions.map((question) => {
-        return <Question key={question.id} id={question.id} />;
+      {questions.map((question, index) => {
+        return <Question key={question.id} index={Number(index)} />;
       })}
     </StyledList>
   );
