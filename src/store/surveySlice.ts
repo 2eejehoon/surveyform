@@ -5,7 +5,13 @@ import { v4 as uuid } from "uuid";
 export interface surveyState {
   title: string;
   desc: string;
-  questions: { id: string; title: string; type: string; data: {} }[];
+  questions: {
+    id: string;
+    title: string;
+    type: string;
+    required: boolean;
+    data: {};
+  }[];
 }
 
 const initialState: surveyState = {
@@ -16,6 +22,7 @@ const initialState: surveyState = {
       id: uuid(),
       title: "제목",
       type: "단답형",
+      required: false,
       data: {},
     },
   ],
@@ -53,6 +60,7 @@ export const surveySlice = createSlice({
         index: number;
         title: string;
         type: string;
+        required: boolean;
         data: {};
       }>
     ) {
@@ -60,6 +68,7 @@ export const surveySlice = createSlice({
         id: uuid(),
         title: action.payload.title,
         type: action.payload.type,
+        required: action.payload.required,
         data: { ...action.payload.data },
       };
       state.questions.splice(action.payload.index + 1, 0, newQuestion);
@@ -69,11 +78,19 @@ export const surveySlice = createSlice({
       state.questions.splice(action.payload.index, 1);
     },
 
+    setQuestionRequired(
+      state,
+      action: PayloadAction<{ index: number; required: boolean }>
+    ) {
+      state.questions[action.payload.index].required = !action.payload.required;
+    },
+
     addQuestion(state) {
       const newQuestion = {
         id: uuid(),
         title: "제목",
         type: "단답형",
+        required: false,
         data: {},
       };
       state.questions.push(newQuestion);
@@ -88,5 +105,6 @@ export const {
   setQuestionType,
   copyQuestion,
   deleteQuestion,
+  setQuestionRequired,
   addQuestion,
 } = surveySlice.actions;

@@ -11,11 +11,14 @@ function CopyQuestionButton({ index }: CopyQuestionButtonProps) {
   const title = useAppSelector((state) => state.survey.questions[index].title);
   const type = useAppSelector((state) => state.survey.questions[index].type);
   const data = useAppSelector((state) => state.survey.questions[index].data);
+  const required = useAppSelector(
+    (state) => state.survey.questions[index].required
+  );
 
   const dispatch = useAppDispatch();
 
   const handleClick = useCallback(
-    () => dispatch(copyQuestion({ index, title, type, data })),
+    () => dispatch(copyQuestion({ index, title, type, required, data })),
     [index, title, type, data]
   );
 
