@@ -10,4 +10,5 @@ export const StyledHeader = styled.header`
   height: 180px;
   padding: 15px;
   margin: 10px;
+  background-color: white;
 `;

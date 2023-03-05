@@ -9,7 +9,7 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route index path="/edit" element={<EditPage />} />
+          <Route path="/edit" element={<EditPage />} />
           <Route path="/preview" element={<PreviewPage />} />
         </Routes>
       </BrowserRouter>

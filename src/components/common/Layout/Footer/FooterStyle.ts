@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-export const StyledMain = styled.main`
-  position: relative;
-  border: 1px solid green;
+export const StyledFooter = styled.footer`
+  border: 1px solid red;
   width: 100%;
   padding: 15px;
   margin: 10px;

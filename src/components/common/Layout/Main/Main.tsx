@@ -6,11 +6,7 @@ interface MainProps {
 }
 
 function Main({ children }: MainProps) {
-  return (
-    <>
-      <StyledMain>{children}</StyledMain>
-    </>
-  );
+  return <StyledMain>{children}</StyledMain>;
 }
 
 export default memo(Main);

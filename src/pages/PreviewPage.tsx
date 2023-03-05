@@ -1,8 +1,8 @@
 import { memo } from "react";
-import Footer from "../components/common/Layout/Footer";
-import Header from "../components/common/Layout/Header";
-import Main from "../components/common/Layout/Main";
-import Sidebar from "../components/common/Layout/Sidebar";
+import Footer from "../components/common/Layout/Footer/Footer";
+import Header from "../components/common/Layout/Header/Header";
+import Main from "../components/common/Layout/Main/Main";
+import Sidebar from "../components/common/Layout/Sidebar/Sidebar";
 
 function PreviewPage() {
   return (

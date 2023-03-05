@@ -11,4 +11,5 @@ export const StyledSidebar = styled.section`
   border: 1px solid blue;
   width: 50px;
   min-height: 50px;
+  background-color: white;
 `;
