@@ -1,26 +1,22 @@
-import { memo, useCallback } from "react";
 import Button from "../../common/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../../store/index";
 import { copyQuestion } from "../../../store/surveySlice";
 
 interface CopyQuestionButtonProps {
-  index: number;
+  questionIndex: number;
 }
 
-function CopyQuestionButton({ index }: CopyQuestionButtonProps) {
-  const title = useAppSelector((state) => state.survey.questions[index].title);
-  const type = useAppSelector((state) => state.survey.questions[index].type);
-  const data = useAppSelector((state) => state.survey.questions[index].data);
-  const required = useAppSelector(
-    (state) => state.survey.questions[index].required
+function CopyQuestionButton({ questionIndex }: CopyQuestionButtonProps) {
+  const { title, type, required, text, options } = useAppSelector(
+    (state) => state.survey.questions[questionIndex]
   );
 
   const dispatch = useAppDispatch();
 
-  const handleClick = useCallback(
-    () => dispatch(copyQuestion({ index, title, type, required, data })),
-    [index, title, type, required, data]
-  );
+  const handleClick = () =>
+    dispatch(
+      copyQuestion({ questionIndex, title, type, required, text, options })
+    );
 
   return (
     <Button
@@ -36,4 +32,4 @@ function CopyQuestionButton({ index }: CopyQuestionButtonProps) {
   );
 }
 
-export default memo(CopyQuestionButton);
+export default CopyQuestionButton;

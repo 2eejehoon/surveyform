@@ -1,47 +1,54 @@
-import { memo } from "react";
+import { useCallback } from "react";
 import { StyledList } from "./MultipleChoiceTypeQuestionStyle";
-import { v4 as uuid } from "uuid";
-import Input from "../../common/Input/Input";
 import Button from "../../common/Button/Button";
-import { useAppSelector } from "../../../store";
+import { useAppDispatch, useAppSelector } from "../../../store";
+import { addQuestionOption } from "../../../store/surveySlice";
+import MultipleChoiceOption from "../MultipleChoiceOption/MultipleChoiceOption";
 
 interface MultipleChoiceTypeQuestionProps {
-  index: number;
+  questionIndex: number;
 }
 
 function MultipleChoiceTypeQuestion({
-  index,
+  questionIndex,
 }: MultipleChoiceTypeQuestionProps) {
-  const data = useAppSelector(
-    (state) => state.survey.questions[index].data
+  const options = useAppSelector(
+    (state) => state.survey.questions[questionIndex].options
   ) as string[];
 
+  const dispatch = useAppDispatch();
+
+  const handleOptionAddClick = useCallback(
+    () => dispatch(addQuestionOption({ questionIndex })),
+    [questionIndex]
+  );
+
   return (
-    <StyledList>
-      {data.map((choice, idx) => {
-        return (
-          <li key={idx}>
-            <Input
-              id={`choice-${uuid()}`}
-              type="text"
-              value={choice}
-              onChange={() => console.log(idx)}
+    <>
+      <StyledList>
+        {options.map((option, optionIndex) => {
+          return (
+            <MultipleChoiceOption
+              key={optionIndex}
+              questionIndex={questionIndex}
+              optionIndex={optionIndex}
+              option={option}
             />
-            <Button
-              type="button"
-              onClick={() => console.log(idx)}
-              width={30}
-              height={30}
-              color="black"
-              bgColor="orange"
-            >
-              삭제
-            </Button>
-          </li>
-        );
-      })}
-    </StyledList>
+          );
+        })}
+      </StyledList>
+      <Button
+        type="button"
+        onClick={handleOptionAddClick}
+        width={30}
+        height={30}
+        color="black"
+        bgColor="yellow"
+      >
+        옵션 추가
+      </Button>
+    </>
   );
 }
 
-export default memo(MultipleChoiceTypeQuestion);
+export default MultipleChoiceTypeQuestion;

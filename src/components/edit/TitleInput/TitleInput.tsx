@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useCallback } from "react";
+import { ChangeEvent, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setTitle } from "../../../store/surveySlice";
 import Input from "../../common/Input/Input";
@@ -18,4 +18,4 @@ function TitleInput() {
   );
 }
 
-export default memo(TitleInput);
+export default TitleInput;

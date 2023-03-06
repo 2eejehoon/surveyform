@@ -1,4 +1,4 @@
-import { memo, ReactNode } from "react";
+import { ReactNode } from "react";
 import { StyledMain } from "./MainStyle";
 
 interface MainProps {
@@ -9,4 +9,4 @@ function Main({ children }: MainProps) {
   return <StyledMain>{children}</StyledMain>;
 }
 
-export default memo(Main);
+export default Main;

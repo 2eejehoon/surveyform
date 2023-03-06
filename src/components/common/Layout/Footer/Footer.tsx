@@ -1,4 +1,4 @@
-import { memo, ReactNode } from "react";
+import { ReactNode } from "react";
 import { StyledFooter } from "./FooterStyle";
 
 interface FooterProps {
@@ -9,4 +9,4 @@ function Footer({ children }: FooterProps) {
   return <StyledFooter>{children}</StyledFooter>;
 }
 
-export default memo(Footer);
+export default Footer;

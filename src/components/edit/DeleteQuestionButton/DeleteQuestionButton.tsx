@@ -1,19 +1,15 @@
 import Button from "../../common/Button/Button";
-import { memo, useCallback } from "react";
 import { useAppDispatch } from "../../../store";
 import { deleteQuestion } from "../../../store/surveySlice";
 
 interface DeleteQuestionButtonProps {
-  index: number;
+  questionIndex: number;
 }
 
-function DeleteQuestionButton({ index }: DeleteQuestionButtonProps) {
+function DeleteQuestionButton({ questionIndex }: DeleteQuestionButtonProps) {
   const dispatch = useAppDispatch();
 
-  const handleClick = useCallback(
-    () => dispatch(deleteQuestion({ index })),
-    []
-  );
+  const handleClick = () => dispatch(deleteQuestion({ questionIndex }));
 
   return (
     <Button
@@ -29,4 +25,4 @@ function DeleteQuestionButton({ index }: DeleteQuestionButtonProps) {
   );
 }
 
-export default memo(DeleteQuestionButton);
+export default DeleteQuestionButton;

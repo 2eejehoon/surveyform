@@ -1,4 +1,4 @@
-import { memo, useCallback } from "react";
+import { useCallback } from "react";
 import { useAppDispatch } from "../../../store";
 import Button from "../../common/Button/Button";
 import { addQuestion } from "../../../store/surveySlice";
@@ -22,4 +22,4 @@ function AddQuestionButton() {
   );
 }
 
-export default memo(AddQuestionButton);
+export default AddQuestionButton;

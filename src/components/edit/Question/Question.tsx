@@ -1,9 +1,9 @@
-import { memo } from "react";
 import { QUESTION_TYPE } from "../../../constant";
 import { useAppSelector } from "../../../store";
 import CopyQuestionButton from "../CopyQuestionButton/CopyQuestionButton";
 import DeleteQuestionButton from "../DeleteQuestionButton/DeleteQuestionButton";
 import LongTypeQuestion from "../LongTypeQuestion/LongTypeQuestion";
+import MultipleChoiceTypeQuestion from "../MultipleChoiceTypeQuestion/MultipleChoiceTypeQuestion";
 import QuestionTitleInput from "../QuestionTitleInput/QuestionTitleInput";
 import QuestionTypeSelect from "../QuestionTypeSelect/QuestionTypeSelect";
 import RequiredQuestionButton from "../RequiredQuestionButton/RequiredQuestionButton";
@@ -16,34 +16,44 @@ import {
 } from "./QuestionStyle";
 
 interface QuestionProps {
-  index: number;
+  questionIndex: number;
 }
 
-function Question({ index }: QuestionProps) {
-  const type = useAppSelector((state) => state.survey.questions[index].type);
+function Question({ questionIndex }: QuestionProps) {
+  const type = useAppSelector(
+    (state) => state.survey.questions[questionIndex].type
+  );
 
   return (
     <Wrapper>
       <QuestionHeader>
-        <QuestionTitleInput index={index} />
-        <QuestionTypeSelect index={index} />
+        <QuestionTitleInput questionIndex={questionIndex} />
+        <QuestionTypeSelect questionIndex={questionIndex} />
       </QuestionHeader>
       <QuestionBody>
-        {type === QUESTION_TYPE.SHORT && <ShortTypeQuestion index={index} />}
-        {type === QUESTION_TYPE.LONG && <LongTypeQuestion index={index} />}
-        {type === QUESTION_TYPE.MULTIPLECHOICE && (
-          <LongTypeQuestion index={index} />
+        {type === QUESTION_TYPE.SHORT && (
+          <ShortTypeQuestion questionIndex={questionIndex} />
         )}
-        {type === QUESTION_TYPE.CHECKBOX && <LongTypeQuestion index={index} />}
-        {type === QUESTION_TYPE.DROPDOWN && <LongTypeQuestion index={index} />}
+        {type === QUESTION_TYPE.LONG && (
+          <LongTypeQuestion questionIndex={questionIndex} />
+        )}
+        {type === QUESTION_TYPE.MULTIPLECHOICE && (
+          <MultipleChoiceTypeQuestion questionIndex={questionIndex} />
+        )}
+        {type === QUESTION_TYPE.CHECKBOX && (
+          <MultipleChoiceTypeQuestion questionIndex={questionIndex} />
+        )}
+        {type === QUESTION_TYPE.DROPDOWN && (
+          <LongTypeQuestion questionIndex={questionIndex} />
+        )}
       </QuestionBody>
       <QuestionFooter>
-        <CopyQuestionButton index={index} />
-        <DeleteQuestionButton index={index} />
-        <RequiredQuestionButton index={index} />
+        <CopyQuestionButton questionIndex={questionIndex} />
+        <DeleteQuestionButton questionIndex={questionIndex} />
+        <RequiredQuestionButton questionIndex={questionIndex} />
       </QuestionFooter>
     </Wrapper>
   );
 }
 
-export default memo(Question);
+export default Question;

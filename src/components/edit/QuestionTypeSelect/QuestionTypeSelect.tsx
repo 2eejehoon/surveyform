@@ -5,23 +5,23 @@ import { useAppDispatch, useAppSelector } from "../../../store/index";
 import { setQuestionType } from "../../../store/surveySlice";
 
 interface QuestionTypeSelectProps {
-  index: number;
+  questionIndex: number;
 }
 
-function QuestionTypeSelect({ index }: QuestionTypeSelectProps) {
-  const defaultType = useAppSelector(
-    (state) => state.survey.questions[index].type
+function QuestionTypeSelect({ questionIndex }: QuestionTypeSelectProps) {
+  const type = useAppSelector(
+    (state) => state.survey.questions[questionIndex].type
   );
   const dispatch = useAppDispatch();
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) =>
-      dispatch(setQuestionType({ index, type: e.target.value })),
-    [index]
+      dispatch(setQuestionType({ questionIndex, type: e.target.value })),
+    [questionIndex]
   );
 
   return (
-    <StyledSelect onChange={handleChange} defaultValue={defaultType}>
+    <StyledSelect onChange={handleChange} defaultValue={type}>
       {QUESTION_TYPE_ARRAY.map((type) => {
         return <option key={type}>{type}</option>;
       })}

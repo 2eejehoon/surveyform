@@ -1,31 +1,16 @@
-import { ChangeEvent, memo, useCallback } from "react";
-import { QUESTION_TYPE } from "../../../constant";
-import { useAppDispatch, useAppSelector } from "../../../store";
-import { setQuestionData } from "../../../store/surveySlice";
-import { StyledTextarea } from "./LongTypeQuestionStyle";
+import { useAppSelector } from "../../../store";
+import { StyledP } from "./LongTypeQuestionStyle";
 
 interface LongTypeQuestionProps {
-  index: number;
+  questionIndex: number;
 }
 
-function LongTypeQuestion({ index }: LongTypeQuestionProps) {
-  const data = useAppSelector(
-    (state) => state.survey.questions[index].data
+function LongTypeQuestion({ questionIndex }: LongTypeQuestionProps) {
+  const text = useAppSelector(
+    (state) => state.survey.questions[questionIndex].text
   ) as string;
 
-  const dispatch = useAppDispatch();
-
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLTextAreaElement>) =>
-      dispatch(
-        setQuestionData({
-          index,
-          type: QUESTION_TYPE.LONG,
-          data: e.target.value,
-        })
-      ),
-    []
-  );
-  return <StyledTextarea value={data} onChange={handleChange} />;
+  return <StyledP>{text}</StyledP>;
 }
-export default memo(LongTypeQuestion);
+
+export default LongTypeQuestion;

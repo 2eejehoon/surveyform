@@ -1,4 +1,4 @@
-import { memo, ReactNode } from "react";
+import { ReactNode } from "react";
 import { StyledHeader } from "./HeaderStyle";
 
 interface HeaderProps {
@@ -9,4 +9,4 @@ function Header({ children }: HeaderProps) {
   return <StyledHeader>{children}</StyledHeader>;
 }
 
-export default memo(Header);
+export default Header;

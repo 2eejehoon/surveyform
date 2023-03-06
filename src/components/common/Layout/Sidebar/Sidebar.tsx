@@ -1,4 +1,4 @@
-import { memo, ReactNode } from "react";
+import { ReactNode } from "react";
 import { StyledSidebar } from "./SidebarStyle";
 
 interface SidebarProps {
@@ -9,4 +9,4 @@ function Sidebar({ children }: SidebarProps) {
   return <StyledSidebar>{children}</StyledSidebar>;
 }
 
-export default memo(Sidebar);
+export default Sidebar;

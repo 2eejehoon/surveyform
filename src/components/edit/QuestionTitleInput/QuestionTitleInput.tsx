@@ -1,22 +1,22 @@
 import Input from "../../common/Input/Input";
-import { ChangeEvent, memo, useCallback } from "react";
+import { ChangeEvent, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/index";
 import { setQuestionTitle } from "../../../store/surveySlice";
 
 interface QuestionTitleInputProps {
-  index: number;
+  questionIndex: number;
 }
 
-function QuestionTitleInput({ index }: QuestionTitleInputProps) {
-  const title = useAppSelector((state) => state.survey.questions[index].title);
+function QuestionTitleInput({ questionIndex }: QuestionTitleInputProps) {
+  const title = useAppSelector(
+    (state) => state.survey.questions[questionIndex].title
+  );
   const dispatch = useAppDispatch();
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) =>
-      dispatch(
-        setQuestionTitle({ index: Number(index), title: e.target.value })
-      ),
-    [index]
+      dispatch(setQuestionTitle({ questionIndex, title: e.target.value })),
+    [questionIndex]
   );
 
   return (
@@ -29,4 +29,4 @@ function QuestionTitleInput({ index }: QuestionTitleInputProps) {
   );
 }
 
-export default memo(QuestionTitleInput);
+export default QuestionTitleInput;

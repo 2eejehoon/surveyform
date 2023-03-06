@@ -1,4 +1,4 @@
-import { ChangeEventHandler, memo } from "react";
+import { ChangeEventHandler } from "react";
 import { StyledInput } from "./InputStyle";
 
 interface InputProps {
@@ -20,4 +20,4 @@ function Input({ id, type, value, onChange }: InputProps) {
   );
 }
 
-export default memo(Input);
+export default Input;

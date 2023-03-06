@@ -1,23 +1,21 @@
-import { memo, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setQuestionRequired } from "../../../store/surveySlice";
 import Button from "../../common/Button/Button";
 
 interface RequiredQuestionButtonProps {
-  index: number;
+  questionIndex: number;
 }
 
-function RequiredQuestionButton({ index }: RequiredQuestionButtonProps) {
+function RequiredQuestionButton({
+  questionIndex,
+}: RequiredQuestionButtonProps) {
   const required = useAppSelector(
-    (state) => state.survey.questions[index].required
+    (state) => state.survey.questions[questionIndex].required
   );
 
   const dispatch = useAppDispatch();
 
-  const handleClick = useCallback(
-    () => dispatch(setQuestionRequired({ index })),
-    [index]
-  );
+  const handleClick = () => dispatch(setQuestionRequired({ questionIndex }));
 
   return (
     <>
@@ -49,4 +47,4 @@ function RequiredQuestionButton({ index }: RequiredQuestionButtonProps) {
   );
 }
 
-export default memo(RequiredQuestionButton);
+export default RequiredQuestionButton;
