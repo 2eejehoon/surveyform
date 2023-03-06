@@ -1,22 +1,19 @@
-import { StyledLi } from "./MultipleChoiceOptionStyle";
-import Input from "../../common/Input/Input";
-import Button from "../../common/Button/Button";
 import { ChangeEvent, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import {
   setQuestionOptionText,
   deleteQuestionOption,
 } from "../../../store/surveySlice";
+import Input from "../../common/Input/Input";
+import { StyledLi } from "./CheckboxOptionStyle";
+import Button from "../../common/Button/Button";
 
-interface MultipleChoiceOptionProps {
+interface CheckboxOptionProps {
   questionIndex: number;
   optionIndex: number;
 }
 
-function MultipleChoiceOption({
-  questionIndex,
-  optionIndex,
-}: MultipleChoiceOptionProps) {
+function CheckboxOption({ questionIndex, optionIndex }: CheckboxOptionProps) {
   const dispatch = useAppDispatch();
   const option = useAppSelector(
     (state) => state.survey.questions[questionIndex].options[optionIndex]
@@ -39,7 +36,7 @@ function MultipleChoiceOption({
   return (
     <StyledLi>
       <Input
-        id="muitiple-option"
+        id="checkbox-option"
         type="text"
         value={option}
         onChange={handleChange}
@@ -58,4 +55,4 @@ function MultipleChoiceOption({
   );
 }
 
-export default MultipleChoiceOption;
+export default CheckboxOption;

@@ -8,10 +8,10 @@ interface QuestionTitleInputProps {
 }
 
 function QuestionTitleInput({ questionIndex }: QuestionTitleInputProps) {
+  const dispatch = useAppDispatch();
   const title = useAppSelector(
     (state) => state.survey.questions[questionIndex].title
   );
-  const dispatch = useAppDispatch();
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) =>

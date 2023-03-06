@@ -4,8 +4,8 @@ import { setDesc } from "../../../store/surveySlice";
 import Input from "../../common/Input/Input";
 
 function DescInput() {
-  const desc = useAppSelector((state) => state.survey.desc);
   const dispatch = useAppDispatch();
+  const desc = useAppSelector((state) => state.survey.desc);
 
   const handleDescChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) =>

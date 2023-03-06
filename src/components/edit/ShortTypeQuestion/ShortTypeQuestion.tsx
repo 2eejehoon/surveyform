@@ -8,7 +8,7 @@ interface ShortTypeQuestionProps {
 function ShortTypeQuestion({ questionIndex }: ShortTypeQuestionProps) {
   const text = useAppSelector(
     (state) => state.survey.questions[questionIndex].text
-  ) as string;
+  );
 
   return <StyledP>{text}</StyledP>;
 }

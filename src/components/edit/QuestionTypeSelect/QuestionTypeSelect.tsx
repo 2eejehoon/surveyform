@@ -9,10 +9,10 @@ interface QuestionTypeSelectProps {
 }
 
 function QuestionTypeSelect({ questionIndex }: QuestionTypeSelectProps) {
+  const dispatch = useAppDispatch();
   const type = useAppSelector(
     (state) => state.survey.questions[questionIndex].type
   );
-  const dispatch = useAppDispatch();
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) =>

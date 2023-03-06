@@ -1,4 +1,3 @@
-import { memo } from "react";
 import Header from "../components/common/Layout/Header/Header";
 import Main from "../components/common/Layout/Main/Main";
 import Sidebar from "../components/common/Layout/Sidebar/Sidebar";
@@ -24,4 +23,4 @@ function EditPage() {
   );
 }
 
-export default memo(EditPage);
+export default EditPage;

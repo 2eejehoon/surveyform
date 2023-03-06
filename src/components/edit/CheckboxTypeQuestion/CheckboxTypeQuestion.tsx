@@ -1,17 +1,15 @@
 import { useCallback } from "react";
-import { StyledList } from "./MultipleChoiceTypeQuestionStyle";
-import Button from "../../common/Button/Button";
+import { StyledList } from "./CheckboxTypeQuestionStyle";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { addQuestionOption } from "../../../store/surveySlice";
-import MultipleChoiceOption from "../MultipleChoiceOption/MultipleChoiceOption";
+import CheckboxOption from "../CheckboxOption/CheckboxOption";
+import Button from "../../common/Button/Button";
 
-interface MultipleChoiceTypeQuestionProps {
+interface CheckboxTypeQuestion {
   questionIndex: number;
 }
 
-function MultipleChoiceTypeQuestion({
-  questionIndex,
-}: MultipleChoiceTypeQuestionProps) {
+function CheckboxTypeQuestion({ questionIndex }: CheckboxTypeQuestion) {
   const dispatch = useAppDispatch();
   const options = useAppSelector(
     (state) => state.survey.questions[questionIndex].options
@@ -27,8 +25,7 @@ function MultipleChoiceTypeQuestion({
       <StyledList>
         {options.map((_, optionIndex) => {
           return (
-            <MultipleChoiceOption
-              key={optionIndex}
+            <CheckboxOption
               questionIndex={questionIndex}
               optionIndex={optionIndex}
             />
@@ -49,4 +46,4 @@ function MultipleChoiceTypeQuestion({
   );
 }
 
-export default MultipleChoiceTypeQuestion;
+export default CheckboxTypeQuestion;

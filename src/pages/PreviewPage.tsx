@@ -1,4 +1,3 @@
-import { memo } from "react";
 import Footer from "../components/common/Layout/Footer/Footer";
 import Header from "../components/common/Layout/Header/Header";
 import Main from "../components/common/Layout/Main/Main";
@@ -16,4 +15,4 @@ function PreviewPage() {
   );
 }
 
-export default memo(PreviewPage);
+export default PreviewPage;

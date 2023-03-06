@@ -1,5 +1,6 @@
 import { QUESTION_TYPE } from "../../../constant";
 import { useAppSelector } from "../../../store";
+import CheckboxTypeQuestion from "../CheckboxTypeQuestion/CheckboxTypeQuestion";
 import CopyQuestionButton from "../CopyQuestionButton/CopyQuestionButton";
 import DeleteQuestionButton from "../DeleteQuestionButton/DeleteQuestionButton";
 import LongTypeQuestion from "../LongTypeQuestion/LongTypeQuestion";
@@ -41,7 +42,7 @@ function Question({ questionIndex }: QuestionProps) {
           <MultipleChoiceTypeQuestion questionIndex={questionIndex} />
         )}
         {type === QUESTION_TYPE.CHECKBOX && (
-          <MultipleChoiceTypeQuestion questionIndex={questionIndex} />
+          <CheckboxTypeQuestion questionIndex={questionIndex} />
         )}
         {type === QUESTION_TYPE.DROPDOWN && (
           <LongTypeQuestion questionIndex={questionIndex} />

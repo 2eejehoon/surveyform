@@ -9,11 +9,10 @@ interface RequiredQuestionButtonProps {
 function RequiredQuestionButton({
   questionIndex,
 }: RequiredQuestionButtonProps) {
+  const dispatch = useAppDispatch();
   const required = useAppSelector(
     (state) => state.survey.questions[questionIndex].required
   );
-
-  const dispatch = useAppDispatch();
 
   const handleClick = () => dispatch(setQuestionRequired({ questionIndex }));
 
