@@ -4,7 +4,7 @@ export const QUESTION_TYPE = {
   MULTIPLECHOICE: "객관식",
   CHECKBOX: "체크박스",
   DROPDOWN: "드롭다운",
-};
+} as const;
 
 export const QUESTION_TYPE_ARRAY = [
   "단답형",

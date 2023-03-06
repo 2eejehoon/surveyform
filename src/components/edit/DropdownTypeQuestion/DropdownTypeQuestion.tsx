@@ -1,15 +1,15 @@
 import { useCallback } from "react";
-import { StyledList } from "./CheckboxTypeQuestionStyle";
 import { useAppDispatch, useAppSelector } from "../../../store";
+import { StyledList } from "./DropdownTypeQuestionStyle";
 import { addQuestionOption } from "../../../store/surveySlice";
-import CheckboxOption from "../CheckboxOption/CheckboxOption";
+import DropdownOption from "../DropdownOption/DropdownOption";
 import Button from "../../common/Button/Button";
 
-interface CheckboxTypeQuestionProps {
+interface DropdownTypeQuestionProps {
   questionIndex: number;
 }
 
-function CheckboxTypeQuestion({ questionIndex }: CheckboxTypeQuestionProps) {
+function DropdownTypeQuestion({ questionIndex }: DropdownTypeQuestionProps) {
   const dispatch = useAppDispatch();
   const options = useAppSelector(
     (state) => state.survey.questions[questionIndex].options
@@ -19,13 +19,13 @@ function CheckboxTypeQuestion({ questionIndex }: CheckboxTypeQuestionProps) {
     () => dispatch(addQuestionOption({ questionIndex })),
     [questionIndex]
   );
-
   return (
     <>
       <StyledList>
         {options.map((_, optionIndex) => {
           return (
-            <CheckboxOption
+            <DropdownOption
+              key={optionIndex}
               questionIndex={questionIndex}
               optionIndex={optionIndex}
             />
@@ -38,7 +38,7 @@ function CheckboxTypeQuestion({ questionIndex }: CheckboxTypeQuestionProps) {
         width={30}
         height={30}
         color="black"
-        bgColor="yellow"
+        bgColor="orange"
       >
         옵션 추가
       </Button>
@@ -46,4 +46,4 @@ function CheckboxTypeQuestion({ questionIndex }: CheckboxTypeQuestionProps) {
   );
 }
 
-export default CheckboxTypeQuestion;
+export default DropdownTypeQuestion;
