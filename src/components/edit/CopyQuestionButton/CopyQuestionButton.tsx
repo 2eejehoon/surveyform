@@ -19,7 +19,7 @@ function CopyQuestionButton({ index }: CopyQuestionButtonProps) {
 
   const handleClick = useCallback(
     () => dispatch(copyQuestion({ index, title, type, required, data })),
-    [index, title, type, data]
+    [index, title, type, required, data]
   );
 
   return (

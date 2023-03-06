@@ -1,5 +1,5 @@
 import { ChangeEvent, memo, useCallback } from "react";
-import { QUESTION_TYPE } from "../../../constant";
+import { QUESTION_TYPE_ARRAY } from "../../../constant";
 import { StyledSelect } from "./QuestionTypeSelectStyle";
 import { useAppDispatch, useAppSelector } from "../../../store/index";
 import { setQuestionType } from "../../../store/surveySlice";
@@ -22,7 +22,7 @@ function QuestionTypeSelect({ index }: QuestionTypeSelectProps) {
 
   return (
     <StyledSelect onChange={handleChange} defaultValue={defaultType}>
-      {QUESTION_TYPE.map((type) => {
+      {QUESTION_TYPE_ARRAY.map((type) => {
         return <option key={type}>{type}</option>;
       })}
     </StyledSelect>

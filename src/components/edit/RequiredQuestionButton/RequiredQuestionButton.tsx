@@ -15,8 +15,8 @@ function RequiredQuestionButton({ index }: RequiredQuestionButtonProps) {
   const dispatch = useAppDispatch();
 
   const handleClick = useCallback(
-    () => dispatch(setQuestionRequired({ index, required })),
-    [index, required]
+    () => dispatch(setQuestionRequired({ index })),
+    [index]
   );
 
   return (
