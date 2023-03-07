@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../store";
 import { setDesc } from "../../../store/surveySlice";
 import Input from "../../common/Input/Input";
 
-function DescInput() {
+function SurveyDescInput() {
   const dispatch = useAppDispatch();
   const desc = useAppSelector((state) => state.survey.desc);
 
@@ -23,4 +23,4 @@ function DescInput() {
   );
 }
 
-export default DescInput;
+export default SurveyDescInput;

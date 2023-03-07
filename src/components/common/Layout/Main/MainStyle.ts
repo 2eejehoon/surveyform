@@ -4,7 +4,7 @@ export const StyledMain = styled.main`
   position: relative;
   border: 1px solid green;
   width: 100%;
-  padding: 5px;
+  padding: 20px;
   margin: 10px;
   background-color: white;
 `;

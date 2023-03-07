@@ -1,17 +1,17 @@
-import { StyledList } from "./QuestionListStyle";
+import { StyledList } from "./AnswerListStyle";
 import { useAppSelector } from "../../../store/index";
-import Question from "../Question/Question";
+import Answer from "../Answer/Answer";
 
-function QuestionList() {
+function AnswerList() {
   const questions = useAppSelector((state) => state.survey.questions);
 
   return (
     <StyledList>
       {questions.map((_, index) => {
-        return <Question key={index} questionIndex={index} />;
+        return <Answer key={index} questionIndex={index} />;
       })}
     </StyledList>
   );
 }
 
-export default QuestionList;
+export default AnswerList;

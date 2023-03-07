@@ -19,6 +19,7 @@ function DropdownTypeQuestion({ questionIndex }: DropdownTypeQuestionProps) {
     () => dispatch(addQuestionOption({ questionIndex })),
     [questionIndex]
   );
+
   return (
     <>
       <StyledList>
@@ -38,7 +39,7 @@ function DropdownTypeQuestion({ questionIndex }: DropdownTypeQuestionProps) {
         width={30}
         height={30}
         color="black"
-        bgColor="orange"
+        bgColor="yellow"
       >
         옵션 추가
       </Button>

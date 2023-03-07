@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../store";
 import { setTitle } from "../../../store/surveySlice";
 import Input from "../../common/Input/Input";
 
-function TitleInput() {
+function SurveyTitleInput() {
   const dispatch = useAppDispatch();
   const title = useAppSelector((state) => state.survey.title);
 
@@ -18,4 +18,4 @@ function TitleInput() {
   );
 }
 
-export default TitleInput;
+export default SurveyTitleInput;

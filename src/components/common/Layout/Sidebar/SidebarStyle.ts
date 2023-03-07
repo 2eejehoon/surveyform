@@ -12,4 +12,8 @@ export const StyledSidebar = styled.section`
   width: 50px;
   min-height: 50px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

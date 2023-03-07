@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { v4 as uuid } from "uuid";
 import { QUESTION_TYPE } from "../constant";
 
 export interface surveyState {
   title: string;
   desc: string;
-  questions: {
-    id: string;
-    title: string;
-    type: string;
-    required: boolean;
-    text: string;
-    options: string[];
-  }[];
+  questions: [
+    {
+      title: string;
+      type: string;
+      required: boolean;
+      text: string;
+      options: string[];
+    }
+  ];
 }
 
 const initialState: surveyState = {
@@ -21,7 +21,6 @@ const initialState: surveyState = {
   desc: "설문지 설명",
   questions: [
     {
-      id: uuid(),
       title: "질문",
       type: QUESTION_TYPE.MULTIPLECHOICE,
       required: false,
@@ -64,22 +63,27 @@ export const surveySlice = createSlice({
 
       switch (type) {
         case QUESTION_TYPE.SHORT:
+          state.questions[questionIndex].type = QUESTION_TYPE.SHORT;
           state.questions[questionIndex].text = "단답형 텍스트";
           return;
 
         case QUESTION_TYPE.LONG:
+          state.questions[questionIndex].type = QUESTION_TYPE.LONG;
           state.questions[questionIndex].text = "장문형 텍스트";
           return;
 
         case QUESTION_TYPE.MULTIPLECHOICE:
+          state.questions[questionIndex].type = QUESTION_TYPE.MULTIPLECHOICE;
           state.questions[questionIndex].options = ["옵션1"];
           return;
 
         case QUESTION_TYPE.CHECKBOX:
+          state.questions[questionIndex].type = QUESTION_TYPE.CHECKBOX;
           state.questions[questionIndex].options = ["옵션1"];
           return;
 
         case QUESTION_TYPE.DROPDOWN:
+          state.questions[questionIndex].type = QUESTION_TYPE.DROPDOWN;
           state.questions[questionIndex].options = ["옵션1"];
           return;
       }
@@ -95,7 +99,6 @@ export const surveySlice = createSlice({
       }>
     ) {
       const { questionIndex, optionIndex, text } = action.payload;
-
       state.questions[questionIndex].options[optionIndex] = text;
     },
 
@@ -132,7 +135,6 @@ export const surveySlice = createSlice({
         action.payload;
 
       const newQuestion = {
-        id: uuid(),
         title,
         type,
         required,
@@ -161,13 +163,13 @@ export const surveySlice = createSlice({
     // 질문 추가
     addQuestion(state) {
       const newQuestion = {
-        id: uuid(),
         title: "질문",
         type: QUESTION_TYPE.MULTIPLECHOICE,
         required: false,
         text: "단답형 텍스트",
         options: ["옵션1"],
       };
+
       state.questions.push(newQuestion);
     },
   },

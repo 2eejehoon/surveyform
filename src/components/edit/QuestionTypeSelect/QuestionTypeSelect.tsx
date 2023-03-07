@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useCallback } from "react";
+import { ChangeEvent } from "react";
 import { QUESTION_TYPE_ARRAY } from "../../../constant";
 import { StyledSelect } from "./QuestionTypeSelectStyle";
 import { useAppDispatch, useAppSelector } from "../../../store/index";
@@ -10,23 +10,28 @@ interface QuestionTypeSelectProps {
 
 function QuestionTypeSelect({ questionIndex }: QuestionTypeSelectProps) {
   const dispatch = useAppDispatch();
-  const type = useAppSelector(
+  const defaultType = useAppSelector(
     (state) => state.survey.questions[questionIndex].type
   );
 
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLSelectElement>) =>
-      dispatch(setQuestionType({ questionIndex, type: e.target.value })),
-    [questionIndex]
-  );
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) =>
+    dispatch(setQuestionType({ questionIndex, type: e.target.value }));
 
   return (
-    <StyledSelect onChange={handleChange} defaultValue={type}>
+    <StyledSelect
+      onChange={handleChange}
+      value={defaultType}
+      defaultValue={defaultType}
+    >
       {QUESTION_TYPE_ARRAY.map((type) => {
-        return <option key={type}>{type}</option>;
+        return (
+          <option key={type} value={type}>
+            {type}
+          </option>
+        );
       })}
     </StyledSelect>
   );
 }
 
-export default memo(QuestionTypeSelect);
+export default QuestionTypeSelect;
