@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, FocusEvent } from "react";
 import { StyledInput } from "./InputStyle";
 
 interface InputProps {
@@ -9,6 +9,7 @@ interface InputProps {
   fontSize?: number;
   placeholder?: string;
   borderBottom?: boolean;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
 }
 
 function Input({
@@ -19,6 +20,7 @@ function Input({
   fontSize,
   placeholder,
   borderBottom,
+  onBlur,
 }: InputProps) {
   return (
     <StyledInput
@@ -30,6 +32,7 @@ function Input({
       fontSize={fontSize}
       placeholder={placeholder}
       borderBottom={borderBottom}
+      onBlur={onBlur}
     />
   );
 }

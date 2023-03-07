@@ -25,3 +25,11 @@ export const StyledLabel = styled.label`
   padding: 5px;
   margin: 5px;
 `;
+
+export const StyledP = styled.p`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 14px;
+  color: tomato;
+`;
