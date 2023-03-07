@@ -8,7 +8,6 @@ function AddQuestionButton() {
 
   const handleAddClick = useCallback(() => dispatch(addQuestion()), []);
 
-  console.log("1");
   return (
     <Button
       type="button"

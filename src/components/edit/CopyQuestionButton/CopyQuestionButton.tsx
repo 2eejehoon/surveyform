@@ -17,7 +17,6 @@ function CopyQuestionButton({ questionIndex }: CopyQuestionButtonProps) {
       copyQuestion({ questionIndex, title, type, required, text, options })
     );
 
-  console.log("1");
   return (
     <Button
       type="button"
