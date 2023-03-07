@@ -92,7 +92,7 @@ export const surveySlice = createSlice({
       }
     },
 
-    // 질문(객관식, 체크박스, 드롭다운 유형) option
+    // 질문(객관식, 체크박스, 드롭다운 유형) option 업데이트
     setQuestionOptionText(
       state,
       action: PayloadAction<{
@@ -163,13 +163,13 @@ export const surveySlice = createSlice({
         !state.questions[questionIndex].required;
     },
 
-    // 질문 추가
+    // 질문 추가 (단답형으로 추가)
     addQuestion(state) {
       const newQuestion = {
         title: "질문",
         type: QUESTION_TYPE.MULTIPLECHOICE,
         required: false,
-        text: "단답형 텍스트",
+        text: "",
         options: ["옵션1"],
       };
 
@@ -206,6 +206,7 @@ export const surveySlice = createSlice({
       const { questionIndex, checked, clickedOption } = action.payload;
 
       switch (checked) {
+        // 체크한 경우
         case true:
           if (state.questions[questionIndex].checkboxAnswer === undefined) {
             state.questions[questionIndex].checkboxAnswer = [];
@@ -213,6 +214,7 @@ export const surveySlice = createSlice({
           state.questions[questionIndex].checkboxAnswer?.push(clickedOption);
           return;
 
+        // 체크 해제한 경우
         case false:
           const filtred = state.questions[questionIndex].checkboxAnswer?.filter(
             (checkedOption) => checkedOption !== clickedOption
@@ -220,6 +222,14 @@ export const surveySlice = createSlice({
           state.questions[questionIndex].checkboxAnswer = filtred;
           return;
       }
+    },
+
+    clearAnswer(state) {
+      state.questions.forEach((question) => {
+        question.checkboxAnswer = [];
+        question.optionAnswer = "";
+        question.textAnswer = "";
+      });
     },
   },
 });
@@ -239,4 +249,5 @@ export const {
   setTextAnswer,
   setOptionAnswer,
   setCheckboxAnswer,
+  clearAnswer,
 } = surveySlice.actions;
