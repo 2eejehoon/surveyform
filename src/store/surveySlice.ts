@@ -13,7 +13,8 @@ export interface surveyState {
       text: string;
       options: string[];
       textAnswer?: string;
-      multipleAnswer?: string;
+      optionAnswer?: string;
+      checkboxAnswer?: string[];
     }
   ];
 }
@@ -182,23 +183,44 @@ export const surveySlice = createSlice({
     ) {
       const { questionIndex, textAnswer } = action.payload;
       state.questions[questionIndex].textAnswer = textAnswer;
-      console.log(textAnswer);
     },
 
     // 미리보기 답변(객관식)
-    setMultipleAnswer(
+    setOptionAnswer(
       state,
       action: PayloadAction<{ questionIndex: number; clickedOption: string }>
     ) {
       const { questionIndex, clickedOption } = action.payload;
-      state.questions[questionIndex].multipleAnswer = clickedOption;
+      state.questions[questionIndex].optionAnswer = clickedOption;
     },
 
-    // 미리보기 답변(체크박스, 드롭다운)
-    setOptionsAnswer(
+    // 미리보기 답변(체크박스)
+    setCheckboxAnswer(
       state,
-      action: PayloadAction<{ questionIndex: number; optionsAnswer: [] }>
-    ) {},
+      action: PayloadAction<{
+        questionIndex: number;
+        checked: boolean;
+        clickedOption: string;
+      }>
+    ) {
+      const { questionIndex, checked, clickedOption } = action.payload;
+
+      switch (checked) {
+        case true:
+          if (state.questions[questionIndex].checkboxAnswer === undefined) {
+            state.questions[questionIndex].checkboxAnswer = [];
+          }
+          state.questions[questionIndex].checkboxAnswer?.push(clickedOption);
+          return;
+
+        case false:
+          const filtred = state.questions[questionIndex].checkboxAnswer?.filter(
+            (checkedOption) => checkedOption !== clickedOption
+          );
+          state.questions[questionIndex].checkboxAnswer = filtred;
+          return;
+      }
+    },
   },
 });
 
@@ -215,5 +237,6 @@ export const {
   setQuestionRequired,
   addQuestion,
   setTextAnswer,
-  setMultipleAnswer,
+  setOptionAnswer,
+  setCheckboxAnswer,
 } = surveySlice.actions;

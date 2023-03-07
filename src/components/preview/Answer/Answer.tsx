@@ -1,6 +1,8 @@
 import { QUESTION_TYPE } from "../../../constant";
 import { useAppSelector } from "../../../store";
 import AnswerTitle from "../AnswerTitle/AnswerTitle";
+import CheckboxTypeAnswer from "../CheckboxTypeAnswer/CheckboxTypeAnswer";
+import DropdownTypeAnswer from "../DropdownTypeAnswer/DropdownTypeAnswer";
 import LongTypeAnswer from "../LongTypeAnswer/LongTypeAnswer";
 import MultipleTypeAnswer from "../MultipleTypeAnswer/MultipleTypeAnswer";
 import ShortTypeAnswer from "../ShortTypeAnswer/ShortTypeAnswer";
@@ -30,8 +32,12 @@ function Answer({ questionIndex }: AnswerProps) {
         {type === QUESTION_TYPE.MULTIPLECHOICE && (
           <MultipleTypeAnswer questionIndex={questionIndex} />
         )}
-        {type === QUESTION_TYPE.CHECKBOX && 4}
-        {type === QUESTION_TYPE.DROPDOWN && 5}
+        {type === QUESTION_TYPE.CHECKBOX && (
+          <CheckboxTypeAnswer questionIndex={questionIndex} />
+        )}
+        {type === QUESTION_TYPE.DROPDOWN && (
+          <DropdownTypeAnswer questionIndex={questionIndex} />
+        )}
       </AnswerBody>
       <AnswerFooter></AnswerFooter>
     </Wrapper>

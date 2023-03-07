@@ -15,12 +15,12 @@ function EditPage() {
         <SurveyDescInput />
       </Header>
       <Main>
-        <Sidebar>
-          <AddQuestionButton />
-          <PreviewButton />
-        </Sidebar>
         <QuestionList />
       </Main>
+      <Sidebar>
+        <AddQuestionButton />
+        <PreviewButton />
+      </Sidebar>
     </>
   );
 }

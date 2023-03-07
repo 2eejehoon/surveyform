@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
-import { setMultipleAnswer } from "../../../store/surveySlice";
+import { setOptionAnswer } from "../../../store/surveySlice";
 import {
   RadioWrapper,
   StyledFieldset,
@@ -19,13 +19,11 @@ function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
   );
 
   const multipleAnswer = useAppSelector(
-    (state) => state.survey.questions[questionIndex].multipleAnswer
+    (state) => state.survey.questions[questionIndex].optionAnswer
   );
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
-    dispatch(
-      setMultipleAnswer({ questionIndex, clickedOption: e.target.value })
-    );
+    dispatch(setOptionAnswer({ questionIndex, clickedOption: e.target.value }));
 
   return (
     <StyledFieldset>

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const StyledSidebar = styled.section`
-  top: -1px;
-  right: -60px;
   position: absolute;
   display: flex;
   justify-content: center;

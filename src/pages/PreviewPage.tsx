@@ -14,10 +14,10 @@ function PreviewPage() {
         <SurveyDesc />
       </Header>
       <Main>
-        <Sidebar>1</Sidebar>
         <AnswerList />
       </Main>
       <Footer>1</Footer>
+      <Sidebar>1</Sidebar>
     </>
   );
 }

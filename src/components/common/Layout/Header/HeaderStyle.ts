@@ -8,7 +8,6 @@ export const StyledHeader = styled.header`
   border: 1px solid yellow;
   width: 100%;
   height: 180px;
-  padding: 20px;
-  margin: 10px;
   background-color: white;
+  margin-bottom: 10px;
 `;
