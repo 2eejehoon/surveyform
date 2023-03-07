@@ -12,7 +12,7 @@ function CopyQuestionButton({ questionIndex }: CopyQuestionButtonProps) {
     (state) => state.survey.questions[questionIndex]
   );
 
-  const handleClick = () =>
+  const handleCopyClick = () =>
     dispatch(
       copyQuestion({ questionIndex, title, type, required, text, options })
     );
@@ -20,7 +20,7 @@ function CopyQuestionButton({ questionIndex }: CopyQuestionButtonProps) {
   return (
     <Button
       type="button"
-      onClick={handleClick}
+      onClick={handleCopyClick}
       width={50}
       height={30}
       fontSize={14}

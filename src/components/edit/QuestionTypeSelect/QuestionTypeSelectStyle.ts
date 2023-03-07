@@ -10,8 +10,4 @@ export const StyledSelect = styled.select`
   outline: none;
   border: 1px solid lightgrey;
   border-radius: 5px;
-
-  &.option {
-    font-size: 20px;
-  }
 `;

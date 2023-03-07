@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { StyledList } from "./MultipleChoiceTypeQuestionStyle";
 import Button from "../../common/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../../store";
@@ -17,10 +16,8 @@ function MultipleChoiceTypeQuestion({
     (state) => state.survey.questions[questionIndex].options
   );
 
-  const handleOptionAddClick = useCallback(
-    () => dispatch(addQuestionOption({ questionIndex })),
-    [questionIndex]
-  );
+  const handleOptionAddClick = () =>
+    dispatch(addQuestionOption({ questionIndex }));
 
   return (
     <>

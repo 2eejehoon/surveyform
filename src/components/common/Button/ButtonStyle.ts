@@ -14,6 +14,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
   align-items: center;
   border: none;
   padding: 2px;
+  border-radius: 15px;
   font-size: ${(props) => `${props.fontSize}px`};
   width: ${(props) => `${props.width}px`};
   height: ${(props) => `${props.height}px`};

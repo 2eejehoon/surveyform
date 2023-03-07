@@ -1,7 +1,7 @@
 import { StyledLi } from "./MultipleChoiceOptionStyle";
 import Input from "../../common/Input/Input";
 import Button from "../../common/Button/Button";
-import { ChangeEvent, useCallback } from "react";
+import { ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import {
   setQuestionOptionText,
@@ -31,10 +31,8 @@ function MultipleChoiceOption({
       })
     );
 
-  const handleDelete = useCallback(
-    () => dispatch(deleteQuestionOption({ questionIndex, optionIndex })),
-    [questionIndex, optionIndex]
-  );
+  const handleDeleteClick = () =>
+    dispatch(deleteQuestionOption({ questionIndex, optionIndex }));
 
   return (
     <StyledLi>
@@ -47,7 +45,7 @@ function MultipleChoiceOption({
       />
       <Button
         type="button"
-        onClick={handleDelete}
+        onClick={handleDeleteClick}
         width={20}
         height={20}
         fontSize={16}

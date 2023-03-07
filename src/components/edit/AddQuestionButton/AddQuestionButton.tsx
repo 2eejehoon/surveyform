@@ -6,12 +6,12 @@ import { addQuestion } from "../../../store/surveySlice";
 function AddQuestionButton() {
   const dispatch = useAppDispatch();
 
-  const handleClick = useCallback(() => dispatch(addQuestion()), []);
+  const handleAddClick = useCallback(() => dispatch(addQuestion()), []);
 
   return (
     <Button
       type="button"
-      onClick={handleClick}
+      onClick={handleAddClick}
       width={30}
       height={30}
       fontSize={40}

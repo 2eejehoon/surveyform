@@ -31,17 +31,16 @@ function CheckboxTypeAnswer({ questionIndex }: CheckboxTypeAnswerProps) {
   return (
     <StyledFieldset>
       {options.map((option, optionIndex) => {
+        const id = `checkbox-${optionIndex}`;
         return (
           <CheckboxWrapper key={optionIndex}>
             <StyledCheckbox
-              id={`checkbox-${optionIndex}`}
+              id={id}
               type="checkbox"
               value={option}
               onChange={handleClick}
             />
-            <StyledLabel htmlFor={`checkbox-${optionIndex}`}>
-              {option}
-            </StyledLabel>
+            <StyledLabel htmlFor={id}>{option}</StyledLabel>
           </CheckboxWrapper>
         );
       })}

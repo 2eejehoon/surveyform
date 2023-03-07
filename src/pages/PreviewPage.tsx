@@ -19,8 +19,8 @@ function PreviewPage() {
         <AnswerList />
       </Main>
       <Footer>
-        <ClearButton />
         <SubmitButton />
+        <ClearButton />
       </Footer>
       <Sidebar>1</Sidebar>
     </>

@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
         width: 700px;
         height: 100vh;
         margin: auto;
+        background-color:lavender;
     }
 
     a {

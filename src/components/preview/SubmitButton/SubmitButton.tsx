@@ -5,10 +5,10 @@ function SubmitButton() {
     <Button
       type="submit"
       onClick={() => console.log()}
-      width={50}
-      height={30}
+      width={60}
+      height={40}
       fontSize={16}
-      color="black"
+      color="white"
       bgColor="purple"
     >
       제출

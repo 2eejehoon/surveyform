@@ -9,12 +9,12 @@ interface DeleteQuestionButtonProps {
 function DeleteQuestionButton({ questionIndex }: DeleteQuestionButtonProps) {
   const dispatch = useAppDispatch();
 
-  const handleClick = () => dispatch(deleteQuestion({ questionIndex }));
+  const handleDeleteClick = () => dispatch(deleteQuestion({ questionIndex }));
 
   return (
     <Button
       type="button"
-      onClick={handleClick}
+      onClick={handleDeleteClick}
       width={50}
       height={30}
       fontSize={14}

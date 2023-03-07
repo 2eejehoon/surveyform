@@ -28,16 +28,17 @@ function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
   return (
     <StyledFieldset>
       {options.map((option, index) => {
+        const id = `option-${index}`;
         return (
           <RadioWrapper key={index}>
             <StyledRadioInput
-              id={`option-${index}`}
+              id={id}
               type="radio"
               value={option}
               checked={option === multipleAnswer}
               onChange={handleChange}
             />
-            <StyledLabel htmlFor={`option-${index}`}>{option}</StyledLabel>
+            <StyledLabel htmlFor={id}>{option}</StyledLabel>
           </RadioWrapper>
         );
       })}

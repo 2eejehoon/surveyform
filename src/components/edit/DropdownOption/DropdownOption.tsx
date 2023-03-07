@@ -28,7 +28,7 @@ function DropdownOption({ questionIndex, optionIndex }: DropdownOptionProps) {
       })
     );
 
-  const handleClick = () =>
+  const handleDeleteClick = () =>
     dispatch(deleteQuestionOption({ questionIndex, optionIndex }));
 
   return (
@@ -41,7 +41,7 @@ function DropdownOption({ questionIndex, optionIndex }: DropdownOptionProps) {
       />
       <Button
         type="button"
-        onClick={handleClick}
+        onClick={handleDeleteClick}
         width={30}
         height={30}
         fontSize={18}

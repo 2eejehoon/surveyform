@@ -8,6 +8,7 @@ interface InputProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
   fontSize?: number;
   placeholder?: string;
+  borderBottom?: boolean;
 }
 
 function Input({
@@ -17,6 +18,7 @@ function Input({
   onChange,
   fontSize,
   placeholder,
+  borderBottom,
 }: InputProps) {
   return (
     <StyledInput
@@ -27,6 +29,7 @@ function Input({
       autoComplete="off"
       fontSize={fontSize}
       placeholder={placeholder}
+      borderBottom={borderBottom}
     />
   );
 }

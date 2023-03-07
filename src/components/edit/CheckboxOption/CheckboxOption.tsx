@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback } from "react";
+import { ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import {
   setQuestionOptionText,
@@ -28,10 +28,8 @@ function CheckboxOption({ questionIndex, optionIndex }: CheckboxOptionProps) {
       })
     );
 
-  const handleDelete = useCallback(
-    () => dispatch(deleteQuestionOption({ questionIndex, optionIndex })),
-    [questionIndex, optionIndex]
-  );
+  const handleDeleteClick = () =>
+    dispatch(deleteQuestionOption({ questionIndex, optionIndex }));
 
   return (
     <StyledLi>
@@ -43,7 +41,7 @@ function CheckboxOption({ questionIndex, optionIndex }: CheckboxOptionProps) {
       />
       <Button
         type="button"
-        onClick={handleDelete}
+        onClick={handleDeleteClick}
         width={30}
         height={30}
         fontSize={18}

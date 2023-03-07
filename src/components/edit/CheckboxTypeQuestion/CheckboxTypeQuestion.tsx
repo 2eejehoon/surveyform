@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { StyledList } from "./CheckboxTypeQuestionStyle";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { addQuestionOption } from "../../../store/surveySlice";
@@ -15,10 +14,8 @@ function CheckboxTypeQuestion({ questionIndex }: CheckboxTypeQuestionProps) {
     (state) => state.survey.questions[questionIndex].options
   );
 
-  const handleOptionAddClick = useCallback(
-    () => dispatch(addQuestionOption({ questionIndex })),
-    [questionIndex]
-  );
+  const handleOptionAddClick = () =>
+    dispatch(addQuestionOption({ questionIndex }));
 
   return (
     <>

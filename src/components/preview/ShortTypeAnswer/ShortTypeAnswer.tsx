@@ -21,6 +21,7 @@ function ShortTypeAnswer({ questionIndex }: ShortTypeAnswerProps) {
       id="short-answer"
       type="text"
       value={textAnswer}
+      borderBottom={true}
       onChange={handleChange}
     />
   );
