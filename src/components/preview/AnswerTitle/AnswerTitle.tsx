@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useAppSelector } from "../../../store";
 import { StyledTitle } from "./AnswerTitleStyle";
 
@@ -9,7 +10,8 @@ function AnswerTitle({ questionIndex }: AnswerTitleProps) {
   const title = useAppSelector(
     (state) => state.survey.questions[questionIndex].title
   );
+
   return <StyledTitle>{title}</StyledTitle>;
 }
 
-export default AnswerTitle;
+export default memo(AnswerTitle);

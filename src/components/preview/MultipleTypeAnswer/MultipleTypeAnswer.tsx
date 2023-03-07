@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent, useState, useEffect, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setOptionAnswer } from "../../../store/surveySlice";
 import {
@@ -7,6 +7,7 @@ import {
   StyledRadioInput,
   StyledLabel,
   StyledP,
+  Wrapper,
 } from "./MultipleTypeAnswerStyle";
 
 interface MultipleTypeAnswerProps {
@@ -40,25 +41,27 @@ function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
   }, [optionAnswer]);
 
   return (
-    <StyledFieldset onChange={() => console.log("change")}>
-      {options.map((option, index) => {
-        const id = `option-${index}`;
-        return (
-          <RadioWrapper key={index}>
-            <StyledRadioInput
-              id={id}
-              type="radio"
-              value={option}
-              checked={option === multipleAnswer}
-              onChange={handleOptionClick}
-            />
-            <StyledLabel htmlFor={id}>{option}</StyledLabel>
-          </RadioWrapper>
-        );
-      })}
+    <Wrapper>
+      <StyledFieldset>
+        {options.map((option, index) => {
+          const id = `option-${index}`;
+          return (
+            <RadioWrapper key={index}>
+              <StyledRadioInput
+                id={id}
+                type="radio"
+                value={option}
+                checked={option === multipleAnswer}
+                onChange={handleOptionClick}
+              />
+              <StyledLabel htmlFor={id}>{option}</StyledLabel>
+            </RadioWrapper>
+          );
+        })}
+      </StyledFieldset>
       <StyledP>{message}</StyledP>
-    </StyledFieldset>
+    </Wrapper>
   );
 }
 
-export default MultipleTypeAnswer;
+export default memo(MultipleTypeAnswer);

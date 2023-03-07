@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent, useState, useEffect, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setOptionAnswer } from "../../../store/surveySlice";
 import { StyledP, StyledSelect, Wrapper } from "./DropdownTypeAnswerStyle";
@@ -50,4 +50,4 @@ function DropdownTypeAnswer({ questionIndex }: DropdownTypeAnswerProps) {
   );
 }
 
-export default DropdownTypeAnswer;
+export default memo(DropdownTypeAnswer);

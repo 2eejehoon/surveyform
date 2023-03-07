@@ -17,6 +17,7 @@ function CheckboxTypeQuestion({ questionIndex }: CheckboxTypeQuestionProps) {
   const handleOptionAddClick = () =>
     dispatch(addQuestionOption({ questionIndex }));
 
+  console.log("1");
   return (
     <>
       <StyledList>

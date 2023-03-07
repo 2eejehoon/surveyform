@@ -1,11 +1,12 @@
 import { useAppDispatch } from "../../../store";
 import { clearAnswer } from "../../../store/surveySlice";
 import Button from "../../common/Button/Button";
+import { useCallback } from "react";
 
 function ClearButton() {
   const dispatch = useAppDispatch();
 
-  const handleClick = () => dispatch(clearAnswer());
+  const handleClick = useCallback(() => dispatch(clearAnswer()), []);
 
   return (
     <Button

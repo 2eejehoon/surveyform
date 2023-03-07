@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback } from "react";
+import { ChangeEvent, useCallback, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setDesc } from "../../../store/surveySlice";
 import Input from "../../common/Input/Input";
@@ -25,4 +25,4 @@ function SurveyDescInput() {
   );
 }
 
-export default SurveyDescInput;
+export default memo(SurveyDescInput);

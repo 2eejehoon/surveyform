@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setQuestionRequired } from "../../../store/surveySlice";
 import { ToggleButton, ToggleSwitch } from "./RequiredToggleStyle";
@@ -27,4 +28,4 @@ function RequiredQuestionToggle({
   );
 }
 
-export default RequiredQuestionToggle;
+export default memo(RequiredQuestionToggle);

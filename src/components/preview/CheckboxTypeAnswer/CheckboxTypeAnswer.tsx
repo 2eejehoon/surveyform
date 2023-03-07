@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent, useState, useEffect, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setCheckboxAnswer } from "../../../store/surveySlice";
 import {
@@ -66,4 +66,4 @@ function CheckboxTypeAnswer({ questionIndex }: CheckboxTypeAnswerProps) {
   );
 }
 
-export default CheckboxTypeAnswer;
+export default memo(CheckboxTypeAnswer);

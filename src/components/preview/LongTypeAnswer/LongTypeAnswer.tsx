@@ -1,4 +1,11 @@
-import { ChangeEvent, FocusEvent, useState, useRef, useCallback } from "react";
+import {
+  ChangeEvent,
+  FocusEvent,
+  useState,
+  useRef,
+  useCallback,
+  memo,
+} from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setTextAnswer } from "../../../store/surveySlice";
 import { StyledTextarea, Wrapper, StyledP } from "./LongTypeAnswerStyle";
@@ -49,4 +56,4 @@ function LongTypeAnswer({ questionIndex }: LongTypeAnswerProps) {
   );
 }
 
-export default LongTypeAnswer;
+export default memo(LongTypeAnswer);

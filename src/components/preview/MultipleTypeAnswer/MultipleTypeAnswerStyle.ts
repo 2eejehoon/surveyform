@@ -26,6 +26,13 @@ export const StyledLabel = styled.label`
   margin: 5px;
 `;
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
 export const StyledP = styled.p`
   display: flex;
   justify-content: flex-start;

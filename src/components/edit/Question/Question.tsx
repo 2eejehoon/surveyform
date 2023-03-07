@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { QUESTION_TYPE } from "../../../constant";
 import { useAppSelector } from "../../../store";
 import CheckboxTypeQuestion from "../CheckboxTypeQuestion/CheckboxTypeQuestion";
@@ -58,4 +59,4 @@ function Question({ questionIndex }: QuestionProps) {
   );
 }
 
-export default Question;
+export default memo(Question);

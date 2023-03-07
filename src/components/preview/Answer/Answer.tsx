@@ -7,6 +7,7 @@ import LongTypeAnswer from "../LongTypeAnswer/LongTypeAnswer";
 import MultipleTypeAnswer from "../MultipleTypeAnswer/MultipleTypeAnswer";
 import ShortTypeAnswer from "../ShortTypeAnswer/ShortTypeAnswer";
 import { AnswerBody, AnswerFooter, AnswerHeader, Wrapper } from "./AnswerStyle";
+import { memo } from "react";
 
 interface AnswerProps {
   questionIndex: number;
@@ -44,4 +45,4 @@ function Answer({ questionIndex }: AnswerProps) {
   );
 }
 
-export default Answer;
+export default memo(Answer);

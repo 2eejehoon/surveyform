@@ -31,6 +31,7 @@ function CheckboxOption({ questionIndex, optionIndex }: CheckboxOptionProps) {
   const handleDeleteClick = () =>
     dispatch(deleteQuestionOption({ questionIndex, optionIndex }));
 
+  console.log("1");
   return (
     <StyledLi>
       <Input

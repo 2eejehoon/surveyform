@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useAppSelector } from "../../../store";
 import { StyledP } from "./ShortTypeQuestionStyle";
 
@@ -13,4 +14,4 @@ function ShortTypeQuestion({ questionIndex }: ShortTypeQuestionProps) {
   return <StyledP>{text}</StyledP>;
 }
 
-export default ShortTypeQuestion;
+export default memo(ShortTypeQuestion);

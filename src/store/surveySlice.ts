@@ -26,7 +26,7 @@ const initialState: surveyState = {
     {
       title: "질문",
       type: QUESTION_TYPE.MULTIPLECHOICE,
-      required: false,
+      required: true,
       text: "",
       options: ["옵션1"],
     },
@@ -171,7 +171,7 @@ export const surveySlice = createSlice({
       const newQuestion = {
         title: "질문",
         type: QUESTION_TYPE.MULTIPLECHOICE,
-        required: false,
+        required: true,
         text: "",
         options: ["옵션1"],
       };

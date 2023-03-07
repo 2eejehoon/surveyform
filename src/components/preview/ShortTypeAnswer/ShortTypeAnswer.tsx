@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent, useState } from "react";
+import { ChangeEvent, FocusEvent, useState, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setTextAnswer } from "../../../store/surveySlice";
 import Input from "../../common/Input/Input";
@@ -44,4 +44,4 @@ function ShortTypeAnswer({ questionIndex }: ShortTypeAnswerProps) {
   );
 }
 
-export default ShortTypeAnswer;
+export default memo(ShortTypeAnswer);
