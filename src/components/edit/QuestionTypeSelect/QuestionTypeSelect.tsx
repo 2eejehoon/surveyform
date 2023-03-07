@@ -18,11 +18,7 @@ function QuestionTypeSelect({ questionIndex }: QuestionTypeSelectProps) {
     dispatch(setQuestionType({ questionIndex, type: e.target.value }));
 
   return (
-    <StyledSelect
-      onChange={handleChange}
-      value={defaultType}
-      defaultValue={defaultType}
-    >
+    <StyledSelect onChange={handleChange} value={defaultType}>
       {QUESTION_TYPE_ARRAY.map((type) => {
         return (
           <option key={type} value={type}>

@@ -1,5 +1,6 @@
 import { ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
+import { setMultipleAnswer } from "../../../store/surveySlice";
 import {
   RadioWrapper,
   StyledFieldset,
@@ -17,8 +18,14 @@ function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
     (state) => state.survey.questions[questionIndex].options
   );
 
+  const multipleAnswer = useAppSelector(
+    (state) => state.survey.questions[questionIndex].multipleAnswer
+  );
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
-    console.log(e.target.value);
+    dispatch(
+      setMultipleAnswer({ questionIndex, clickedOption: e.target.value })
+    );
 
   return (
     <StyledFieldset>
@@ -29,7 +36,7 @@ function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
               id={`option-${index}`}
               type="radio"
               value={option}
-              checked={option === "옵션2"}
+              checked={option === multipleAnswer}
               onChange={handleChange}
             />
             <StyledLabel htmlFor={`option-${index}`}>{option}</StyledLabel>

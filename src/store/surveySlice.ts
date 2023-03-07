@@ -12,6 +12,8 @@ export interface surveyState {
       required: boolean;
       text: string;
       options: string[];
+      textAnswer?: string;
+      multipleAnswer?: string;
     }
   ];
 }
@@ -172,6 +174,31 @@ export const surveySlice = createSlice({
 
       state.questions.push(newQuestion);
     },
+
+    // 미리보기 답변(단답형, 장문형)
+    setTextAnswer(
+      state,
+      action: PayloadAction<{ questionIndex: number; textAnswer: string }>
+    ) {
+      const { questionIndex, textAnswer } = action.payload;
+      state.questions[questionIndex].textAnswer = textAnswer;
+      console.log(textAnswer);
+    },
+
+    // 미리보기 답변(객관식)
+    setMultipleAnswer(
+      state,
+      action: PayloadAction<{ questionIndex: number; clickedOption: string }>
+    ) {
+      const { questionIndex, clickedOption } = action.payload;
+      state.questions[questionIndex].multipleAnswer = clickedOption;
+    },
+
+    // 미리보기 답변(체크박스, 드롭다운)
+    setOptionsAnswer(
+      state,
+      action: PayloadAction<{ questionIndex: number; optionsAnswer: [] }>
+    ) {},
   },
 });
 
@@ -187,4 +214,6 @@ export const {
   deleteQuestion,
   setQuestionRequired,
   addQuestion,
+  setTextAnswer,
+  setMultipleAnswer,
 } = surveySlice.actions;
