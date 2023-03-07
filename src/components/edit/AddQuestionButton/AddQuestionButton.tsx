@@ -15,7 +15,7 @@ function AddQuestionButton() {
       width={30}
       height={30}
       fontSize={40}
-      color="grey"
+      color="black"
       bgColor="white"
     >
       &#128808;

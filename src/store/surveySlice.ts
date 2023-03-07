@@ -37,17 +37,17 @@ export const surveySlice = createSlice({
   name: "survey",
   initialState,
   reducers: {
-    // 설문지의 제목
+    // 설문지의 제목 업데이트
     setTitle(state, action: PayloadAction<{ title: string }>) {
       state.title = action.payload.title;
     },
 
-    // 설문지의 설명
+    // 설문지의 설명 업데이트
     setDesc(state, action: PayloadAction<{ desc: string }>) {
       state.desc = action.payload.desc;
     },
 
-    // 질문의 제목
+    // 질문의 제목 업데이트
     setQuestionTitle(
       state,
       action: PayloadAction<{ questionIndex: number; title: string }>
@@ -56,7 +56,7 @@ export const surveySlice = createSlice({
         action.payload.title;
     },
 
-    // 질문의 유형
+    // 질문의 유형 업데이트
     setQuestionType(
       state,
       action: PayloadAction<{ questionIndex: number; type: string }>
@@ -64,6 +64,7 @@ export const surveySlice = createSlice({
       const { questionIndex, type } = action.payload;
       state.questions[action.payload.questionIndex].type = type;
 
+      // 질문 유형에 따라 type, 초깃값 설정
       switch (type) {
         case QUESTION_TYPE.SHORT:
           state.questions[questionIndex].type = QUESTION_TYPE.SHORT;
@@ -110,7 +111,9 @@ export const surveySlice = createSlice({
       const questionIndex = action.payload.questionIndex;
       const newIndex =
         Number(state.questions[questionIndex].options?.length) + 1;
-      state.questions[questionIndex].options?.push(`옵션${newIndex}`);
+      const initialValue = `옵션${newIndex}`;
+
+      state.questions[questionIndex].options?.push(initialValue);
     },
 
     // 질문(객관식, 체크박스, 드롭다운 유형) option 삭제
@@ -163,7 +166,7 @@ export const surveySlice = createSlice({
         !state.questions[questionIndex].required;
     },
 
-    // 질문 추가 (단답형으로 추가)
+    // 질문 추가 (객관식으로 추가)
     addQuestion(state) {
       const newQuestion = {
         title: "질문",
@@ -176,7 +179,7 @@ export const surveySlice = createSlice({
       state.questions.push(newQuestion);
     },
 
-    // 미리보기 답변(단답형, 장문형)
+    // 미리보기 답변(단답형, 장문형) 입력받은 값으로 업데이트
     setTextAnswer(
       state,
       action: PayloadAction<{ questionIndex: number; textAnswer: string }>
@@ -185,7 +188,7 @@ export const surveySlice = createSlice({
       state.questions[questionIndex].textAnswer = textAnswer;
     },
 
-    // 미리보기 답변(객관식)
+    // 미리보기 답변(객관식) 입력받은 값으로 업데이트
     setOptionAnswer(
       state,
       action: PayloadAction<{ questionIndex: number; clickedOption: string }>
@@ -194,7 +197,7 @@ export const surveySlice = createSlice({
       state.questions[questionIndex].optionAnswer = clickedOption;
     },
 
-    // 미리보기 답변(체크박스)
+    // 미리보기 답변(체크박스) 체크한 값 업데이트
     setCheckboxAnswer(
       state,
       action: PayloadAction<{
@@ -206,7 +209,7 @@ export const surveySlice = createSlice({
       const { questionIndex, checked, clickedOption } = action.payload;
 
       switch (checked) {
-        // 체크한 경우
+        // 체크한 경우 배열에 추가
         case true:
           if (state.questions[questionIndex].checkboxAnswer === undefined) {
             state.questions[questionIndex].checkboxAnswer = [];
@@ -214,7 +217,7 @@ export const surveySlice = createSlice({
           state.questions[questionIndex].checkboxAnswer?.push(clickedOption);
           return;
 
-        // 체크 해제한 경우
+        // 체크 해제한 경우 배열에서 삭제
         case false:
           const filtred = state.questions[questionIndex].checkboxAnswer?.filter(
             (checkedOption) => checkedOption !== clickedOption
@@ -224,6 +227,7 @@ export const surveySlice = createSlice({
       }
     },
 
+    // 양식 지우기
     clearAnswer(state) {
       state.questions.forEach((question) => {
         question.checkboxAnswer = [];

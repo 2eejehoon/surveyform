@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setQuestionRequired } from "../../../store/surveySlice";
-import Button from "../../common/Button/Button";
 import { ToggleButton, ToggleSwitch } from "./RequiredToggleStyle";
 
 interface RequiredQuestionButtonProps {
@@ -10,6 +9,7 @@ interface RequiredQuestionButtonProps {
 function RequiredQuestionToggle({
   questionIndex,
 }: RequiredQuestionButtonProps) {
+  const toggleId = `required-toggle-${questionIndex}`;
   const dispatch = useAppDispatch();
   const required = useAppSelector(
     (state) => state.survey.questions[questionIndex].required
@@ -19,15 +19,10 @@ function RequiredQuestionToggle({
 
   return (
     <>
-      <ToggleSwitch htmlFor="required-toggle" checked={required}>
+      <ToggleSwitch htmlFor={toggleId} checked={required}>
         <ToggleButton checked={required} />
       </ToggleSwitch>
-      <input
-        id="required-toggle"
-        type="checkbox"
-        hidden
-        onClick={handleClick}
-      />
+      <input id={toggleId} type="checkbox" hidden onClick={handleClick} />
     </>
   );
 }
