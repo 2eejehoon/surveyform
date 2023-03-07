@@ -25,6 +25,8 @@ function QuestionTitleInput({ questionIndex }: QuestionTitleInputProps) {
       type="text"
       value={title}
       onChange={handleChange}
+      fontSize={18}
+      placeholder="질문"
     />
   );
 }

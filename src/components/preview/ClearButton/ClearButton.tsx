@@ -13,6 +13,7 @@ function ClearButton() {
       onClick={handleClick}
       width={50}
       height={30}
+      fontSize={16}
       color="black"
       bgColor="purple"
     >

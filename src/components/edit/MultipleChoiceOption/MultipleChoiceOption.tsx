@@ -43,16 +43,18 @@ function MultipleChoiceOption({
         type="text"
         value={option}
         onChange={handleChange}
+        fontSize={14}
       />
       <Button
         type="button"
         onClick={handleDelete}
-        width={30}
-        height={30}
+        width={20}
+        height={20}
+        fontSize={16}
         color="black"
-        bgColor="pink"
+        bgColor="white"
       >
-        삭제
+        X
       </Button>
     </StyledLi>
   );

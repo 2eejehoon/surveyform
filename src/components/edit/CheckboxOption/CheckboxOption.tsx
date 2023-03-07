@@ -46,10 +46,11 @@ function CheckboxOption({ questionIndex, optionIndex }: CheckboxOptionProps) {
         onClick={handleDelete}
         width={30}
         height={30}
+        fontSize={18}
         color="black"
-        bgColor="pink"
+        bgColor="white"
       >
-        삭제
+        X
       </Button>
     </StyledLi>
   );

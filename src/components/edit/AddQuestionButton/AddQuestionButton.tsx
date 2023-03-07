@@ -14,10 +14,11 @@ function AddQuestionButton() {
       onClick={handleClick}
       width={30}
       height={30}
-      color="black"
-      bgColor="orange"
+      fontSize={40}
+      color="grey"
+      bgColor="white"
     >
-      추가
+      &#128808;
     </Button>
   );
 }

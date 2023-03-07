@@ -21,13 +21,13 @@ export interface surveyState {
 
 const initialState: surveyState = {
   title: "제목 없는 설문지",
-  desc: "설문지 설명",
+  desc: "",
   questions: [
     {
       title: "질문",
       type: QUESTION_TYPE.MULTIPLECHOICE,
       required: false,
-      text: "단답형 텍스트",
+      text: "",
       options: ["옵션1"],
     },
   ],

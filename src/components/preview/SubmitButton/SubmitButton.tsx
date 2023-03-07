@@ -1,15 +1,13 @@
-import { useAppSelector } from "../../../store";
 import Button from "../../common/Button/Button";
 
 function SubmitButton() {
-  const questions = useAppSelector((state) => state.survey.questions);
-
   return (
     <Button
       type="submit"
-      onClick={() => console.log(questions)}
+      onClick={() => console.log()}
       width={50}
       height={30}
+      fontSize={16}
       color="black"
       bgColor="purple"
     >

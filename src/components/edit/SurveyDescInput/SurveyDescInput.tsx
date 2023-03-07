@@ -19,6 +19,8 @@ function SurveyDescInput() {
       type="text"
       value={desc}
       onChange={handleDescChange}
+      fontSize={16}
+      placeholder="설문지 설명"
     />
   );
 }

@@ -16,11 +16,11 @@ function EditPage() {
       </Header>
       <Main>
         <QuestionList />
+        <Sidebar>
+          <AddQuestionButton />
+          <PreviewButton />
+        </Sidebar>
       </Main>
-      <Sidebar>
-        <AddQuestionButton />
-        <PreviewButton />
-      </Sidebar>
     </>
   );
 }

@@ -8,7 +8,7 @@ import LongTypeQuestion from "../LongTypeQuestion/LongTypeQuestion";
 import MultipleChoiceTypeQuestion from "../MultipleChoiceTypeQuestion/MultipleChoiceTypeQuestion";
 import QuestionTitleInput from "../QuestionTitleInput/QuestionTitleInput";
 import QuestionTypeSelect from "../QuestionTypeSelect/QuestionTypeSelect";
-import RequiredQuestionButton from "../RequiredQuestionButton/RequiredQuestionButton";
+import RequiredQuestionToggle from "../RequiredQuestionButton/RequiredQuestionToggle";
 import ShortTypeQuestion from "../ShortTypeQuestion/ShortTypeQuestion";
 import {
   QuestionBody,
@@ -52,7 +52,7 @@ function Question({ questionIndex }: QuestionProps) {
       <QuestionFooter>
         <CopyQuestionButton questionIndex={questionIndex} />
         <DeleteQuestionButton questionIndex={questionIndex} />
-        <RequiredQuestionButton questionIndex={questionIndex} />
+        <RequiredQuestionToggle questionIndex={questionIndex} />
       </QuestionFooter>
     </Wrapper>
   );

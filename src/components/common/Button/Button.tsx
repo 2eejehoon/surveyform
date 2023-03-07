@@ -7,6 +7,7 @@ interface ButtonProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
   width: number;
   height: number;
+  fontSize: number;
   color: string;
   bgColor: string;
 }
@@ -17,6 +18,7 @@ function Button({
   onClick,
   width,
   height,
+  fontSize,
   color,
   bgColor,
 }: ButtonProps) {
@@ -26,6 +28,7 @@ function Button({
       onClick={onClick}
       width={width}
       height={height}
+      fontSize={fontSize}
       color={color}
       bgColor={bgColor}
     >

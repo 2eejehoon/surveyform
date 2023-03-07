@@ -6,9 +6,18 @@ interface InputProps {
   type: string;
   value: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
+  fontSize?: number;
+  placeholder?: string;
 }
 
-function Input({ id, type, value, onChange }: InputProps) {
+function Input({
+  id,
+  type,
+  value,
+  onChange,
+  fontSize,
+  placeholder,
+}: InputProps) {
   return (
     <StyledInput
       id={id}
@@ -16,6 +25,8 @@ function Input({ id, type, value, onChange }: InputProps) {
       value={value}
       onChange={onChange}
       autoComplete="off"
+      fontSize={fontSize}
+      placeholder={placeholder}
     />
   );
 }

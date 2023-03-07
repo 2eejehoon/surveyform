@@ -35,10 +35,11 @@ function CheckboxTypeQuestion({ questionIndex }: CheckboxTypeQuestionProps) {
       <Button
         type="button"
         onClick={handleOptionAddClick}
-        width={30}
+        width={60}
         height={30}
-        color="black"
-        bgColor="yellow"
+        fontSize={14}
+        color="grey"
+        bgColor="white"
       >
         옵션 추가
       </Button>

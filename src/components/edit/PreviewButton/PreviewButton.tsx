@@ -13,12 +13,13 @@ function PreviewButton() {
     <Button
       type="button"
       onClick={handleClick}
-      width={50}
-      height={50}
+      width={40}
+      height={40}
+      fontSize={20}
       color="black"
-      bgColor="orange"
+      bgColor="white"
     >
-      미리보기
+      👁️‍🗨️
     </Button>
   );
 }
