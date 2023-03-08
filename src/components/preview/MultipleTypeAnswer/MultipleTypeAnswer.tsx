@@ -21,10 +21,6 @@ function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
     (state) => state.survey.questions[questionIndex]
   );
 
-  const multipleAnswer = useAppSelector(
-    (state) => state.survey.questions[questionIndex].optionAnswer
-  );
-
   const handleOptionClick = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setOptionAnswer({ questionIndex, clickedOption: e.target.value }));
   };
@@ -51,7 +47,7 @@ function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
                 id={id}
                 type="radio"
                 value={option}
-                checked={option === multipleAnswer}
+                checked={option === optionAnswer}
                 onChange={handleOptionClick}
               />
               <StyledLabel htmlFor={id}>{option}</StyledLabel>

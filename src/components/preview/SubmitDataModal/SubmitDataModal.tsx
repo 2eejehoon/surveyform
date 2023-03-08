@@ -1,7 +1,11 @@
 import { memo, useCallback } from "react";
 import { QUESTION_TYPE } from "../../../constant";
 import { useAppSelector } from "../../../store/index";
-import { ModalWrapper, StyledList } from "./SubmitDataModalStyle";
+import {
+  ButtonContainer,
+  ModalWrapper,
+  StyledList,
+} from "./SubmitDataModalStyle";
 import Button from "../../common/Button/Button";
 
 interface SubmitDataModalProps {
@@ -24,23 +28,31 @@ function SubmitDataModal({ setIsModalOpen }: SubmitDataModalProps) {
               {type === QUESTION_TYPE.SHORT && <p>{textAnswer}</p>}
               {type === QUESTION_TYPE.LONG && <p>{textAnswer}</p>}
               {type === QUESTION_TYPE.MULTIPLECHOICE && <p>{optionAnswer}</p>}
-              {type === QUESTION_TYPE.CHECKBOX && <p>{checkboxAnswer}</p>}
+              {type === QUESTION_TYPE.CHECKBOX && (
+                <ul>
+                  {checkboxAnswer?.map((el) => {
+                    return <li>{el}</li>;
+                  })}
+                </ul>
+              )}
               {type === QUESTION_TYPE.DROPDOWN && <p>{optionAnswer}</p>}
             </li>
           );
         })}
       </StyledList>
-      <Button
-        type="button"
-        onClick={handleCloseClick}
-        width={60}
-        height={40}
-        fontSize={16}
-        color="white"
-        bgColor="purple"
-      >
-        닫기
-      </Button>
+      <ButtonContainer>
+        <Button
+          type="button"
+          onClick={handleCloseClick}
+          width={60}
+          height={40}
+          fontSize={16}
+          color="white"
+          bgColor="purple"
+        >
+          닫기
+        </Button>
+      </ButtonContainer>
     </ModalWrapper>
   );
 }
