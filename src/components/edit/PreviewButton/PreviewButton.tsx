@@ -9,9 +9,9 @@ function PreviewButton() {
   const dispatch = useAppDispatch();
 
   const handlePreviewClick = useCallback(() => {
-    navigate("/preview");
-    // 미리보기 할 때 마다 작성된 답변을 초기화
+    // 미리보기 할 때 마다 이전에 작성된 답변을 초기화
     dispatch(clearAnswer());
+    navigate("/preview");
   }, []);
 
   return (

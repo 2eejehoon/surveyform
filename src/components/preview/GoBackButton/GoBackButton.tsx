@@ -5,9 +5,7 @@ import { useCallback, memo } from "react";
 function GoBackButton() {
   const navigate = useNavigate();
 
-  const handleGoBackClick = useCallback(() => {
-    navigate("/");
-  }, []);
+  const handleGoBackClick = useCallback(() => navigate("/"), []);
 
   return (
     <Button

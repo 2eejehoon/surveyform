@@ -28,8 +28,9 @@ function DropdownOption({ questionIndex, optionIndex }: DropdownOptionProps) {
       })
     );
 
-  const handleDeleteClick = () =>
+  const handleDeleteClick = () => {
     dispatch(deleteQuestionOption({ questionIndex, optionIndex }));
+  };
 
   return (
     <StyledLi>

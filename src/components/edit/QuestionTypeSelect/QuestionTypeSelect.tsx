@@ -14,8 +14,9 @@ function QuestionTypeSelect({ questionIndex }: QuestionTypeSelectProps) {
     (state) => state.survey.questions[questionIndex].type
   );
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) =>
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(setQuestionType({ questionIndex, type: e.target.value }));
+  };
 
   return (
     <StyledSelect onChange={handleChange} value={defaultType}>

@@ -19,7 +19,7 @@ function CheckboxOption({ questionIndex, optionIndex }: CheckboxOptionProps) {
     (state) => state.survey.questions[questionIndex].options[optionIndex]
   );
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(
       setQuestionOptionText({
         questionIndex,
@@ -27,9 +27,11 @@ function CheckboxOption({ questionIndex, optionIndex }: CheckboxOptionProps) {
         text: e.target.value,
       })
     );
+  };
 
-  const handleDeleteClick = () =>
+  const handleDeleteClick = () => {
     dispatch(deleteQuestionOption({ questionIndex, optionIndex }));
+  };
 
   return (
     <StyledLi>

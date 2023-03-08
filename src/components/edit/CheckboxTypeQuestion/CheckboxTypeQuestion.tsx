@@ -14,8 +14,9 @@ function CheckboxTypeQuestion({ questionIndex }: CheckboxTypeQuestionProps) {
     (state) => state.survey.questions[questionIndex].options
   );
 
-  const handleOptionAddClick = () =>
+  const handleOptionAddClick = () => {
     dispatch(addQuestionOption({ questionIndex }));
+  };
 
   return (
     <>

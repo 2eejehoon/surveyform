@@ -16,6 +16,7 @@ function SubmitDataModal({ setIsModalOpen }: SubmitDataModalProps) {
   const data = useAppSelector((state) => state.survey.questions);
 
   const handleCloseClick = useCallback(() => setIsModalOpen(false), []);
+
   return (
     <ModalWrapper>
       <StyledList>
