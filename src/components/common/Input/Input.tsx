@@ -4,8 +4,8 @@ import { StyledInput } from "./InputStyle";
 interface InputProps {
   id: string;
   type: string;
-  value: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   fontSize?: number;
   placeholder?: string;
   borderBottom?: boolean;

@@ -1,5 +1,5 @@
 import Input from "../../common/Input/Input";
-import { ChangeEvent, useCallback, memo } from "react";
+import { ChangeEvent, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/index";
 import { setQuestionTitle } from "../../../store/surveySlice";
 
@@ -31,4 +31,4 @@ function QuestionTitleInput({ questionIndex }: QuestionTitleInputProps) {
   );
 }
 
-export default memo(QuestionTitleInput);
+export default QuestionTitleInput;

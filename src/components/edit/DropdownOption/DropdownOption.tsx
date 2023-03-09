@@ -6,7 +6,7 @@ import {
   deleteQuestionOption,
   setQuestionOptionText,
 } from "../../../store/surveySlice";
-import { ChangeEvent } from "react";
+import { ChangeEvent, memo } from "react";
 
 interface DropdownOptionProps {
   questionIndex: number;
@@ -55,4 +55,4 @@ function DropdownOption({ questionIndex, optionIndex }: DropdownOptionProps) {
   );
 }
 
-export default DropdownOption;
+export default memo(DropdownOption);

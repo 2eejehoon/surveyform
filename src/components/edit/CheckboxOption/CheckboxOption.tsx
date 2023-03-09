@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import {
   setQuestionOptionText,
@@ -56,4 +56,4 @@ function CheckboxOption({ questionIndex, optionIndex }: CheckboxOptionProps) {
   );
 }
 
-export default CheckboxOption;
+export default memo(CheckboxOption);

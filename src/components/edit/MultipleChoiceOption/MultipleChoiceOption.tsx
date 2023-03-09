@@ -1,7 +1,7 @@
 import { StyledLi } from "./MultipleChoiceOptionStyle";
 import Input from "../../common/Input/Input";
 import Button from "../../common/Button/Button";
-import { ChangeEvent } from "react";
+import { ChangeEvent, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import {
   setQuestionOptionText,
@@ -59,4 +59,4 @@ function MultipleChoiceOption({
   );
 }
 
-export default MultipleChoiceOption;
+export default memo(MultipleChoiceOption);

@@ -1,4 +1,4 @@
-import { ChangeEvent, memo } from "react";
+import { ChangeEvent } from "react";
 import { QUESTION_TYPE_ARRAY } from "../../../constant";
 import { StyledSelect } from "./QuestionTypeSelectStyle";
 import { useAppDispatch, useAppSelector } from "../../../store/index";
@@ -31,4 +31,4 @@ function QuestionTypeSelect({ questionIndex }: QuestionTypeSelectProps) {
   );
 }
 
-export default memo(QuestionTypeSelect);
+export default QuestionTypeSelect;

@@ -40,7 +40,6 @@ function Answer({ questionIndex }: AnswerProps) {
           <DropdownTypeAnswer questionIndex={questionIndex} />
         )}
       </AnswerBody>
-      <AnswerFooter></AnswerFooter>
     </Wrapper>
   );
 }
