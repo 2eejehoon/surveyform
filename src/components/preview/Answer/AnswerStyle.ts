@@ -33,12 +33,3 @@ export const AnswerBody = styled.div`
   justify-content: space-between;
   align-items: space-between;
 `;
-
-export const AnswerFooter = styled.div`
-  padding: 5px;
-  width: 100%;
-  height: 30px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`;

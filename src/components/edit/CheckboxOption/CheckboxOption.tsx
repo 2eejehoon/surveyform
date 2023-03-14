@@ -40,6 +40,7 @@ function CheckboxOption({ questionIndex, optionIndex }: CheckboxOptionProps) {
         type="text"
         value={option}
         onChange={handleChange}
+        fontSize={14}
       />
       <Button
         type="button"

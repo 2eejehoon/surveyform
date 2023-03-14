@@ -39,6 +39,7 @@ function DropdownOption({ questionIndex, optionIndex }: DropdownOptionProps) {
         type="text"
         value={option}
         onChange={handleChange}
+        fontSize={14}
       />
       <Button
         type="button"
