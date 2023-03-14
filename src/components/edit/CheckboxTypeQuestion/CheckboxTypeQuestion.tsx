@@ -10,9 +10,7 @@ interface CheckboxTypeQuestionProps {
 
 function CheckboxTypeQuestion({ questionIndex }: CheckboxTypeQuestionProps) {
   const dispatch = useAppDispatch();
-  const options = useAppSelector(
-    (state) => state.survey.questions[questionIndex].options
-  );
+  const options = useAppSelector((state) => state.survey.questions[questionIndex].options);
 
   const handleOptionAddClick = () => {
     dispatch(addQuestionOption({ questionIndex }));
@@ -22,12 +20,7 @@ function CheckboxTypeQuestion({ questionIndex }: CheckboxTypeQuestionProps) {
     <>
       <StyledList>
         {options!.map((_, optionIndex) => {
-          return (
-            <CheckboxOption
-              questionIndex={questionIndex}
-              optionIndex={optionIndex}
-            />
-          );
+          return <CheckboxOption questionIndex={questionIndex} optionIndex={optionIndex} />;
         })}
       </StyledList>
       <Button

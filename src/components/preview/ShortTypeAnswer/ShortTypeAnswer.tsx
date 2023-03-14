@@ -11,9 +11,7 @@ interface ShortTypeAnswerProps {
 function ShortTypeAnswer({ questionIndex }: ShortTypeAnswerProps) {
   const [message, setMessage] = useState("");
   const dispatch = useAppDispatch();
-  const { textAnswer, required } = useAppSelector(
-    (state) => state.survey.questions[questionIndex]
-  );
+  const { textAnswer, required } = useAppSelector((state) => state.survey.questions[questionIndex]);
 
   const inputValue = typeof textAnswer === "string" ? textAnswer : "";
 

@@ -12,16 +12,7 @@ interface ButtonProps {
   bgColor: string;
 }
 
-function Button({
-  children,
-  type,
-  onClick,
-  width,
-  height,
-  fontSize,
-  color,
-  bgColor,
-}: ButtonProps) {
+function Button({ children, type, onClick, width, height, fontSize, color, bgColor }: ButtonProps) {
   return (
     <StyledButton
       type={type}

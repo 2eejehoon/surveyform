@@ -1,6 +1,6 @@
 import { useCallback, useState, memo } from "react";
 import Button from "../../common/Button/Button";
-import SubmitDataModal from "../SubmitDataModal/SubmitDataModal";
+import SubmitDataModal from "../SubmitDataListModal/SubmitDataListModal";
 
 function SubmitButton() {
   const [isModalOpen, setIsModalOpen] = useState(false);

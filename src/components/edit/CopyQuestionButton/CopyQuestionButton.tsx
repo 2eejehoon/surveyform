@@ -13,9 +13,7 @@ function CopyQuestionButton({ questionIndex }: CopyQuestionButtonProps) {
   );
 
   const handleCopyClick = () => {
-    dispatch(
-      copyQuestion({ questionIndex, questionTitle, type, required, text, options })
-    );
+    dispatch(copyQuestion({ questionIndex, questionTitle, type, required, text, options }));
   };
 
   return (

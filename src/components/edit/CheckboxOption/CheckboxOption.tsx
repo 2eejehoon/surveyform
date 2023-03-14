@@ -1,9 +1,6 @@
 import { ChangeEvent, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
-import {
-  setQuestionOptionText,
-  deleteQuestionOption,
-} from "../../../store/surveySlice";
+import { setQuestionOptionText, deleteQuestionOption } from "../../../store/surveySlice";
 import Input from "../../common/Input/Input";
 import { StyledLi } from "./CheckboxOptionStyle";
 import Button from "../../common/Button/Button";
