@@ -3,9 +3,9 @@ import { StyledTitle } from "./SurveyTitleStyle";
 import { useAppSelector } from "../../../store/index";
 
 function SurveyTitle() {
-  const title = useAppSelector((state) => state.survey.title);
+  const surveyTitle = useAppSelector((state) => state.survey.surveyTitle);
 
-  return <StyledTitle>{title}</StyledTitle>;
+  return <StyledTitle>{surveyTitle}</StyledTitle>;
 }
 
 export default memo(SurveyTitle);

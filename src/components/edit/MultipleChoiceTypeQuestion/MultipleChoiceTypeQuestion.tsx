@@ -23,7 +23,7 @@ function MultipleChoiceTypeQuestion({
   return (
     <>
       <StyledList>
-        {options.map((_, optionIndex) => {
+        {options!.map((_, optionIndex) => {
           return (
             <MultipleChoiceOption
               key={optionIndex}

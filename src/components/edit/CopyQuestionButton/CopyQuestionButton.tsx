@@ -8,13 +8,13 @@ interface CopyQuestionButtonProps {
 
 function CopyQuestionButton({ questionIndex }: CopyQuestionButtonProps) {
   const dispatch = useAppDispatch();
-  const { title, type, required, text, options } = useAppSelector(
+  const { questionTitle, type, required, text, options } = useAppSelector(
     (state) => state.survey.questions[questionIndex]
   );
 
   const handleCopyClick = () => {
     dispatch(
-      copyQuestion({ questionIndex, title, type, required, text, options })
+      copyQuestion({ questionIndex, questionTitle, type, required, text, options })
     );
   };
 

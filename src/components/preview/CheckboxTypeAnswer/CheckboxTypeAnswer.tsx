@@ -46,7 +46,7 @@ function CheckboxTypeAnswer({ questionIndex }: CheckboxTypeAnswerProps) {
   return (
     <Wrapper>
       <StyledFieldset>
-        {options.map((option, optionIndex) => {
+        {options!.map((option, optionIndex) => {
           const id = `checkbox-${optionIndex}`;
           return (
             <CheckboxWrapper key={optionIndex}>

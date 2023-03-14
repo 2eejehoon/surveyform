@@ -21,7 +21,7 @@ function DropdownTypeQuestion({ questionIndex }: DropdownTypeQuestionProps) {
   return (
     <>
       <StyledList>
-        {options.map((_, optionIndex) => {
+        {options!.map((_, optionIndex) => {
           return (
             <DropdownOption
               key={optionIndex}

@@ -5,11 +5,11 @@ import Input from "../../common/Input/Input";
 
 function SurveyTitleInput() {
   const dispatch = useAppDispatch();
-  const title = useAppSelector((state) => state.survey.title);
+  const surveyTitle = useAppSelector((state) => state.survey.surveyTitle);
 
   const handleTitleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) =>
-      dispatch(setTitle({ title: e.target.value })),
+      dispatch(setTitle({ surveyTitle: e.target.value })),
     []
   );
 
@@ -17,7 +17,7 @@ function SurveyTitleInput() {
     <Input
       id="title"
       type="text"
-      value={title}
+      value={surveyTitle}
       onChange={handleTitleChange}
       fontSize={24}
       placeholder="설문지 제목"

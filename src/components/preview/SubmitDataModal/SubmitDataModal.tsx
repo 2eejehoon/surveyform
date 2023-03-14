@@ -21,11 +21,11 @@ function SubmitDataModal({ setIsModalOpen }: SubmitDataModalProps) {
     <ModalWrapper>
       <StyledList>
         {data.map((answer) => {
-          const { title, type, textAnswer, optionAnswer, checkboxAnswer } =
+          const { questionTitle, type, textAnswer, optionAnswer, checkboxAnswer } =
             answer;
           return (
             <li>
-              <h4>{title}</h4>
+              <h4>{questionTitle}</h4>
               {type === QUESTION_TYPE.SHORT && <p>{textAnswer}</p>}
               {type === QUESTION_TYPE.LONG && <p>{textAnswer}</p>}
               {type === QUESTION_TYPE.MULTIPLECHOICE && <p>{optionAnswer}</p>}

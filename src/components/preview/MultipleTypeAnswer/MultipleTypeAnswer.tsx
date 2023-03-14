@@ -39,7 +39,7 @@ function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
   return (
     <Wrapper>
       <StyledFieldset>
-        {options.map((option, index) => {
+        {options!.map((option, index) => {
           const id = `option-${index}`;
           return (
             <RadioWrapper key={index}>

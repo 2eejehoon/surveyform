@@ -7,11 +7,11 @@ interface AnswerTitleProps {
 }
 
 function AnswerTitle({ questionIndex }: AnswerTitleProps) {
-  const title = useAppSelector(
-    (state) => state.survey.questions[questionIndex].title
+  const questionTitle = useAppSelector(
+    (state) => state.survey.questions[questionIndex].questionTitle
   );
 
-  return <StyledTitle>{title}</StyledTitle>;
+  return <StyledTitle>{questionTitle}</StyledTitle>;
 }
 
 export default memo(AnswerTitle);

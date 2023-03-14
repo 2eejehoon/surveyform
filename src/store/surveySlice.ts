@@ -1,33 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { QUESTION_TYPE } from "../constant";
+import { Question } from "../type";
 
 export interface surveyState {
-  title: string;
+  surveyTitle: string;
   desc: string;
-  questions: [
-    {
-      title: string;
-      type: string;
-      required: boolean;
-      text: string;
-      options: string[];
-      textAnswer?: string;
-      optionAnswer?: string;
-      checkboxAnswer?: string[];
-    }
-  ];
+  questions: Question[];
 }
 
 const initialState: surveyState = {
-  title: "제목 없는 설문지",
+  surveyTitle: "제목 없는 설문지",
   desc: "",
   questions: [
     {
-      title: "질문",
+      questionTitle: "질문",
       type: QUESTION_TYPE.MULTIPLECHOICE,
       required: true,
-      text: "",
       options: ["옵션1"],
     },
   ],
@@ -38,8 +27,8 @@ export const surveySlice = createSlice({
   initialState,
   reducers: {
     // 설문지의 제목 업데이트
-    setTitle(state, action: PayloadAction<{ title: string }>) {
-      state.title = action.payload.title;
+    setTitle(state, action: PayloadAction<{ surveyTitle: string }>) {
+      state.surveyTitle = action.payload.surveyTitle;
     },
 
     // 설문지의 설명 업데이트
@@ -50,10 +39,10 @@ export const surveySlice = createSlice({
     // 질문의 제목 업데이트
     setQuestionTitle(
       state,
-      action: PayloadAction<{ questionIndex: number; title: string }>
+      action: PayloadAction<{ questionIndex: number; questionTitle: string }>
     ) {
-      state.questions[action.payload.questionIndex].title =
-        action.payload.title;
+      state.questions[action.payload.questionIndex].questionTitle =
+        action.payload.questionTitle;
     },
 
     // 질문의 유형 업데이트
@@ -103,7 +92,7 @@ export const surveySlice = createSlice({
       }>
     ) {
       const { questionIndex, optionIndex, text } = action.payload;
-      state.questions[questionIndex].options[optionIndex] = text;
+      state.questions[questionIndex].options![optionIndex] = text;
     },
 
     // 질문(객관식, 체크박스, 드롭다운 유형) option 추가
@@ -122,7 +111,7 @@ export const surveySlice = createSlice({
       action: PayloadAction<{ questionIndex: number; optionIndex: number }>
     ) {
       const { questionIndex, optionIndex } = action.payload;
-      state.questions[questionIndex].options.splice(optionIndex, 1);
+      state.questions[questionIndex].options!.splice(optionIndex, 1);
     },
 
     // 질문 복사
@@ -130,18 +119,18 @@ export const surveySlice = createSlice({
       state,
       action: PayloadAction<{
         questionIndex: number;
-        title: string;
+        questionTitle: string;
         type: string;
         required: boolean;
-        text: string;
-        options: string[];
+        text?: string;
+        options?: string[];
       }>
     ) {
-      const { questionIndex, title, type, required, text, options } =
+      const { questionIndex, questionTitle, type, required, text, options } =
         action.payload;
 
       const newQuestion = {
-        title,
+        questionTitle,
         type,
         required,
         text,
@@ -169,7 +158,7 @@ export const surveySlice = createSlice({
     // 질문 추가 (객관식으로 추가)
     addQuestion(state) {
       const newQuestion = {
-        title: "질문",
+        questionTitle: "질문",
         type: QUESTION_TYPE.MULTIPLECHOICE,
         required: true,
         text: "",

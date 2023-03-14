@@ -19,7 +19,7 @@ function MultipleChoiceOption({
 }: MultipleChoiceOptionProps) {
   const dispatch = useAppDispatch();
   const option = useAppSelector(
-    (state) => state.survey.questions[questionIndex].options[optionIndex]
+    (state) => state.survey.questions[questionIndex].options![optionIndex]
   );
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>

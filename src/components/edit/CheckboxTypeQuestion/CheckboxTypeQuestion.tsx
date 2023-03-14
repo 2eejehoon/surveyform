@@ -21,7 +21,7 @@ function CheckboxTypeQuestion({ questionIndex }: CheckboxTypeQuestionProps) {
   return (
     <>
       <StyledList>
-        {options.map((_, optionIndex) => {
+        {options!.map((_, optionIndex) => {
           return (
             <CheckboxOption
               questionIndex={questionIndex}
