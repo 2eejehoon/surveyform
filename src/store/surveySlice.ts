@@ -170,37 +170,39 @@ export const surveySlice = createSlice({
       state,
       action: PayloadAction<{
         questionIndex: number;
-        checked: boolean;
-        clickedOption: string;
+        optionIndex: number;
       }>
     ) {
-      const { questionIndex, checked, clickedOption } = action.payload;
+      const { questionIndex, optionIndex } = action.payload;
 
-      switch (checked) {
-        // 체크한 경우 배열에 추가
-        case true:
-          if (state.questions[questionIndex].checkboxAnswer === undefined) {
-            state.questions[questionIndex].checkboxAnswer = [];
-          }
-          state.questions[questionIndex].checkboxAnswer?.push(clickedOption);
-          return;
-
-        // 체크 해제한 경우 배열에서 삭제
-        case false:
-          const filtred = state.questions[questionIndex].checkboxAnswer?.filter(
-            (checkedOption) => checkedOption !== clickedOption
-          );
-          state.questions[questionIndex].checkboxAnswer = filtred;
-          return;
-      }
+      state.questions[questionIndex].checkboxAnswer![optionIndex] =
+        !state.questions[questionIndex].checkboxAnswer![optionIndex];
     },
 
     // 양식 지우기
     clearAnswer(state) {
       state.questions.forEach((question) => {
-        question.checkboxAnswer = [];
-        question.optionAnswer = "";
-        question.textAnswer = "";
+        const type = question.type;
+
+        switch (type) {
+          case QUESTION_TYPE.SHORT:
+          case QUESTION_TYPE.LONG:
+            question.textAnswer = "";
+            return;
+
+          case QUESTION_TYPE.MULTIPLECHOICE:
+          case QUESTION_TYPE.DROPDOWN:
+            question.optionAnswer = "";
+            return;
+
+          case QUESTION_TYPE.CHECKBOX:
+            const length = question.options?.length;
+            question.checkboxAnswer = Array(length).fill(false);
+            return;
+
+          default:
+            break;
+        }
       });
     },
   },

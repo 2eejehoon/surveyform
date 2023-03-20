@@ -7,7 +7,7 @@ interface SubmitDataProps {
 }
 
 export default function SubmitData({ questionIndex }: SubmitDataProps) {
-  const { type, questionTitle, textAnswer, optionAnswer, checkboxAnswer } = useAppSelector(
+  const { type, questionTitle, options, textAnswer, optionAnswer, checkboxAnswer } = useAppSelector(
     (state) => state.survey.questions[questionIndex]
   );
 
@@ -22,7 +22,8 @@ export default function SubmitData({ questionIndex }: SubmitDataProps) {
         return optionAnswer;
 
       case QUESTION_TYPE.CHECKBOX:
-        return checkboxAnswer?.join(", ");
+        const filtered = options?.filter((_, index) => checkboxAnswer![index]);
+        return filtered?.join(", ");
 
       default:
         break;

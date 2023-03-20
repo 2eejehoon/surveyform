@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useEffect, memo } from "react";
+import { useState, useEffect, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setCheckboxAnswer } from "../../../store/surveySlice";
 import {
@@ -21,12 +21,11 @@ function CheckboxTypeAnswer({ questionIndex }: CheckboxTypeAnswerProps) {
     (state) => state.survey.questions[questionIndex]
   );
 
-  const handleClick = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleClick = (optionIndex: number) => {
     dispatch(
       setCheckboxAnswer({
         questionIndex,
-        checked: e.target.checked,
-        clickedOption: e.target.value,
+        optionIndex,
       })
     );
   };
@@ -38,7 +37,7 @@ function CheckboxTypeAnswer({ questionIndex }: CheckboxTypeAnswerProps) {
     if (!required) return;
 
     // 필수 질문이면 값 체크
-    if (checkboxAnswer === undefined || checkboxAnswer.length === 0) setMessage("필수 질문입니다.");
+    if (!checkboxAnswer?.includes(true)) setMessage("필수 질문입니다.");
     else setMessage("");
   }, [checkboxAnswer]);
 
@@ -49,7 +48,13 @@ function CheckboxTypeAnswer({ questionIndex }: CheckboxTypeAnswerProps) {
           const id = `checkbox-${optionIndex}`;
           return (
             <CheckboxWrapper key={optionIndex}>
-              <StyledCheckbox id={id} type="checkbox" value={option} onChange={handleClick} />
+              <StyledCheckbox
+                id={id}
+                type="checkbox"
+                checked={checkboxAnswer![optionIndex]}
+                value={option}
+                onChange={() => handleClick(optionIndex)}
+              />
               <StyledLabel htmlFor={id}>{option}</StyledLabel>
             </CheckboxWrapper>
           );
