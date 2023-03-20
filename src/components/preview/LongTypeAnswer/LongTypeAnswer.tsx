@@ -1,11 +1,4 @@
-import {
-  ChangeEvent,
-  FocusEvent,
-  useState,
-  useRef,
-  useCallback,
-  memo,
-} from "react";
+import { ChangeEvent, FocusEvent, useState, useRef, useCallback, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setTextAnswer } from "../../../store/surveySlice";
 import { StyledTextarea, Wrapper, StyledP } from "./LongTypeAnswerStyle";
@@ -18,9 +11,7 @@ function LongTypeAnswer({ questionIndex }: LongTypeAnswerProps) {
   const [message, setMessage] = useState("");
   const textarea = useRef<HTMLTextAreaElement | null>(null);
   const dispatch = useAppDispatch();
-  const { textAnswer, required } = useAppSelector(
-    (state) => state.survey.questions[questionIndex]
-  );
+  const { textAnswer, required } = useAppSelector((state) => state.survey.questions[questionIndex]);
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(setTextAnswer({ questionIndex, textAnswer: e.target.value }));

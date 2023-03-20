@@ -1,9 +1,9 @@
 import { ChangeEvent, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
-import { setQuestionOptionText, deleteQuestionOption } from "../../../store/surveySlice";
-import Input from "../../common/Input/Input";
+import { setQuestionOptionText } from "../../../store/surveySlice";
 import { StyledLi } from "./CheckboxOptionStyle";
-import Button from "../../common/Button/Button";
+import Input from "../../common/Input/Input";
+import DeleteOptionButton from "../DeleteOptionButton/DeleteOptionButton";
 
 interface CheckboxOptionProps {
   questionIndex: number;
@@ -26,10 +26,6 @@ function CheckboxOption({ questionIndex, optionIndex }: CheckboxOptionProps) {
     );
   };
 
-  const handleDeleteClick = () => {
-    dispatch(deleteQuestionOption({ questionIndex, optionIndex }));
-  };
-
   return (
     <StyledLi>
       <Input
@@ -39,17 +35,7 @@ function CheckboxOption({ questionIndex, optionIndex }: CheckboxOptionProps) {
         onChange={handleChange}
         fontSize={14}
       />
-      <Button
-        type="button"
-        onClick={handleDeleteClick}
-        width={30}
-        height={30}
-        fontSize={18}
-        color="black"
-        bgColor="white"
-      >
-        X
-      </Button>
+      <DeleteOptionButton questionIndex={questionIndex} optionIndex={optionIndex} />
     </StyledLi>
   );
 }

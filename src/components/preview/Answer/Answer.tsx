@@ -9,9 +9,7 @@ interface AnswerProps {
 }
 
 function Answer({ questionIndex }: AnswerProps) {
-  const type = useAppSelector(
-    (state) => state.survey.questions[questionIndex].type
-  );
+  const type = useAppSelector((state) => state.survey.questions[questionIndex].type);
 
   return (
     <Wrapper>

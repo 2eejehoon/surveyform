@@ -1,6 +1,6 @@
 import { QUESTION_TYPE } from "../../../constant";
 import { useAppSelector } from "../../../store";
-import { Wrapper, StyledP } from "./SubmitDataStyle";
+import { Wrapper, StyledH, StyledP } from "./SubmitDataStyle";
 
 interface SubmitDataProps {
   questionIndex: number;
@@ -31,7 +31,7 @@ export default function SubmitData({ questionIndex }: SubmitDataProps) {
 
   return (
     <Wrapper>
-      <h4>{questionTitle}</h4>
+      <StyledH>{questionTitle}</StyledH>
       <StyledP>{renderer(type)}</StyledP>
     </Wrapper>
   );

@@ -38,8 +38,7 @@ function CheckboxTypeAnswer({ questionIndex }: CheckboxTypeAnswerProps) {
     if (!required) return;
 
     // 필수 질문이면 값 체크
-    if (checkboxAnswer === undefined || checkboxAnswer.length === 0)
-      setMessage("필수 질문입니다.");
+    if (checkboxAnswer === undefined || checkboxAnswer.length === 0) setMessage("필수 질문입니다.");
     else setMessage("");
   }, [checkboxAnswer]);
 
@@ -50,12 +49,7 @@ function CheckboxTypeAnswer({ questionIndex }: CheckboxTypeAnswerProps) {
           const id = `checkbox-${optionIndex}`;
           return (
             <CheckboxWrapper key={optionIndex}>
-              <StyledCheckbox
-                id={id}
-                type="checkbox"
-                value={option}
-                onChange={handleClick}
-              />
+              <StyledCheckbox id={id} type="checkbox" value={option} onChange={handleClick} />
               <StyledLabel htmlFor={id}>{option}</StyledLabel>
             </CheckboxWrapper>
           );

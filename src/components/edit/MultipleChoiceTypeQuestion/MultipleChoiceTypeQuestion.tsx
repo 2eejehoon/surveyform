@@ -1,24 +1,14 @@
 import { StyledList } from "./MultipleChoiceTypeQuestionStyle";
-import Button from "../../common/Button/Button";
-import { useAppDispatch, useAppSelector } from "../../../store";
-import { addQuestionOption } from "../../../store/surveySlice";
+import { useAppSelector } from "../../../store";
 import MultipleChoiceOption from "../MultipleChoiceOption/MultipleChoiceOption";
+import AddOptionButton from "../AddOptionButton/AddOptionButton";
 
 interface MultipleChoiceTypeQuestionProps {
   questionIndex: number;
 }
 
-function MultipleChoiceTypeQuestion({
-  questionIndex,
-}: MultipleChoiceTypeQuestionProps) {
-  const dispatch = useAppDispatch();
-  const options = useAppSelector(
-    (state) => state.survey.questions[questionIndex].options
-  );
-
-  const handleOptionAddClick = () => {
-    dispatch(addQuestionOption({ questionIndex }));
-  };
+function MultipleChoiceTypeQuestion({ questionIndex }: MultipleChoiceTypeQuestionProps) {
+  const options = useAppSelector((state) => state.survey.questions[questionIndex].options);
 
   return (
     <>
@@ -33,17 +23,7 @@ function MultipleChoiceTypeQuestion({
           );
         })}
       </StyledList>
-      <Button
-        type="button"
-        onClick={handleOptionAddClick}
-        width={60}
-        height={30}
-        fontSize={14}
-        color="grey"
-        bgColor="white"
-      >
-        옵션 추가
-      </Button>
+      <AddOptionButton questionIndex={questionIndex} />
     </>
   );
 }

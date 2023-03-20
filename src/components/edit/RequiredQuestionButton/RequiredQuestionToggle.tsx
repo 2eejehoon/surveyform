@@ -6,14 +6,10 @@ interface RequiredQuestionButtonProps {
   questionIndex: number;
 }
 
-function RequiredQuestionToggle({
-  questionIndex,
-}: RequiredQuestionButtonProps) {
-  const toggleId = `required-toggle-${questionIndex}`;
+function RequiredQuestionToggle({ questionIndex }: RequiredQuestionButtonProps) {
   const dispatch = useAppDispatch();
-  const required = useAppSelector(
-    (state) => state.survey.questions[questionIndex].required
-  );
+  const required = useAppSelector((state) => state.survey.questions[questionIndex].required);
+  const toggleId = `required-toggle-${questionIndex}`;
 
   const handleClick = () => dispatch(setQuestionRequired({ questionIndex }));
 

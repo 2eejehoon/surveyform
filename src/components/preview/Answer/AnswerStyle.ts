@@ -16,6 +16,7 @@ export const Wrapper = styled.li`
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
 `;
+
 export const AnswerHeader = styled.div`
   display: flex;
   justify-content: flex-start;

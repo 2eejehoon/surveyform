@@ -10,6 +10,8 @@ export const StyledFieldset = styled.fieldset`
 
 export const CheckboxWrapper = styled.div`
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 export const StyledCheckbox = styled.input`

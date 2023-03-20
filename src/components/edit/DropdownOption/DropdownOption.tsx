@@ -1,12 +1,9 @@
 import Input from "../../common/Input/Input";
-import Button from "../../common/Button/Button";
 import { StyledLi } from "./DropdownOptionStyle";
 import { useAppDispatch, useAppSelector } from "../../../store";
-import {
-  deleteQuestionOption,
-  setQuestionOptionText,
-} from "../../../store/surveySlice";
+import { setQuestionOptionText } from "../../../store/surveySlice";
 import { ChangeEvent, memo } from "react";
+import DeleteOptionButton from "../DeleteOptionButton/DeleteOptionButton";
 
 interface DropdownOptionProps {
   questionIndex: number;
@@ -28,10 +25,6 @@ function DropdownOption({ questionIndex, optionIndex }: DropdownOptionProps) {
       })
     );
 
-  const handleDeleteClick = () => {
-    dispatch(deleteQuestionOption({ questionIndex, optionIndex }));
-  };
-
   return (
     <StyledLi>
       <Input
@@ -41,17 +34,7 @@ function DropdownOption({ questionIndex, optionIndex }: DropdownOptionProps) {
         onChange={handleChange}
         fontSize={14}
       />
-      <Button
-        type="button"
-        onClick={handleDeleteClick}
-        width={30}
-        height={30}
-        fontSize={18}
-        color="black"
-        bgColor="white"
-      >
-        X
-      </Button>
+      <DeleteOptionButton questionIndex={questionIndex} optionIndex={optionIndex} />
     </StyledLi>
   );
 }

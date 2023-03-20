@@ -6,21 +6,14 @@ import QuestionRenderer from "../QuestionRenderer/QuestionRenderer";
 import QuestionTitleInput from "../QuestionTitleInput/QuestionTitleInput";
 import QuestionTypeSelect from "../QuestionTypeSelect/QuestionTypeSelect";
 import RequiredQuestionToggle from "../RequiredQuestionButton/RequiredQuestionToggle";
-import {
-  QuestionBody,
-  QuestionFooter,
-  QuestionHeader,
-  Wrapper,
-} from "./QuestionStyle";
+import { QuestionBody, QuestionFooter, QuestionHeader, Wrapper } from "./QuestionStyle";
 
 interface QuestionProps {
   questionIndex: number;
 }
 
 function Question({ questionIndex }: QuestionProps) {
-  const type = useAppSelector(
-    (state) => state.survey.questions[questionIndex].type
-  );
+  const type = useAppSelector((state) => state.survey.questions[questionIndex].type);
 
   return (
     <Wrapper>

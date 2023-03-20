@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useAppDispatch } from "../../../store";
-import Button from "../../common/Button/Button";
 import { addQuestion } from "../../../store/surveySlice";
+import Button from "../../common/Button/Button";
 
 function AddQuestionButton() {
   const dispatch = useAppDispatch();

@@ -1,22 +1,14 @@
-import { useAppDispatch, useAppSelector } from "../../../store";
+import { useAppSelector } from "../../../store";
 import { StyledList } from "./DropdownTypeQuestionStyle";
-import { addQuestionOption } from "../../../store/surveySlice";
 import DropdownOption from "../DropdownOption/DropdownOption";
-import Button from "../../common/Button/Button";
+import AddOptionButton from "../AddOptionButton/AddOptionButton";
 
 interface DropdownTypeQuestionProps {
   questionIndex: number;
 }
 
 function DropdownTypeQuestion({ questionIndex }: DropdownTypeQuestionProps) {
-  const dispatch = useAppDispatch();
-  const options = useAppSelector(
-    (state) => state.survey.questions[questionIndex].options
-  );
-
-  const handleOptionAddClick = () => {
-    dispatch(addQuestionOption({ questionIndex }));
-  };
+  const options = useAppSelector((state) => state.survey.questions[questionIndex].options);
 
   return (
     <>
@@ -31,17 +23,7 @@ function DropdownTypeQuestion({ questionIndex }: DropdownTypeQuestionProps) {
           );
         })}
       </StyledList>
-      <Button
-        type="button"
-        onClick={handleOptionAddClick}
-        width={60}
-        height={30}
-        fontSize={14}
-        color="grey"
-        bgColor="white"
-      >
-        옵션 추가
-      </Button>
+      <AddOptionButton questionIndex={questionIndex} />
     </>
   );
 }

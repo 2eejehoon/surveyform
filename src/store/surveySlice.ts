@@ -41,15 +41,11 @@ export const surveySlice = createSlice({
       state,
       action: PayloadAction<{ questionIndex: number; questionTitle: string }>
     ) {
-      state.questions[action.payload.questionIndex].questionTitle =
-        action.payload.questionTitle;
+      state.questions[action.payload.questionIndex].questionTitle = action.payload.questionTitle;
     },
 
     // 질문의 유형 업데이트
-    setQuestionType(
-      state,
-      action: PayloadAction<{ questionIndex: number; type: string }>
-    ) {
+    setQuestionType(state, action: PayloadAction<{ questionIndex: number; type: string }>) {
       const { questionIndex, type } = action.payload;
       state.questions[action.payload.questionIndex].type = type;
 
@@ -98,8 +94,7 @@ export const surveySlice = createSlice({
     // 질문(객관식, 체크박스, 드롭다운 유형) option 추가
     addQuestionOption(state, action: PayloadAction<{ questionIndex: number }>) {
       const questionIndex = action.payload.questionIndex;
-      const newIndex =
-        Number(state.questions[questionIndex].options?.length) + 1;
+      const newIndex = Number(state.questions[questionIndex].options?.length) + 1;
       const initialValue = `옵션${newIndex}`;
 
       state.questions[questionIndex].options?.push(initialValue);
@@ -119,22 +114,13 @@ export const surveySlice = createSlice({
       state,
       action: PayloadAction<{
         questionIndex: number;
-        questionTitle: string;
-        type: string;
-        required: boolean;
-        text?: string;
-        options?: string[];
       }>
     ) {
-      const { questionIndex, questionTitle, type, required, text, options } =
-        action.payload;
+      const questionIndex = action.payload.questionIndex;
+      const copiedQuestion = state.questions[questionIndex];
 
       const newQuestion = {
-        questionTitle,
-        type,
-        required,
-        text,
-        options,
+        ...copiedQuestion,
       };
 
       state.questions.splice(questionIndex + 1, 0, newQuestion);
@@ -146,13 +132,9 @@ export const surveySlice = createSlice({
     },
 
     // 필수 질문 설정 및 해제
-    setQuestionRequired(
-      state,
-      action: PayloadAction<{ questionIndex: number }>
-    ) {
+    setQuestionRequired(state, action: PayloadAction<{ questionIndex: number }>) {
       const questionIndex = action.payload.questionIndex;
-      state.questions[questionIndex].required =
-        !state.questions[questionIndex].required;
+      state.questions[questionIndex].required = !state.questions[questionIndex].required;
     },
 
     // 질문 추가 (객관식으로 추가)
@@ -169,10 +151,7 @@ export const surveySlice = createSlice({
     },
 
     // 미리보기 답변(단답형, 장문형) 입력받은 값으로 업데이트
-    setTextAnswer(
-      state,
-      action: PayloadAction<{ questionIndex: number; textAnswer: string }>
-    ) {
+    setTextAnswer(state, action: PayloadAction<{ questionIndex: number; textAnswer: string }>) {
       const { questionIndex, textAnswer } = action.payload;
       state.questions[questionIndex].textAnswer = textAnswer;
     },

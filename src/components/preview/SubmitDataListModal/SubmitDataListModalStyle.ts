@@ -12,7 +12,7 @@ export const ModalWrapper = styled.div`
   align-items: flex-start;
   margin: auto;
   width: 500px;
-  height: 70%;
+  max-height: 700px;
   position: fixed;
   background-color: white;
   border: 1px solid lightgrey;
@@ -24,6 +24,7 @@ export const ModalWrapper = styled.div`
 
 export const StyledList = styled.ul`
   padding: 0px;
+  margin: 0px;
   list-style: none;
 `;
 

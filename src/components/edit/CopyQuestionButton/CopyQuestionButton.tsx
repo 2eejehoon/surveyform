@@ -1,5 +1,5 @@
 import Button from "../../common/Button/Button";
-import { useAppDispatch, useAppSelector } from "../../../store/index";
+import { useAppDispatch } from "../../../store/index";
 import { copyQuestion } from "../../../store/surveySlice";
 
 interface CopyQuestionButtonProps {
@@ -8,12 +8,9 @@ interface CopyQuestionButtonProps {
 
 function CopyQuestionButton({ questionIndex }: CopyQuestionButtonProps) {
   const dispatch = useAppDispatch();
-  const { questionTitle, type, required, text, options } = useAppSelector(
-    (state) => state.survey.questions[questionIndex]
-  );
 
   const handleCopyClick = () => {
-    dispatch(copyQuestion({ questionIndex, questionTitle, type, required, text, options }));
+    dispatch(copyQuestion({ questionIndex }));
   };
 
   return (
