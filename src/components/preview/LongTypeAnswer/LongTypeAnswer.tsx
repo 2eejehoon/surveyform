@@ -13,9 +13,12 @@ function LongTypeAnswer({ questionIndex }: LongTypeAnswerProps) {
   const dispatch = useAppDispatch();
   const { textAnswer, required } = useAppSelector((state) => state.survey.questions[questionIndex]);
 
-  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(setTextAnswer({ questionIndex, textAnswer: e.target.value }));
-  };
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
+      dispatch(setTextAnswer({ questionIndex, textAnswer: e.target.value }));
+    },
+    [questionIndex]
+  );
 
   const handleBlur = () => {
     // 필수 질문이 아니면 return

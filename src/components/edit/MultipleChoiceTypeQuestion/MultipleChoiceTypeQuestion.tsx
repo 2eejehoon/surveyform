@@ -14,9 +14,10 @@ function MultipleChoiceTypeQuestion({ questionIndex }: MultipleChoiceTypeQuestio
     <>
       <StyledList>
         {options!.map((_, optionIndex) => {
+          const key = `${questionIndex}-${optionIndex}`;
           return (
             <MultipleChoiceOption
-              key={optionIndex}
+              key={key}
               questionIndex={questionIndex}
               optionIndex={optionIndex}
             />

@@ -14,12 +14,9 @@ function DropdownTypeQuestion({ questionIndex }: DropdownTypeQuestionProps) {
     <>
       <StyledList>
         {options!.map((_, optionIndex) => {
+          const key = `${questionIndex}-${optionIndex}`;
           return (
-            <DropdownOption
-              key={optionIndex}
-              questionIndex={questionIndex}
-              optionIndex={optionIndex}
-            />
+            <DropdownOption key={key} questionIndex={questionIndex} optionIndex={optionIndex} />
           );
         })}
       </StyledList>

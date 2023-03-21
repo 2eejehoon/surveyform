@@ -6,9 +6,7 @@ interface LongTypeQuestionProps {
 }
 
 function LongTypeQuestion({ questionIndex }: LongTypeQuestionProps) {
-  const text = useAppSelector(
-    (state) => state.survey.questions[questionIndex].text
-  );
+  const text = useAppSelector((state) => state.survey.questions[questionIndex].text);
 
   return <StyledP>{text}</StyledP>;
 }

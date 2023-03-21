@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent, useState, memo } from "react";
+import { ChangeEvent, useState, memo, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setTextAnswer } from "../../../store/surveySlice";
 import Input from "../../common/Input/Input";
@@ -15,10 +15,13 @@ function ShortTypeAnswer({ questionIndex }: ShortTypeAnswerProps) {
 
   const inputValue = typeof textAnswer === "string" ? textAnswer : "";
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
-    dispatch(setTextAnswer({ questionIndex, textAnswer: e.target.value }));
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) =>
+      dispatch(setTextAnswer({ questionIndex, textAnswer: e.target.value })),
+    [questionIndex]
+  );
 
-  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+  const handleBlur = () => {
     // 필수 질문이 아니면 return
     if (!required) return;
 

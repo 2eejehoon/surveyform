@@ -8,8 +8,7 @@ function SurveyDescInput() {
   const desc = useAppSelector((state) => state.survey.desc);
 
   const handleDescChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) =>
-      dispatch(setDesc({ desc: e.target.value })),
+    (e: ChangeEvent<HTMLInputElement>) => dispatch(setDesc({ desc: e.target.value })),
     []
   );
 
