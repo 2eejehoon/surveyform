@@ -23,7 +23,7 @@ function ShortTypeAnswer({ questionIndex }: ShortTypeAnswerProps) {
     if (!required) return;
 
     // 필수 질문이면 값 체크
-    if (textAnswer === "") setMessage("필수 질문입니다.");
+    if (textAnswer?.replaceAll(" ", "") === "") setMessage("필수 질문입니다.");
     else setMessage("");
   };
 

@@ -17,7 +17,9 @@ interface MultipleTypeAnswerProps {
 function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
   const [message, setMessage] = useState("");
   const dispatch = useAppDispatch();
-  const { options, required, optionAnswer } = useAppSelector((state) => state.survey.questions[questionIndex]);
+  const { options, required, optionAnswer } = useAppSelector(
+    (state) => state.survey.questions[questionIndex]
+  );
 
   const handleOptionClick = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setOptionAnswer({ questionIndex, clickedOption: e.target.value }));
@@ -38,7 +40,7 @@ function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
     <Wrapper>
       <StyledFieldset>
         {options!.map((option, index) => {
-          const id = `option-${index}`;
+          const id = `option-${questionIndex}-${index}`;
           return (
             <RadioWrapper key={index}>
               <StyledRadioInput

@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent, useState, useRef, useCallback, memo } from "react";
+import { ChangeEvent, useState, useRef, useCallback, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setTextAnswer } from "../../../store/surveySlice";
 import { StyledTextarea, Wrapper, StyledP } from "./LongTypeAnswerStyle";
@@ -17,12 +17,12 @@ function LongTypeAnswer({ questionIndex }: LongTypeAnswerProps) {
     dispatch(setTextAnswer({ questionIndex, textAnswer: e.target.value }));
   };
 
-  const handleBlur = (e: FocusEvent<HTMLTextAreaElement>) => {
+  const handleBlur = () => {
     // 필수 질문이 아니면 return
     if (!required) return;
 
     // 필수 질문이면 값 체크
-    if (textAnswer === "") setMessage("필수 질문입니다.");
+    if (textAnswer?.replaceAll(" ", "") === "") setMessage("필수 질문입니다.");
     else setMessage("");
   };
 
