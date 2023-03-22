@@ -11,7 +11,9 @@ function LongTypeAnswer({ questionIndex }: LongTypeAnswerProps) {
   const [message, setMessage] = useState("");
   const textarea = useRef<HTMLTextAreaElement | null>(null);
   const dispatch = useAppDispatch();
-  const { textAnswer, required } = useAppSelector((state) => state.survey.questions[questionIndex]);
+  const { textAnswer, required } = useAppSelector(
+    (state) => state.survey.questions[questionIndex]
+  );
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLTextAreaElement>) => {

@@ -8,7 +8,8 @@ function SurveyTitleInput() {
   const surveyTitle = useAppSelector((state) => state.survey.surveyTitle);
 
   const handleTitleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => dispatch(setTitle({ surveyTitle: e.target.value })),
+    (e: ChangeEvent<HTMLInputElement>) =>
+      dispatch(setTitle({ surveyTitle: e.target.value })),
     []
   );
 

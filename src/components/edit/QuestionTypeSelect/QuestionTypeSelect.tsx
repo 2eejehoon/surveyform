@@ -10,7 +10,9 @@ interface QuestionTypeSelectProps {
 
 function QuestionTypeSelect({ questionIndex }: QuestionTypeSelectProps) {
   const dispatch = useAppDispatch();
-  const defaultType = useAppSelector((state) => state.survey.questions[questionIndex].type);
+  const defaultType = useAppSelector(
+    (state) => state.survey.questions[questionIndex].type
+  );
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(setQuestionType({ questionIndex, type: e.target.value }));

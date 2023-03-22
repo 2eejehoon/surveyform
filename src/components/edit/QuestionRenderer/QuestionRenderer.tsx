@@ -10,7 +10,10 @@ interface QuestionsRendererProps {
   questionIndex: number;
 }
 
-export default function QuestionRenderer({ type, questionIndex }: QuestionsRendererProps) {
+export default function QuestionRenderer({
+  type,
+  questionIndex,
+}: QuestionsRendererProps) {
   switch (type) {
     case QUESTION_TYPE.SHORT:
       return <ShortTypeQuestion questionIndex={questionIndex} />;

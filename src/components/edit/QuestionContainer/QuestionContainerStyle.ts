@@ -18,34 +18,6 @@ export const StyledLi = styled.li`
   }
 `;
 
-export const QuestionHeader = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  padding: 5px;
-`;
-
-export const QuestionBody = styled.div`
-  width: 100%;
-  padding: 5px;
-  border-bottom: 1px solid lightgrey;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: space-between;
-`;
-
-export const QuestionFooter = styled.div`
-  padding: 5px;
-  width: 100%;
-  height: 30px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`;
-
 export const DragButton = styled.div`
   display: flex;
   justify-content: center;
