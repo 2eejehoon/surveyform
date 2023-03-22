@@ -13,8 +13,6 @@ function ShortTypeAnswer({ questionIndex }: ShortTypeAnswerProps) {
   const dispatch = useAppDispatch();
   const { textAnswer, required } = useAppSelector((state) => state.survey.questions[questionIndex]);
 
-  const inputValue = typeof textAnswer === "string" ? textAnswer : "";
-
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) =>
       dispatch(setTextAnswer({ questionIndex, textAnswer: e.target.value })),
@@ -33,9 +31,9 @@ function ShortTypeAnswer({ questionIndex }: ShortTypeAnswerProps) {
   return (
     <Wrapper>
       <Input
-        id="short-answer"
+        id={`short-${questionIndex}`}
         type="text"
-        value={inputValue}
+        value={textAnswer}
         borderBottom={true}
         onChange={handleChange}
         onBlur={handleBlur}

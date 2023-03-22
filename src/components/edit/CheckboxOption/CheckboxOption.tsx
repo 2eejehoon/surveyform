@@ -29,7 +29,7 @@ function CheckboxOption({ questionIndex, optionIndex }: CheckboxOptionProps) {
   return (
     <StyledLi>
       <Input
-        id="checkbox-option"
+        id={`checkbox-${questionIndex}-${optionIndex}`}
         type="text"
         value={option}
         onChange={handleChange}

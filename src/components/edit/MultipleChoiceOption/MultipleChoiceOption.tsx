@@ -29,7 +29,7 @@ function MultipleChoiceOption({ questionIndex, optionIndex }: MultipleChoiceOpti
   return (
     <StyledLi>
       <Input
-        id="muitiple-option"
+        id={`multiple-${questionIndex}-${optionIndex}`}
         type="text"
         value={option}
         onChange={handleChange}

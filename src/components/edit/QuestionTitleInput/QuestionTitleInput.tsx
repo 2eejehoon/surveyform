@@ -21,7 +21,7 @@ function QuestionTitleInput({ questionIndex }: QuestionTitleInputProps) {
 
   return (
     <Input
-      id="question-title"
+      id={`question-title-${questionIndex}`}
       type="text"
       value={questionTitle}
       onChange={handleChange}

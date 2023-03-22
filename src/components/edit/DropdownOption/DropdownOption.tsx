@@ -28,7 +28,7 @@ function DropdownOption({ questionIndex, optionIndex }: DropdownOptionProps) {
   return (
     <StyledLi>
       <Input
-        id="dropdown-option"
+        id={`dropdown-${questionIndex}-${optionIndex}`}
         type="text"
         value={option}
         onChange={handleChange}

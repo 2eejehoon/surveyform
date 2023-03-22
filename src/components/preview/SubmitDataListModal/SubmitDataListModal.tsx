@@ -1,4 +1,4 @@
-import { memo, useCallback } from "react";
+import { useCallback } from "react";
 import { useAppSelector } from "../../../store/index";
 import { ButtonContainer, ModalWrapper, StyledList } from "./SubmitDataListModalStyle";
 import Button from "../../common/Button/Button";
@@ -37,4 +37,4 @@ function SubmitDataModal({ setIsModalOpen }: SubmitDataModalProps) {
   );
 }
 
-export default memo(SubmitDataModal);
+export default SubmitDataModal;

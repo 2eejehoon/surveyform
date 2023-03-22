@@ -37,7 +37,7 @@ function CheckboxTypeAnswer({ questionIndex }: CheckboxTypeAnswerProps) {
     if (!required) return;
 
     // 필수 질문이면 값 체크
-    if (!checkboxAnswer?.includes(true)) setMessage("필수 질문입니다.");
+    if (!checkboxAnswer!.includes(true)) setMessage("필수 질문입니다.");
     else setMessage("");
   }, [checkboxAnswer]);
 

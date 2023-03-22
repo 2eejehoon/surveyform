@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { StyledP } from "./SurveyDescStyle";
 import { useAppSelector } from "../../../store/index";
 
@@ -8,4 +7,4 @@ function SurveyDesc() {
   return <StyledP>{desc}</StyledP>;
 }
 
-export default memo(SurveyDesc);
+export default SurveyDesc;

@@ -94,10 +94,10 @@ export const surveySlice = createSlice({
     // 질문(객관식, 체크박스, 드롭다운 유형) option 추가
     addQuestionOption(state, action: PayloadAction<{ questionIndex: number }>) {
       const questionIndex = action.payload.questionIndex;
-      const newIndex = Number(state.questions[questionIndex].options?.length) + 1;
+      const newIndex = Number(state.questions[questionIndex].options!.length) + 1;
       const initialValue = `옵션${newIndex}`;
 
-      state.questions[questionIndex].options?.push(initialValue);
+      state.questions[questionIndex].options!.push(initialValue);
     },
 
     // 질문(객관식, 체크박스, 드롭다운 유형) option 삭제

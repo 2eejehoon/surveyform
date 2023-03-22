@@ -1,4 +1,4 @@
-import { useCallback, useState, memo } from "react";
+import { useCallback, useState } from "react";
 import Button from "../../common/Button/Button";
 import SubmitDataModal from "../SubmitDataListModal/SubmitDataListModal";
 
@@ -25,4 +25,4 @@ function SubmitButton() {
   );
 }
 
-export default memo(SubmitButton);
+export default SubmitButton;

@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { StyledTitle } from "./SurveyTitleStyle";
 import { useAppSelector } from "../../../store/index";
 
@@ -8,4 +7,4 @@ function SurveyTitle() {
   return <StyledTitle>{surveyTitle}</StyledTitle>;
 }
 
-export default memo(SurveyTitle);
+export default SurveyTitle;

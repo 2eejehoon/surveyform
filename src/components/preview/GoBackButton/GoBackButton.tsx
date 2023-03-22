@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import Button from "../../common/Button/Button";
-import { useCallback, memo } from "react";
+import { useCallback } from "react";
 
 function GoBackButton() {
   const navigate = useNavigate();
@@ -22,4 +22,4 @@ function GoBackButton() {
   );
 }
 
-export default memo(GoBackButton);
+export default GoBackButton;

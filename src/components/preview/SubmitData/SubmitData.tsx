@@ -26,7 +26,7 @@ export default function SubmitData({ questionIndex }: SubmitDataProps) {
         return filtered?.join(", ");
 
       default:
-        break;
+        return "";
     }
   }
 

@@ -17,13 +17,13 @@ export const ToggleSwitch = styled.label<ToggleProps>`
 `;
 
 export const ToggleButton = styled.span<ToggleProps>`
+  top: 50%;
+  left: ${(props) => (props.checked ? "30px" : "-5px")};
+  background: ${(props) => (props.checked ? "#673ab7;" : "grey;")};
   width: 20px;
   height: 20px;
   position: absolute;
-  top: 50%;
-  left: ${(props) => (props.checked ? "0px" : "25px")};
   transform: translateY(-50%);
   border-radius: 50%;
-  background: ${(props) => (props.checked ? "#673ab7;" : "grey;")};
   transition: all 0.5s ease;
 `;

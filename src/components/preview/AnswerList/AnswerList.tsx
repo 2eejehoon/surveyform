@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { StyledList } from "./AnswerListStyle";
 import { useAppSelector } from "../../../store/index";
 import Answer from "../Answer/Answer";
@@ -15,4 +14,4 @@ function AnswerList() {
   );
 }
 
-export default memo(AnswerList);
+export default AnswerList;
