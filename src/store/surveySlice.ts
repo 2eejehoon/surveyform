@@ -14,7 +14,7 @@ const initialState: surveyState = {
   desc: "",
   questions: [
     {
-      questionTitle: "질문",
+      questionTitle: "제목 없는 질문",
       type: QUESTION_TYPE.MULTIPLECHOICE,
       required: true,
       options: ["옵션1"],
@@ -49,30 +49,25 @@ export const surveySlice = createSlice({
       const { questionIndex, type } = action.payload;
       state.questions[action.payload.questionIndex].type = type;
 
-      // 질문 유형에 따라 type, 초깃값 설정
+      // 질문 유형에 따라 초깃값 설정
       switch (type) {
         case QUESTION_TYPE.SHORT:
-          state.questions[questionIndex].type = QUESTION_TYPE.SHORT;
           state.questions[questionIndex].text = "단답형 텍스트";
           return;
 
         case QUESTION_TYPE.LONG:
-          state.questions[questionIndex].type = QUESTION_TYPE.LONG;
           state.questions[questionIndex].text = "장문형 텍스트";
           return;
 
         case QUESTION_TYPE.MULTIPLECHOICE:
-          state.questions[questionIndex].type = QUESTION_TYPE.MULTIPLECHOICE;
           state.questions[questionIndex].options = ["옵션1"];
           return;
 
         case QUESTION_TYPE.CHECKBOX:
-          state.questions[questionIndex].type = QUESTION_TYPE.CHECKBOX;
           state.questions[questionIndex].options = ["옵션1"];
           return;
 
         case QUESTION_TYPE.DROPDOWN:
-          state.questions[questionIndex].type = QUESTION_TYPE.DROPDOWN;
           state.questions[questionIndex].options = ["옵션1"];
           return;
       }
@@ -140,10 +135,9 @@ export const surveySlice = createSlice({
     // 질문 추가 (객관식으로 추가)
     addQuestion(state) {
       const newQuestion = {
-        questionTitle: "질문",
+        questionTitle: "제목 없는 질문",
         type: QUESTION_TYPE.MULTIPLECHOICE,
         required: true,
-        text: "",
         options: ["옵션1"],
       };
 
@@ -205,6 +199,18 @@ export const surveySlice = createSlice({
         }
       });
     },
+
+    // 드래그앤드롭
+    questionDragDrop(
+      state,
+      action: PayloadAction<{ dragStartIndex: number; dragEndIndex: number }>
+    ) {
+      const { dragStartIndex, dragEndIndex } = action.payload;
+      const dragStartItem = state.questions[dragStartIndex];
+
+      state.questions.splice(dragStartIndex, 1);
+      state.questions.splice(dragEndIndex, 0, dragStartItem);
+    },
   },
 });
 
@@ -224,4 +230,5 @@ export const {
   setOptionAnswer,
   setCheckboxAnswer,
   clearAnswer,
+  questionDragDrop,
 } = surveySlice.actions;

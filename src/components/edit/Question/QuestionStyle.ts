@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.li`
+  position: relative;
   background-color: white;
   border: 1px solid lightgrey;
   border-radius: 5px;
@@ -43,4 +44,27 @@ export const QuestionFooter = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+`;
+
+export const DragButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  color: lightgrey;
+  font-size: 24px;
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+
+  &:focus-within,
+  :hover {
+    color: black;
+  }
 `;

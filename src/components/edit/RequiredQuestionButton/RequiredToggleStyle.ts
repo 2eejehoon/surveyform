@@ -5,7 +5,7 @@ interface ToggleProps {
 }
 
 export const ToggleSwitch = styled.label<ToggleProps>`
-  width: 45px;
+  width: 30px;
   height: 10px;
   display: block;
   position: relative;
@@ -18,7 +18,7 @@ export const ToggleSwitch = styled.label<ToggleProps>`
 
 export const ToggleButton = styled.span<ToggleProps>`
   top: 50%;
-  left: ${(props) => (props.checked ? "30px" : "-5px")};
+  left: ${(props) => (props.checked ? "15px" : "-5px")};
   background: ${(props) => (props.checked ? "#673ab7;" : "grey;")};
   width: 20px;
   height: 20px;
