@@ -19,7 +19,6 @@ export const ModalWrapper = styled.div`
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   z-index: 1;
-  padding: 15px;
 `;
 
 export const StyledList = styled.ul`

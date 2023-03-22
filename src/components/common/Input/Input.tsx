@@ -5,11 +5,11 @@ interface InputProps {
   id: string;
   type: string;
   value?: string;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   fontSize?: number;
   placeholder?: string;
   borderBottom?: boolean;
-  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
 }
 
 function Input({
@@ -27,12 +27,12 @@ function Input({
       id={id}
       type={type}
       value={value}
+      onBlur={onBlur}
       onChange={onChange}
       autoComplete={"off"}
       fontSize={fontSize}
       placeholder={placeholder}
       borderBottom={borderBottom}
-      onBlur={onBlur}
     />
   );
 }

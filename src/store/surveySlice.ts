@@ -41,11 +41,15 @@ export const surveySlice = createSlice({
       state,
       action: PayloadAction<{ questionIndex: number; questionTitle: string }>
     ) {
-      state.questions[action.payload.questionIndex].questionTitle = action.payload.questionTitle;
+      state.questions[action.payload.questionIndex].questionTitle =
+        action.payload.questionTitle;
     },
 
     // 질문의 유형 업데이트
-    setQuestionType(state, action: PayloadAction<{ questionIndex: number; type: string }>) {
+    setQuestionType(
+      state,
+      action: PayloadAction<{ questionIndex: number; type: string }>
+    ) {
       const { questionIndex, type } = action.payload;
       state.questions[action.payload.questionIndex].type = type;
 
@@ -145,7 +149,10 @@ export const surveySlice = createSlice({
     },
 
     // 미리보기 답변(단답형, 장문형) 입력받은 값으로 업데이트
-    setTextAnswer(state, action: PayloadAction<{ questionIndex: number; textAnswer: string }>) {
+    setTextAnswer(
+      state,
+      action: PayloadAction<{ questionIndex: number; textAnswer: string }>
+    ) {
       const { questionIndex, textAnswer } = action.payload;
       state.questions[questionIndex].textAnswer = textAnswer;
     },
@@ -201,7 +208,7 @@ export const surveySlice = createSlice({
     },
 
     // 질문 드래그앤드롭
-    questionDragDrop(
+    questionDragAndDrop(
       state,
       action: PayloadAction<{ dragStartIndex: number; dragEndIndex: number }>
     ) {
@@ -213,9 +220,13 @@ export const surveySlice = createSlice({
     },
 
     // 질문(객관식, 체크박스, 드롭다운)의 옵션 드래그앤드롭
-    questionOptionDragDrop(
+    questionOptionDragAndDrop(
       state,
-      action: PayloadAction<{ questionIndex: number; dragStartIndex: number; dragEndIndex: number }>
+      action: PayloadAction<{
+        questionIndex: number;
+        dragStartIndex: number;
+        dragEndIndex: number;
+      }>
     ) {
       const { questionIndex, dragStartIndex, dragEndIndex } = action.payload;
       const dragStartItem = state.questions[questionIndex].options![dragStartIndex];
@@ -242,6 +253,6 @@ export const {
   setOptionAnswer,
   setCheckboxAnswer,
   clearAnswer,
-  questionDragDrop,
-  questionOptionDragDrop,
+  questionDragAndDrop,
+  questionOptionDragAndDrop,
 } = surveySlice.actions;

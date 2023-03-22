@@ -1,7 +1,10 @@
 import { StyledLi, DragButton } from "./MultipleChoiceOptionStyle";
 import { ChangeEvent, memo, MutableRefObject, useState, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
-import { questionOptionDragDrop, setQuestionOptionText } from "../../../store/surveySlice";
+import {
+  questionOptionDragAndDrop,
+  setQuestionOptionText,
+} from "../../../store/surveySlice";
 import Input from "../../common/Input/Input";
 import DeleteOptionButton from "../DeleteOptionButton/DeleteOptionButton";
 import useDragAndDrop from "../../../hooks/useDragAndDrop";
@@ -42,9 +45,9 @@ function MultipleChoiceOption({
   const handleButtonMouseEnter = useCallback(() => setIsDraggable(true), []);
   const handleButtonMouseLeave = useCallback(() => setIsDraggable(false), []);
 
-  const dispatchQuestionOptionDragDrop = () => {
+  const dispatchQuestionOptionDragAndDrop = () => {
     dispatch(
-      questionOptionDragDrop({
+      questionOptionDragAndDrop({
         questionIndex,
         dragStartIndex: dragStartRef.current!,
         dragEndIndex: dragEndRef.current!,
@@ -52,11 +55,8 @@ function MultipleChoiceOption({
     );
   };
 
-  const [handleDragStart, handleDragEnter, handleDragOver, handleDragEnd] = useDragAndDrop(
-    dragStartRef,
-    dragEndRef,
-    dispatchQuestionOptionDragDrop
-  );
+  const [handleDragStart, handleDragEnter, handleDragOver, handleDragEnd] =
+    useDragAndDrop(dragStartRef, dragEndRef, dispatchQuestionOptionDragAndDrop);
 
   return (
     <StyledLi
@@ -69,7 +69,10 @@ function MultipleChoiceOption({
       onMouseLeave={handleOptionMouseLeave}
     >
       {hover && (
-        <DragButton onMouseEnter={handleButtonMouseEnter} onMouseLeave={handleButtonMouseLeave}>
+        <DragButton
+          onMouseEnter={handleButtonMouseEnter}
+          onMouseLeave={handleButtonMouseLeave}
+        >
           &#58;
         </DragButton>
       )}

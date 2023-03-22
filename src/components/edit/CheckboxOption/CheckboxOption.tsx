@@ -4,7 +4,7 @@ import { setQuestionOptionText } from "../../../store/surveySlice";
 import { StyledLi, DragButton } from "./CheckboxOptionStyle";
 import Input from "../../common/Input/Input";
 import DeleteOptionButton from "../DeleteOptionButton/DeleteOptionButton";
-import { questionOptionDragDrop } from "../../../store/surveySlice";
+import { questionOptionDragAndDrop } from "../../../store/surveySlice";
 import useDragAndDrop from "../../../hooks/useDragAndDrop";
 
 interface CheckboxOptionProps {
@@ -44,9 +44,9 @@ function CheckboxOption({
   const handleButtonMouseEnter = useCallback(() => setIsDraggable(true), []);
   const handleButtonMouseLeave = useCallback(() => setIsDraggable(false), []);
 
-  const dispatchQuestionOptionDragDrop = () => {
+  const dispatchQuestionOptionDragAndDrop = () => {
     dispatch(
-      questionOptionDragDrop({
+      questionOptionDragAndDrop({
         questionIndex,
         dragStartIndex: dragStartRef.current!,
         dragEndIndex: dragEndRef.current!,
@@ -54,11 +54,8 @@ function CheckboxOption({
     );
   };
 
-  const [handleDragStart, handleDragEnter, handleDragOver, handleDragEnd] = useDragAndDrop(
-    dragStartRef,
-    dragEndRef,
-    dispatchQuestionOptionDragDrop
-  );
+  const [handleDragStart, handleDragEnter, handleDragOver, handleDragEnd] =
+    useDragAndDrop(dragStartRef, dragEndRef, dispatchQuestionOptionDragAndDrop);
 
   return (
     <StyledLi
@@ -71,7 +68,10 @@ function CheckboxOption({
       onMouseLeave={handleOptionMouseLeave}
     >
       {hover && (
-        <DragButton onMouseEnter={handleButtonMouseEnter} onMouseLeave={handleButtonMouseLeave}>
+        <DragButton
+          onMouseEnter={handleButtonMouseEnter}
+          onMouseLeave={handleButtonMouseLeave}
+        >
           &#58;
         </DragButton>
       )}

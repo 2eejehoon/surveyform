@@ -12,12 +12,12 @@ export default function useDragAndDrop(
   dragEndRef: MutableRefObject<number | null>,
   onDragEndFunc: () => void
 ): useDragDropReturnType {
-  const handleDragStart = useCallback((questionIndex: number) => {
-    dragStartRef.current = questionIndex;
+  const handleDragStart = useCallback((index: number) => {
+    dragStartRef.current = index;
   }, []);
 
-  const handleDragEnter = useCallback((questionIndex: number) => {
-    dragEndRef.current = questionIndex;
+  const handleDragEnter = useCallback((index: number) => {
+    dragEndRef.current = index;
   }, []);
 
   const handleDragOver = useCallback((e: DragEvent) => {
