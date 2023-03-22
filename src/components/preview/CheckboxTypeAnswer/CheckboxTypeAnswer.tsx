@@ -50,7 +50,7 @@ function CheckboxTypeAnswer({ questionIndex }: CheckboxTypeAnswerProps) {
             <CheckboxWrapper key={optionIndex}>
               <StyledCheckbox
                 id={id}
-                type="checkbox"
+                type={"checkbox"}
                 checked={checkboxAnswer![optionIndex]}
                 value={option}
                 onChange={() => handleClick(optionIndex)}

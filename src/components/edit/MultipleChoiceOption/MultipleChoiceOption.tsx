@@ -38,6 +38,7 @@ function MultipleChoiceOption({
 
   const handleOptionMouseEnter = useCallback(() => setHover(true), []);
   const handleOptionMouseLeave = useCallback(() => setHover(false), []);
+
   const handleButtonMouseEnter = useCallback(() => setIsDraggable(true), []);
   const handleButtonMouseLeave = useCallback(() => setIsDraggable(false), []);
 
@@ -74,7 +75,7 @@ function MultipleChoiceOption({
       )}
       <Input
         id={`multiple-${questionIndex}-${optionIndex}`}
-        type="text"
+        type={"text"}
         value={option}
         onChange={handleChange}
         fontSize={14}

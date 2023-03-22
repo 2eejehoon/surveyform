@@ -18,7 +18,7 @@ function RequiredQuestionToggle({ questionIndex }: RequiredQuestionButtonProps) 
       <ToggleSwitch htmlFor={toggleId} checked={required}>
         <ToggleButton checked={required} />
       </ToggleSwitch>
-      <input id={toggleId} type="checkbox" hidden onClick={handleClick} />
+      <input id={toggleId} type={"checkbox"} hidden onClick={handleClick} />
     </>
   );
 }

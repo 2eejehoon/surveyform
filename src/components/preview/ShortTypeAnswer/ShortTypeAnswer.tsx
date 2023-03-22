@@ -32,7 +32,7 @@ function ShortTypeAnswer({ questionIndex }: ShortTypeAnswerProps) {
     <Wrapper>
       <Input
         id={`short-${questionIndex}`}
-        type="text"
+        type={"text"}
         value={textAnswer}
         borderBottom={true}
         onChange={handleChange}

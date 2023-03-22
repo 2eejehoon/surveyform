@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<EditPage />} />
-          <Route path="/preview" element={<PreviewPage />} />
+          <Route path={"/preview"} element={<PreviewPage />} />
         </Routes>
       </BrowserRouter>
     </>

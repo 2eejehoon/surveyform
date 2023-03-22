@@ -10,13 +10,13 @@ function SubmitButton() {
   return (
     <>
       <Button
-        type="submit"
+        type={"submit"}
         onClick={handleSubmitClick}
         width={60}
         height={40}
         fontSize={16}
-        color="white"
-        bgColor="purple"
+        color={"white"}
+        bgColor={"purple"}
       >
         제출
       </Button>

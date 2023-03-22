@@ -14,12 +14,12 @@ function SurveyDescInput() {
 
   return (
     <Input
-      id="description"
-      type="text"
+      id={"description"}
+      type={"text"}
       value={desc}
       onChange={handleDescChange}
       fontSize={16}
-      placeholder="설문지 설명"
+      placeholder={"설문지 설명"}
     />
   );
 }

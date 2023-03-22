@@ -34,7 +34,7 @@ function DropdownTypeAnswer({ questionIndex }: DropdownTypeAnswerProps) {
   return (
     <Wrapper>
       <StyledSelect onChange={handleChange} value={seletedValue}>
-        <option value="default" disabled defaultChecked>
+        <option value={"default"} disabled defaultChecked>
           선택
         </option>
         {options!.map((option, index) => {

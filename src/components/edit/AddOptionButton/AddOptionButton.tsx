@@ -16,13 +16,13 @@ function AddOptionButton({ questionIndex }: AddOptionButtonProps) {
 
   return (
     <Button
-      type="button"
+      type={"button"}
       onClick={handleOptionAddClick}
       width={60}
       height={30}
       fontSize={14}
-      color="grey"
-      bgColor="white"
+      color={"grey"}
+      bgColor={"white"}
     >
       옵션 추가
     </Button>

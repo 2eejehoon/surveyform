@@ -16,13 +16,13 @@ function PreviewButton() {
 
   return (
     <Button
-      type="button"
+      type={"button"}
       onClick={handlePreviewClick}
       width={40}
       height={40}
       fontSize={20}
-      color="black"
-      bgColor="white"
+      color={"black"}
+      bgColor={"white"}
     >
       👁️‍🗨️
     </Button>

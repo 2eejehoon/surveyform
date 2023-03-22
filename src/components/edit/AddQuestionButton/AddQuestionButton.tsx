@@ -10,13 +10,13 @@ function AddQuestionButton() {
 
   return (
     <Button
-      type="button"
+      type={"button"}
       onClick={handleAddClick}
       width={30}
       height={30}
       fontSize={40}
-      color="black"
-      bgColor="white"
+      color={"black"}
+      bgColor={"white"}
     >
       &#128808;
     </Button>

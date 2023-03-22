@@ -13,13 +13,13 @@ function DeleteQuestionButton({ questionIndex }: DeleteQuestionButtonProps) {
 
   return (
     <Button
-      type="button"
+      type={"button"}
       onClick={handleDeleteClick}
       width={50}
       height={30}
       fontSize={14}
-      color="black"
-      bgColor="white"
+      color={"black"}
+      bgColor={"white"}
     >
       삭제
     </Button>

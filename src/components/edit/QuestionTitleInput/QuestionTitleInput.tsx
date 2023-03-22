@@ -22,11 +22,11 @@ function QuestionTitleInput({ questionIndex }: QuestionTitleInputProps) {
   return (
     <Input
       id={`question-title-${questionIndex}`}
-      type="text"
+      type={"text"}
       value={questionTitle}
       onChange={handleChange}
       fontSize={18}
-      placeholder="질문"
+      placeholder={"질문"}
     />
   );
 }

@@ -10,13 +10,13 @@ function ClearButton() {
 
   return (
     <Button
-      type="button"
+      type={"button"}
       onClick={handleClick}
       width={70}
       height={30}
       fontSize={14}
-      color="purple"
-      bgColor="lavender"
+      color={"purple"}
+      bgColor={"lavender"}
     >
       양식 지우기
     </Button>

@@ -45,7 +45,7 @@ function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
             <RadioWrapper key={index}>
               <StyledRadioInput
                 id={id}
-                type="radio"
+                type={"radio"}
                 value={option}
                 checked={option === optionAnswer}
                 onChange={handleOptionClick}

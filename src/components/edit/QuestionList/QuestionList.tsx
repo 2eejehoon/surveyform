@@ -4,9 +4,9 @@ import Question from "../Question/Question";
 import { useRef } from "react";
 
 function QuestionList() {
-  const questions = useAppSelector((state) => state.survey.questions);
   const dragStartRef = useRef<number | null>(null);
   const dragEndRef = useRef<number | null>(null);
+  const questions = useAppSelector((state) => state.survey.questions);
 
   return (
     <StyledList>

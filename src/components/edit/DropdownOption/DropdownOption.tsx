@@ -20,9 +20,10 @@ function DropdownOption({
   dragStartRef,
   dragEndRef,
 }: DropdownOptionProps) {
-  const dispatch = useAppDispatch();
   const [hover, setHover] = useState(false);
   const [isDraggable, setIsDraggable] = useState(false);
+
+  const dispatch = useAppDispatch();
   const option = useAppSelector(
     (state) => state.survey.questions[questionIndex].options![optionIndex]
   );
@@ -38,6 +39,7 @@ function DropdownOption({
 
   const handleOptionMouseEnter = useCallback(() => setHover(true), []);
   const handleOptionMouseLeave = useCallback(() => setHover(false), []);
+
   const handleButtonMouseEnter = useCallback(() => setIsDraggable(true), []);
   const handleButtonMouseLeave = useCallback(() => setIsDraggable(false), []);
 
@@ -74,7 +76,7 @@ function DropdownOption({
       )}
       <Input
         id={`dropdown-${questionIndex}-${optionIndex}`}
-        type="text"
+        type={"text"}
         value={option}
         onChange={handleChange}
         fontSize={14}

@@ -28,7 +28,7 @@ function Input({
       type={type}
       value={value}
       onChange={onChange}
-      autoComplete="off"
+      autoComplete={"off"}
       fontSize={fontSize}
       placeholder={placeholder}
       borderBottom={borderBottom}

@@ -14,13 +14,13 @@ function DeleteOptionButton({ questionIndex, optionIndex }: DeleteOptionButtonPr
 
   return (
     <Button
-      type="button"
+      type={"button"}
       onClick={handleDeleteClick}
       width={30}
       height={30}
       fontSize={18}
-      color="black"
-      bgColor="white"
+      color={"black"}
+      bgColor={"white"}
     >
       X
     </Button>

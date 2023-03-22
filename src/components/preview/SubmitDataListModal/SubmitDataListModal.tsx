@@ -22,13 +22,13 @@ function SubmitDataModal({ setIsModalOpen }: SubmitDataModalProps) {
       </StyledList>
       <ButtonContainer>
         <Button
-          type="button"
+          type={"button"}
           onClick={handleCloseClick}
           width={60}
           height={40}
           fontSize={16}
-          color="white"
-          bgColor="purple"
+          color={"white"}
+          bgColor={"purple"}
         >
           닫기
         </Button>

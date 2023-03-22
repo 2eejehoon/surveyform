@@ -14,12 +14,12 @@ function SurveyTitleInput() {
 
   return (
     <Input
-      id="title"
-      type="text"
+      id={"title"}
+      type={"text"}
       value={surveyTitle}
       onChange={handleTitleChange}
       fontSize={24}
-      placeholder="설문지 제목"
+      placeholder={"설문지 제목"}
     />
   );
 }
