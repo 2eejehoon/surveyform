@@ -200,7 +200,7 @@ export const surveySlice = createSlice({
       });
     },
 
-    // 드래그앤드롭
+    // 질문 드래그앤드롭
     questionDragDrop(
       state,
       action: PayloadAction<{ dragStartIndex: number; dragEndIndex: number }>
@@ -210,6 +210,18 @@ export const surveySlice = createSlice({
 
       state.questions.splice(dragStartIndex, 1);
       state.questions.splice(dragEndIndex, 0, dragStartItem);
+    },
+
+    // 질문(객관식, 체크박스, 드롭다운)의 옵션 드래그앤드롭
+    questionOptionDragDrop(
+      state,
+      action: PayloadAction<{ questionIndex: number; dragStartIndex: number; dragEndIndex: number }>
+    ) {
+      const { questionIndex, dragStartIndex, dragEndIndex } = action.payload;
+      const dragStartItem = state.questions[questionIndex].options![dragStartIndex];
+
+      state.questions[questionIndex].options!.splice(dragStartIndex, 1);
+      state.questions[questionIndex].options!.splice(dragEndIndex, 0, dragStartItem);
     },
   },
 });
@@ -231,4 +243,5 @@ export const {
   setCheckboxAnswer,
   clearAnswer,
   questionDragDrop,
+  questionOptionDragDrop,
 } = surveySlice.actions;

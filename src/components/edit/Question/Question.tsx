@@ -18,20 +18,21 @@ interface QuestionProps {
 }
 
 function Question({ questionIndex, dragStartRef, dragEndRef }: QuestionProps) {
-  const [hover, setHover] = useState(false);
+  const [isDraggable, setIsDraggable] = useState(false);
   const dispatch = useAppDispatch();
   const type = useAppSelector((state) => state.survey.questions[questionIndex].type);
 
-  const handleMouseEnter = useCallback(() => setHover(true), []);
-  const handleMouseLeave = useCallback(() => setHover(false), []);
+  const handleMouseEnter = useCallback(() => setIsDraggable(true), []);
+  const handleMouseLeave = useCallback(() => setIsDraggable(false), []);
 
-  // drag 중인 질문의 index와 옮겨질 위치의 index 전달
+  // 드래그 중인 질문의 index와 옮겨질 위치의 index 전달
   const dispatchQuestionDragDrop = () => {
     dispatch(
       questionDragDrop({ dragStartIndex: dragStartRef.current!, dragEndIndex: dragEndRef.current! })
     );
   };
 
+  // useDragAndDrop 훅에 ref 객체와 함수를 인자로 전달
   const [handleDragStart, handleDragEnter, handleDragOver, handleDragEnd] = useDragAndDrop(
     dragStartRef,
     dragEndRef,
@@ -40,7 +41,7 @@ function Question({ questionIndex, dragStartRef, dragEndRef }: QuestionProps) {
 
   return (
     <Wrapper
-      draggable={hover}
+      draggable={isDraggable}
       onDragStart={() => handleDragStart(questionIndex)}
       onDragEnter={() => handleDragEnter(questionIndex)}
       onDragOver={handleDragOver}

@@ -2,12 +2,15 @@ import { StyledList } from "./MultipleChoiceTypeQuestionStyle";
 import { useAppSelector } from "../../../store";
 import MultipleChoiceOption from "../MultipleChoiceOption/MultipleChoiceOption";
 import AddOptionButton from "../AddOptionButton/AddOptionButton";
+import { useRef } from "react";
 
 interface MultipleChoiceTypeQuestionProps {
   questionIndex: number;
 }
 
 function MultipleChoiceTypeQuestion({ questionIndex }: MultipleChoiceTypeQuestionProps) {
+  const dragStartRef = useRef<number | null>(null);
+  const dragEndRef = useRef<number | null>(null);
   const options = useAppSelector((state) => state.survey.questions[questionIndex].options);
 
   return (
@@ -20,6 +23,8 @@ function MultipleChoiceTypeQuestion({ questionIndex }: MultipleChoiceTypeQuestio
               key={key}
               questionIndex={questionIndex}
               optionIndex={optionIndex}
+              dragStartRef={dragStartRef}
+              dragEndRef={dragEndRef}
             />
           );
         })}
