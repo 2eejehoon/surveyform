@@ -1,32 +1,25 @@
-import { ChangeEvent, useState, memo, useCallback } from "react";
+import { ChangeEvent, memo, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setTextAnswer } from "../../../store/surveySlice";
 import Input from "../../common/Input/Input";
-import { Wrapper, StyledP } from "./ShortTypeAnswerStyle";
+import RequiredMessage from "../RequiredMessage/RequiredMessage";
+import { Wrapper } from "./ShortTypeAnswerStyle";
 
 interface ShortTypeAnswerProps {
   questionIndex: number;
 }
 
 function ShortTypeAnswer({ questionIndex }: ShortTypeAnswerProps) {
-  const [message, setMessage] = useState("");
   const dispatch = useAppDispatch();
-  const { textAnswer, required } = useAppSelector((state) => state.survey.questions[questionIndex]);
+  const { textAnswer, required } = useAppSelector(
+    (state) => state.survey.questions[questionIndex]
+  );
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) =>
       dispatch(setTextAnswer({ questionIndex, textAnswer: e.target.value })),
     [questionIndex]
   );
-
-  const handleBlur = () => {
-    // 필수 질문이 아니면 return
-    if (!required) return;
-
-    // 필수 질문이면 값 체크
-    if (textAnswer?.replaceAll(" ", "") === "") setMessage("필수 질문입니다.");
-    else setMessage("");
-  };
 
   return (
     <Wrapper>
@@ -36,9 +29,10 @@ function ShortTypeAnswer({ questionIndex }: ShortTypeAnswerProps) {
         value={textAnswer}
         borderBottom={true}
         onChange={handleChange}
-        onBlur={handleBlur}
       />
-      <StyledP>{message}</StyledP>
+      {required && (
+        <RequiredMessage isAnswered={textAnswer?.replaceAll(" ", "") !== ""} />
+      )}
     </Wrapper>
   );
 }

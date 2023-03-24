@@ -1,8 +1,9 @@
-import { ReactNode, useState, useCallback, MutableRefObject } from "react";
+import { ReactNode, MutableRefObject } from "react";
 import { useAppDispatch } from "../../../store";
 import { questionDragAndDrop } from "../../../store/surveySlice";
 import useDragAndDrop from "../../../hooks/useDragAndDrop";
 import { StyledLi, DragButton } from "./QuestionContainerStyle";
+import useHover from "../../../hooks/useHover";
 
 interface QuestionContainerProps {
   children: ReactNode;
@@ -17,15 +18,11 @@ function QuestionContainer({
   dragEndRef,
   questionIndex,
 }: QuestionContainerProps) {
+  const [isQuestionHover, handleMouseEnterQuestion, handleMouseLeaveQuestion] =
+    useHover();
+  const [isButtonHover, handleMouseEnterButton, handleMouseLeaveButton] = useHover();
+
   const dispatch = useAppDispatch();
-  const [isQuestionHover, setIsQuestionHover] = useState(false);
-  const [isButtonHover, setIsButtonHover] = useState(false);
-
-  const handleMouseEnterQuestion = useCallback(() => setIsQuestionHover(true), []);
-  const handleMouseLeaveQuestion = useCallback(() => setIsQuestionHover(false), []);
-
-  const handleMouseEnterButton = useCallback(() => setIsButtonHover(true), []);
-  const handleMouseLeaveButton = useCallback(() => setIsButtonHover(false), []);
 
   // 드래그 중인 질문의 index와 옮겨질 위치의 index 전달
   const dispatchQuestionDragAndDrop = () => {

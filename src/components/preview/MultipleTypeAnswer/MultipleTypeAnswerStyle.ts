@@ -32,11 +32,3 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
 `;
-
-export const StyledP = styled.p`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 14px;
-  color: tomato;
-`;

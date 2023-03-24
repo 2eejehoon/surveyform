@@ -1,12 +1,12 @@
-import { ChangeEvent, useState, useEffect, memo } from "react";
+import { ChangeEvent, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setOptionAnswer } from "../../../store/surveySlice";
+import RequiredMessage from "../RequiredMessage/RequiredMessage";
 import {
   RadioWrapper,
   StyledFieldset,
   StyledRadioInput,
   StyledLabel,
-  StyledP,
   Wrapper,
 } from "./MultipleTypeAnswerStyle";
 
@@ -15,7 +15,6 @@ interface MultipleTypeAnswerProps {
 }
 
 function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
-  const [message, setMessage] = useState("");
   const dispatch = useAppDispatch();
   const { options, required, optionAnswer } = useAppSelector(
     (state) => state.survey.questions[questionIndex]
@@ -24,17 +23,6 @@ function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
   const handleOptionClick = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setOptionAnswer({ questionIndex, clickedOption: e.target.value }));
   };
-
-  // 렌더링 시 required, optionAnswer 확인해서 message 표시
-  // 양식 지우기 클릭 시 optionAnswer가 사라지면 message 표시
-  useEffect(() => {
-    // 필수 질문이 아니면 return
-    if (!required) return;
-
-    // 필수 질문이면 값 체크
-    if (optionAnswer === "") setMessage("필수 질문입니다.");
-    else setMessage("");
-  }, [optionAnswer]);
 
   return (
     <Wrapper>
@@ -55,7 +43,7 @@ function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
           );
         })}
       </StyledFieldset>
-      <StyledP>{message}</StyledP>
+      {required && <RequiredMessage isAnswered={optionAnswer !== ""} />}
     </Wrapper>
   );
 }

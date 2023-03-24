@@ -10,6 +10,7 @@ interface DeleteOptionButtonProps {
 
 function DeleteOptionButton({ questionIndex, optionIndex }: DeleteOptionButtonProps) {
   const dispatch = useAppDispatch();
+
   const handleDeleteClick = () =>
     dispatch(deleteQuestionOption({ questionIndex, optionIndex }));
 

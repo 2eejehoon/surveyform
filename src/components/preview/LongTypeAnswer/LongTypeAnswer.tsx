@@ -1,14 +1,14 @@
-import { ChangeEvent, useState, useRef, useCallback, memo } from "react";
+import { ChangeEvent, useRef, useCallback, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setTextAnswer } from "../../../store/surveySlice";
-import { StyledTextarea, Wrapper, StyledP } from "./LongTypeAnswerStyle";
+import RequiredMessage from "../RequiredMessage/RequiredMessage";
+import { StyledTextarea, Wrapper } from "./LongTypeAnswerStyle";
 
 interface LongTypeAnswerProps {
   questionIndex: number;
 }
 
 function LongTypeAnswer({ questionIndex }: LongTypeAnswerProps) {
-  const [message, setMessage] = useState("");
   const textarea = useRef<HTMLTextAreaElement | null>(null);
   const dispatch = useAppDispatch();
   const { textAnswer, required } = useAppSelector(
@@ -22,15 +22,6 @@ function LongTypeAnswer({ questionIndex }: LongTypeAnswerProps) {
     [questionIndex]
   );
 
-  const handleBlur = () => {
-    // 필수 질문이 아니면 return
-    if (!required) return;
-
-    // 필수 질문이면 값 체크
-    if (textAnswer?.replaceAll(" ", "") === "") setMessage("필수 질문입니다.");
-    else setMessage("");
-  };
-
   const handleResizeHeight = useCallback(() => {
     if (textarea.current instanceof HTMLTextAreaElement) {
       textarea.current.style.height = textarea.current.scrollHeight + "px";
@@ -43,11 +34,12 @@ function LongTypeAnswer({ questionIndex }: LongTypeAnswerProps) {
         ref={textarea}
         value={textAnswer}
         onChange={handleChange}
-        onBlur={handleBlur}
         onInput={handleResizeHeight}
         rows={1}
       />
-      <StyledP>{message}</StyledP>
+      {required && (
+        <RequiredMessage isAnswered={textAnswer?.replaceAll(" ", "") !== ""} />
+      )}
     </Wrapper>
   );
 }

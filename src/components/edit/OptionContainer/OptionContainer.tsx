@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
-import { MutableRefObject, useState, useCallback } from "react";
+import { MutableRefObject } from "react";
 import { useAppDispatch } from "../../../store";
 import { questionOptionDragAndDrop } from "../../../store/surveySlice";
 import useDragAndDrop from "../../../hooks/useDragAndDrop";
 import { StyledLi, DragButton } from "./OptionContainerStyle";
+import useHover from "../../../hooks/useHover";
 
 interface OptionContainerProps {
   children: ReactNode;
@@ -20,16 +21,10 @@ function OptionContainer({
   questionIndex,
   optionIndex,
 }: OptionContainerProps) {
-  const [isOptionHover, setIsOptionHover] = useState(false);
-  const [isButtonHover, setIsButtonHover] = useState(false);
+  const [isOptionHover, handleMouseEnterOption, handleMouseLeaveOption] = useHover();
+  const [isButtonHover, handleMouseEnterButton, handleMouseLeaveButton] = useHover();
 
   const dispatch = useAppDispatch();
-
-  const handleMouseEnterOption = useCallback(() => setIsOptionHover(true), []);
-  const handleMouseLeaveOption = useCallback(() => setIsOptionHover(false), []);
-
-  const handleMouseEnterButton = useCallback(() => setIsButtonHover(true), []);
-  const handleMouseLeaveButton = useCallback(() => setIsButtonHover(false), []);
 
   const dispatchQuestionOptionDragAndDrop = () => {
     dispatch(
@@ -43,6 +38,7 @@ function OptionContainer({
 
   const [handleDragStart, handleDragEnter, handleDragOver, handleDragEnd] =
     useDragAndDrop(dragStartRef, dragEndRef, dispatchQuestionOptionDragAndDrop);
+
   return (
     <StyledLi
       draggable={isButtonHover}
