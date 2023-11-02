@@ -5,19 +5,19 @@ export const ModalWrapper = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  position: relative;
+  margin: auto;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin: auto;
   width: 500px;
-  max-height: 700px;
-  position: fixed;
+  height: 800px;
   background-color: white;
   border: 1px solid lightgrey;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  overflow-y: scroll;
   z-index: 1;
 `;
 
@@ -32,6 +32,6 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: relative;
   bottom: 20px;
 `;

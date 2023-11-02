@@ -8,9 +8,9 @@ export const StyledSidebar = styled.section`
   background-color: white;
   border-radius: 5px;
   width: 50px;
-  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  gap: 10px;
 `;
