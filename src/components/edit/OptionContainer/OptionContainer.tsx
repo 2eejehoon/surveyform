@@ -5,6 +5,7 @@ import { questionOptionDragAndDrop } from "../../../store/surveySlice";
 import useDragAndDrop from "../../../hooks/useDragAndDrop";
 import { StyledLi, DragButton } from "./OptionContainerStyle";
 import useHover from "../../../hooks/useHover";
+import DeleteOptionButton from "../DeleteOptionButton/DeleteOptionButton";
 
 interface OptionContainerProps {
   children: ReactNode;
@@ -21,8 +22,10 @@ function OptionContainer({
   questionIndex,
   optionIndex,
 }: OptionContainerProps) {
-  const [isOptionHover, handleMouseEnterOption, handleMouseLeaveOption] = useHover();
-  const [isButtonHover, handleMouseEnterButton, handleMouseLeaveButton] = useHover();
+  const [isOptionHover, handleMouseEnterOption, handleMouseLeaveOption] =
+    useHover();
+  const [isButtonHover, handleMouseEnterButton, handleMouseLeaveButton] =
+    useHover();
 
   const dispatch = useAppDispatch();
 
@@ -58,6 +61,12 @@ function OptionContainer({
         </DragButton>
       )}
       {children}
+      {isOptionHover && (
+        <DeleteOptionButton
+          questionIndex={questionIndex}
+          optionIndex={optionIndex}
+        />
+      )}
     </StyledLi>
   );
 }

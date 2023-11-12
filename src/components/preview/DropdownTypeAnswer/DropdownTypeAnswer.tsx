@@ -26,13 +26,15 @@ function DropdownTypeAnswer({ questionIndex }: DropdownTypeAnswerProps) {
         <option value={"default"} disabled defaultChecked>
           선택
         </option>
-        {options!.map((option, index) => {
-          return (
-            <option key={index} value={option}>
-              {option}
-            </option>
-          );
-        })}
+        {options
+          ? options.map((option, index) => {
+              return (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              );
+            })
+          : []}
       </StyledSelect>
       {required && <RequiredMessage isAnswered={optionAnswer !== ""} />}
     </Wrapper>

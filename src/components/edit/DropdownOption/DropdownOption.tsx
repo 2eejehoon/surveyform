@@ -2,7 +2,6 @@ import Input from "../../common/Input/Input";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setQuestionOptionText } from "../../../store/surveySlice";
 import { ChangeEvent, memo, MutableRefObject } from "react";
-import DeleteOptionButton from "../DeleteOptionButton/DeleteOptionButton";
 import OptionContainer from "../OptionContainer/OptionContainer";
 
 interface DropdownOptionProps {
@@ -46,7 +45,6 @@ function DropdownOption({
         onChange={handleChange}
         fontSize={14}
       />
-      <DeleteOptionButton questionIndex={questionIndex} optionIndex={optionIndex} />
     </OptionContainer>
   );
 }

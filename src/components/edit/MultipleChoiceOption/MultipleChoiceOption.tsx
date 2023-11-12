@@ -2,7 +2,6 @@ import { ChangeEvent, memo, MutableRefObject } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setQuestionOptionText } from "../../../store/surveySlice";
 import Input from "../../common/Input/Input";
-import DeleteOptionButton from "../DeleteOptionButton/DeleteOptionButton";
 import OptionContainer from "../OptionContainer/OptionContainer";
 
 interface MultipleChoiceOptionProps {
@@ -47,7 +46,6 @@ function MultipleChoiceOption({
         onChange={handleChange}
         fontSize={14}
       />
-      <DeleteOptionButton questionIndex={questionIndex} optionIndex={optionIndex} />
     </OptionContainer>
   );
 }
