@@ -8,7 +8,10 @@ interface DeleteOptionButtonProps {
   optionIndex: number;
 }
 
-function DeleteOptionButton({ questionIndex, optionIndex }: DeleteOptionButtonProps) {
+function DeleteOptionButton({
+  questionIndex,
+  optionIndex,
+}: DeleteOptionButtonProps) {
   const dispatch = useAppDispatch();
 
   const handleDeleteClick = () =>
@@ -18,13 +21,13 @@ function DeleteOptionButton({ questionIndex, optionIndex }: DeleteOptionButtonPr
     <Button
       type={"button"}
       onClick={handleDeleteClick}
-      width={30}
-      height={30}
+      width={26}
+      height={26}
       fontSize={18}
       color={"black"}
       bgColor={"white"}
     >
-      X
+      &#10005;
     </Button>
   );
 }
