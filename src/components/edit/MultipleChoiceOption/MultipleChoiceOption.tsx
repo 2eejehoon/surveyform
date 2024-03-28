@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../store";
 import { setQuestionOptionText } from "../../../store/surveySlice";
 import Input from "../../common/Input/Input";
 import OptionContainer from "../OptionContainer/OptionContainer";
+import { isMultipleQuestion } from "../../../type";
 
 interface MultipleChoiceOptionProps {
   questionIndex: number;
@@ -13,7 +14,12 @@ interface MultipleChoiceOptionProps {
 
 function MultipleChoiceOption({ questionIndex, optionIndex, dragStartRef, dragEndRef }: MultipleChoiceOptionProps) {
   const dispatch = useAppDispatch();
-  const option = useAppSelector((state) => state.survey.questions[questionIndex].options[optionIndex]);
+  const option = useAppSelector((state) => {
+    const question = state.survey.questions[questionIndex];
+    if (isMultipleQuestion(question)) {
+      return question.options[optionIndex];
+    }
+  });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(
