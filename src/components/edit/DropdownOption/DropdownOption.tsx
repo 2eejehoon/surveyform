@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../store";
 import { setQuestionOptionText } from "../../../store/surveySlice";
 import { ChangeEvent, memo, MutableRefObject } from "react";
 import OptionContainer from "../OptionContainer/OptionContainer";
+import { isDropdownQuestion } from "../../../type";
 
 interface DropdownOptionProps {
   questionIndex: number;
@@ -13,7 +14,12 @@ interface DropdownOptionProps {
 
 function DropdownOption({ questionIndex, optionIndex, dragStartRef, dragEndRef }: DropdownOptionProps) {
   const dispatch = useAppDispatch();
-  const option = useAppSelector((state) => state.survey.questions[questionIndex].options[optionIndex]);
+  const option = useAppSelector((state) => {
+    const question = state.survey.questions[questionIndex];
+    if (isDropdownQuestion(question)) {
+      return question.options[optionIndex];
+    }
+  });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     dispatch(
