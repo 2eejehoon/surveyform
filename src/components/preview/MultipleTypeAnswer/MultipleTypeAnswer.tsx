@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../store";
 import { setOptionAnswer } from "../../../store/surveySlice";
 import RequiredMessage from "../RequiredMessage/RequiredMessage";
 import { RadioWrapper, StyledFieldset, StyledRadioInput, StyledLabel, Wrapper } from "./MultipleTypeAnswerStyle";
+import { MultipleQuestion, isMultipleQuestion } from "../../../type";
 
 interface MultipleTypeAnswerProps {
   questionIndex: number;
@@ -10,7 +11,13 @@ interface MultipleTypeAnswerProps {
 
 function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
   const dispatch = useAppDispatch();
-  const { options, required, optionAnswer } = useAppSelector((state) => state.survey.questions[questionIndex]);
+  const { options, required, optionAnswer } = useAppSelector((state) => {
+    const question = state.survey.questions[questionIndex];
+    if (isMultipleQuestion(question)) {
+      return question;
+    }
+    return {} as MultipleQuestion;
+  });
 
   const handleOptionClick = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setOptionAnswer({ questionIndex, clickedOption: e.target.value }));
@@ -19,7 +26,7 @@ function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
   return (
     <Wrapper>
       <StyledFieldset>
-        {options!.map((option, index) => {
+        {(options ?? []).map((option, index) => {
           const id = `option-${questionIndex}-${index}`;
           return (
             <RadioWrapper key={index}>

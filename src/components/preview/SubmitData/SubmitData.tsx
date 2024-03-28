@@ -1,4 +1,11 @@
-import { QUESTION_TYPE_MAP } from "../../../type";
+import {
+  QUESTION_TYPE_MAP,
+  isCheckboxQuestion,
+  isDropdownQuestion,
+  isLongQuestion,
+  isMultipleQuestion,
+  isShortQuestion,
+} from "../../../type";
 import { useAppSelector } from "../../../store";
 import { Wrapper, StyledH, StyledP } from "./SubmitDataStyle";
 
@@ -7,33 +14,35 @@ interface SubmitDataProps {
 }
 
 export default function SubmitData({ questionIndex }: SubmitDataProps) {
-  const { type, questionTitle, options, textAnswer, optionAnswer, checkboxAnswer } = useAppSelector(
-    (state) => state.survey.questions[questionIndex]
-  );
+  const question = useAppSelector((state) => state.survey.questions[questionIndex]);
 
   function renderer(type: string) {
-    switch (type) {
-      case QUESTION_TYPE_MAP.SHORT:
-      case QUESTION_TYPE_MAP.LONG:
-        return textAnswer;
+    if (isShortQuestion(question)) {
+      return question.textAnswer;
+    }
 
-      case QUESTION_TYPE_MAP.MULTIPLECHOICE:
-      case QUESTION_TYPE_MAP.DROPDOWN:
-        return optionAnswer;
+    if (isLongQuestion(question)) {
+      return question.textAnswer;
+    }
 
-      case QUESTION_TYPE_MAP.CHECKBOX:
-        const filtered = options?.filter((_, index) => checkboxAnswer![index]);
-        return filtered?.join(", ");
+    if (isMultipleQuestion(question)) {
+      return question.optionAnswer;
+    }
 
-      default:
-        return "";
+    if (isDropdownQuestion(question)) {
+      return question.optionAnswer;
+    }
+
+    if (isCheckboxQuestion(question)) {
+      const filtered = question.options.filter((_, index) => question.checkboxAnswer[index]);
+      return filtered?.join(", ");
     }
   }
 
   return (
     <Wrapper>
-      <StyledH>{questionTitle}</StyledH>
-      <StyledP>{renderer(type)}</StyledP>
+      <StyledH>{question.questionTitle}</StyledH>
+      <StyledP>{renderer(question.type)}</StyledP>
     </Wrapper>
   );
 }

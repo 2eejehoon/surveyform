@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../store";
 import { setOptionAnswer } from "../../../store/surveySlice";
 import { StyledSelect, Wrapper } from "./DropdownTypeAnswerStyle";
 import RequiredMessage from "../RequiredMessage/RequiredMessage";
+import { DropdownQuestion, isDropdownQuestion } from "../../../type";
 
 interface DropdownTypeAnswerProps {
   questionIndex: number;
@@ -10,7 +11,13 @@ interface DropdownTypeAnswerProps {
 
 function DropdownTypeAnswer({ questionIndex }: DropdownTypeAnswerProps) {
   const dispatch = useAppDispatch();
-  const { options, optionAnswer, required } = useAppSelector((state) => state.survey.questions[questionIndex]);
+  const { options, optionAnswer, required } = useAppSelector((state) => {
+    const question = state.survey.questions[questionIndex];
+    if (isDropdownQuestion(question)) {
+      return question;
+    }
+    return {} as DropdownQuestion;
+  });
 
   const seletedValue = optionAnswer || "default";
 
@@ -24,15 +31,13 @@ function DropdownTypeAnswer({ questionIndex }: DropdownTypeAnswerProps) {
         <option value={"default"} disabled defaultChecked>
           선택
         </option>
-        {options
-          ? options.map((option, index) => {
-              return (
-                <option key={index} value={option}>
-                  {option}
-                </option>
-              );
-            })
-          : []}
+        {(options ?? []).map((option, index) => {
+          return (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          );
+        })}
       </StyledSelect>
       {required && <RequiredMessage isAnswered={optionAnswer !== ""} />}
     </Wrapper>

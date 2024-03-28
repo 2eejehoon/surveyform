@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../store";
 import { setCheckboxAnswer } from "../../../store/surveySlice";
 import RequiredMessage from "../RequiredMessage/RequiredMessage";
 import { Wrapper, CheckboxWrapper, StyledCheckbox, StyledFieldset, StyledLabel } from "./CheckboxTypeAnswerStyle";
+import { CheckboxQuestion, isCheckboxQuestion } from "../../../type";
 
 interface CheckboxTypeAnswerProps {
   questionIndex: number;
@@ -10,7 +11,13 @@ interface CheckboxTypeAnswerProps {
 
 function CheckboxTypeAnswer({ questionIndex }: CheckboxTypeAnswerProps) {
   const dispatch = useAppDispatch();
-  const { options, required, checkboxAnswer } = useAppSelector((state) => state.survey.questions[questionIndex]);
+  const { options, required, checkboxAnswer } = useAppSelector((state) => {
+    const question = state.survey.questions[questionIndex];
+    if (isCheckboxQuestion(question)) {
+      return question;
+    }
+    return {} as CheckboxQuestion;
+  });
 
   const handleClick = (optionIndex: number) => {
     dispatch(
@@ -24,7 +31,7 @@ function CheckboxTypeAnswer({ questionIndex }: CheckboxTypeAnswerProps) {
   return (
     <Wrapper>
       <StyledFieldset>
-        {options.map((option, optionIndex) => {
+        {(options ?? []).map((option, optionIndex) => {
           const id = `checkbox-${questionIndex}-${optionIndex}`;
           return (
             <CheckboxWrapper key={optionIndex}>
@@ -40,7 +47,7 @@ function CheckboxTypeAnswer({ questionIndex }: CheckboxTypeAnswerProps) {
           );
         })}
       </StyledFieldset>
-      {required && <RequiredMessage isAnswered={checkboxAnswer!.includes(true)} />}
+      {required && <RequiredMessage isAnswered={(checkboxAnswer ?? []).includes(true)} />}
     </Wrapper>
   );
 }

@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../store";
 import { setTextAnswer } from "../../../store/surveySlice";
 import RequiredMessage from "../RequiredMessage/RequiredMessage";
 import { StyledTextarea, Wrapper } from "./LongTypeAnswerStyle";
+import { LongQuestion, isLongQuestion } from "../../../type";
 
 interface LongTypeAnswerProps {
   questionIndex: number;
@@ -11,7 +12,13 @@ interface LongTypeAnswerProps {
 function LongTypeAnswer({ questionIndex }: LongTypeAnswerProps) {
   const textarea = useRef<HTMLTextAreaElement | null>(null);
   const dispatch = useAppDispatch();
-  const { textAnswer, required } = useAppSelector((state) => state.survey.questions[questionIndex]);
+  const { textAnswer, required } = useAppSelector((state) => {
+    const question = state.survey.questions[questionIndex];
+    if (isLongQuestion(question)) {
+      return question;
+    }
+    return {} as LongQuestion;
+  });
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLTextAreaElement>) => {
