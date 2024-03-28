@@ -9,13 +9,10 @@ interface QuestionTitleInputProps {
 
 function QuestionTitleInput({ questionIndex }: QuestionTitleInputProps) {
   const dispatch = useAppDispatch();
-  const questionTitle = useAppSelector(
-    (state) => state.survey.questions[questionIndex].questionTitle
-  );
+  const questionTitle = useAppSelector((state) => state.survey.questions[questionIndex].questionTitle);
 
   const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) =>
-      dispatch(setQuestionTitle({ questionIndex, questionTitle: e.target.value })),
+    (e: ChangeEvent<HTMLInputElement>) => dispatch(setQuestionTitle({ questionIndex, questionTitle: e.target.value })),
     [questionIndex]
   );
 

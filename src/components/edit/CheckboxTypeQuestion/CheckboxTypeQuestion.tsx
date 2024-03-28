@@ -12,14 +12,12 @@ function CheckboxTypeQuestion({ questionIndex }: CheckboxTypeQuestionProps) {
   const dragStartRef = useRef<number | null>(null);
   const dragEndRef = useRef<number | null>(null);
 
-  const options = useAppSelector(
-    (state) => state.survey.questions[questionIndex].options
-  );
+  const options = useAppSelector((state) => state.survey.questions[questionIndex].options);
 
   return (
     <>
       <StyledList>
-        {options!.map((_, optionIndex) => {
+        {options.map((_, optionIndex) => {
           const key = `${questionIndex}-${optionIndex}`;
           return (
             <CheckboxOption

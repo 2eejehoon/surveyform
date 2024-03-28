@@ -8,7 +8,6 @@ import QuestionRenderer from "../QuestionRenderer/QuestionRenderer";
 import QuestionTitleInput from "../QuestionTitleInput/QuestionTitleInput";
 import QuestionTypeSelect from "../QuestionTypeSelect/QuestionTypeSelect";
 import RequiredQuestionToggle from "../RequiredQuestionButton/RequiredQuestionToggle";
-
 interface QuestionProps {
   questionIndex: number;
   dragStartRef: MutableRefObject<number | null>;
@@ -19,11 +18,7 @@ function Question({ questionIndex, dragStartRef, dragEndRef }: QuestionProps) {
   const type = useAppSelector((state) => state.survey.questions[questionIndex].type);
 
   return (
-    <QuestionContainer
-      dragStartRef={dragStartRef}
-      dragEndRef={dragEndRef}
-      questionIndex={questionIndex}
-    >
+    <QuestionContainer dragStartRef={dragStartRef} dragEndRef={dragEndRef} questionIndex={questionIndex}>
       <QuestionHeader>
         <QuestionTitleInput questionIndex={questionIndex} />
         <QuestionTypeSelect questionIndex={questionIndex} />

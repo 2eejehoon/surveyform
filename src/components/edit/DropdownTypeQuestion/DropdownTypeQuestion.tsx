@@ -12,9 +12,7 @@ function DropdownTypeQuestion({ questionIndex }: DropdownTypeQuestionProps) {
   const dragStartRef = useRef<number | null>(null);
   const dragEndRef = useRef<number | null>(null);
 
-  const options = useAppSelector(
-    (state) => state.survey.questions[questionIndex].options
-  );
+  const options = useAppSelector((state) => state.survey.questions[questionIndex].options);
 
   return (
     <>

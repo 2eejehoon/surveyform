@@ -7,9 +7,7 @@ interface AnswerTitleProps {
 }
 
 function AnswerTitle({ questionIndex }: AnswerTitleProps) {
-  const questionTitle = useAppSelector(
-    (state) => state.survey.questions[questionIndex].questionTitle
-  );
+  const questionTitle = useAppSelector((state) => state.survey.questions[questionIndex].questionTitle);
 
   return <StyledTitle>{questionTitle}</StyledTitle>;
 }

@@ -11,16 +11,9 @@ interface DropdownOptionProps {
   dragEndRef: MutableRefObject<number | null>;
 }
 
-function DropdownOption({
-  questionIndex,
-  optionIndex,
-  dragStartRef,
-  dragEndRef,
-}: DropdownOptionProps) {
+function DropdownOption({ questionIndex, optionIndex, dragStartRef, dragEndRef }: DropdownOptionProps) {
   const dispatch = useAppDispatch();
-  const option = useAppSelector(
-    (state) => state.survey.questions[questionIndex].options![optionIndex]
-  );
+  const option = useAppSelector((state) => state.survey.questions[questionIndex].options[optionIndex]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     dispatch(

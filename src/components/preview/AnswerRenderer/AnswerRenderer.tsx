@@ -1,4 +1,4 @@
-import { QUESTION_TYPE } from "../../../constant";
+import { QUESTION_TYPE_MAP } from "../../../type";
 import CheckboxTypeAnswer from "../CheckboxTypeAnswer/CheckboxTypeAnswer";
 import DropdownTypeAnswer from "../DropdownTypeAnswer/DropdownTypeAnswer";
 import LongTypeAnswer from "../LongTypeAnswer/LongTypeAnswer";
@@ -12,19 +12,19 @@ interface AnswerRendererProps {
 
 export default function AnswerRenderer({ type, questionIndex }: AnswerRendererProps) {
   switch (type) {
-    case QUESTION_TYPE.SHORT:
+    case QUESTION_TYPE_MAP.SHORT:
       return <ShortTypeAnswer questionIndex={questionIndex} />;
 
-    case QUESTION_TYPE.LONG:
+    case QUESTION_TYPE_MAP.LONG:
       return <LongTypeAnswer questionIndex={questionIndex} />;
 
-    case QUESTION_TYPE.MULTIPLECHOICE:
+    case QUESTION_TYPE_MAP.MULTIPLECHOICE:
       return <MultipleTypeAnswer questionIndex={questionIndex} />;
 
-    case QUESTION_TYPE.CHECKBOX:
+    case QUESTION_TYPE_MAP.CHECKBOX:
       return <CheckboxTypeAnswer questionIndex={questionIndex} />;
 
-    case QUESTION_TYPE.DROPDOWN:
+    case QUESTION_TYPE_MAP.DROPDOWN:
       return <DropdownTypeAnswer questionIndex={questionIndex} />;
 
     default:

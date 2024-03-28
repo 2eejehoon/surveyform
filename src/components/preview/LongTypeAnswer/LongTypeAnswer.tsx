@@ -11,9 +11,7 @@ interface LongTypeAnswerProps {
 function LongTypeAnswer({ questionIndex }: LongTypeAnswerProps) {
   const textarea = useRef<HTMLTextAreaElement | null>(null);
   const dispatch = useAppDispatch();
-  const { textAnswer, required } = useAppSelector(
-    (state) => state.survey.questions[questionIndex]
-  );
+  const { textAnswer, required } = useAppSelector((state) => state.survey.questions[questionIndex]);
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -30,16 +28,8 @@ function LongTypeAnswer({ questionIndex }: LongTypeAnswerProps) {
 
   return (
     <Wrapper>
-      <StyledTextarea
-        ref={textarea}
-        value={textAnswer}
-        onChange={handleChange}
-        onInput={handleResizeHeight}
-        rows={1}
-      />
-      {required && (
-        <RequiredMessage isAnswered={textAnswer?.replaceAll(" ", "") !== ""} />
-      )}
+      <StyledTextarea ref={textarea} value={textAnswer} onChange={handleChange} onInput={handleResizeHeight} rows={1} />
+      {required && <RequiredMessage isAnswered={textAnswer?.replaceAll(" ", "") !== ""} />}
     </Wrapper>
   );
 }

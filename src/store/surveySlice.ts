@@ -1,6 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { QUESTION_TYPE } from "../constant";
+import {
+  QUESTION_TYPE_MAP,
+  QUESTION_TYPE,
+  isShortQuestion,
+  isLongQuestion,
+  isMultipleQuestion,
+  isCheckboxQuestion,
+  isDropdownQuestion,
+} from "../type";
 import { Question } from "../type";
 
 export interface surveyState {
@@ -15,9 +23,10 @@ const initialState: surveyState = {
   questions: [
     {
       questionTitle: "제목 없는 질문",
-      type: QUESTION_TYPE.MULTIPLECHOICE,
+      type: QUESTION_TYPE_MAP.MULTIPLECHOICE,
       required: true,
       options: ["옵션1"],
+      optionAnswer: "",
     },
   ],
 };
@@ -37,43 +46,35 @@ export const surveySlice = createSlice({
     },
 
     // 질문의 제목 업데이트
-    setQuestionTitle(
-      state,
-      action: PayloadAction<{ questionIndex: number; questionTitle: string }>
-    ) {
-      state.questions[action.payload.questionIndex].questionTitle =
-        action.payload.questionTitle;
+    setQuestionTitle(state, action: PayloadAction<{ questionIndex: number; questionTitle: string }>) {
+      state.questions[action.payload.questionIndex].questionTitle = action.payload.questionTitle;
     },
 
     // 질문의 유형 업데이트
-    setQuestionType(
-      state,
-      action: PayloadAction<{ questionIndex: number; type: string }>
-    ) {
+    setQuestionType(state, action: PayloadAction<{ questionIndex: number; type: QUESTION_TYPE }>) {
       const { questionIndex, type } = action.payload;
-      state.questions[action.payload.questionIndex].type = type;
+      const question = state.questions[questionIndex];
+      question.type = type;
 
       // 질문 유형에 따라 초깃값 설정
-      switch (type) {
-        case QUESTION_TYPE.SHORT:
-          state.questions[questionIndex].text = "단답형 텍스트";
-          return;
+      if (isShortQuestion(question)) {
+        question.text = "단답형 텍스트";
+      }
 
-        case QUESTION_TYPE.LONG:
-          state.questions[questionIndex].text = "장문형 텍스트";
-          return;
+      if (isLongQuestion(question)) {
+        question.text = "장문형 텍스트";
+      }
 
-        case QUESTION_TYPE.MULTIPLECHOICE:
-          state.questions[questionIndex].options = ["옵션1"];
-          return;
+      if (isMultipleQuestion(question)) {
+        question.options = ["옵션1"];
+      }
 
-        case QUESTION_TYPE.CHECKBOX:
-          state.questions[questionIndex].options = ["옵션1"];
-          return;
+      if (isCheckboxQuestion(question)) {
+        question.options = ["옵션1"];
+      }
 
-        case QUESTION_TYPE.DROPDOWN:
-          state.questions[questionIndex].options = ["옵션1"];
-          return;
+      if (isDropdownQuestion(question)) {
+        question.options = ["옵션1"];
       }
     },
 
@@ -87,25 +88,30 @@ export const surveySlice = createSlice({
       }>
     ) {
       const { questionIndex, optionIndex, text } = action.payload;
-      state.questions[questionIndex].options![optionIndex] = text;
+      const question = state.questions[questionIndex];
+      if (isMultipleQuestion(question) || isCheckboxQuestion(question) || isDropdownQuestion(question)) {
+        question.options[optionIndex] = text;
+      }
     },
 
     // 질문(객관식, 체크박스, 드롭다운 유형) option 추가
     addQuestionOption(state, action: PayloadAction<{ questionIndex: number }>) {
       const questionIndex = action.payload.questionIndex;
-      const newIndex = Number(state.questions[questionIndex].options!.length) + 1;
-      const initialValue = `옵션${newIndex}`;
-
-      state.questions[questionIndex].options!.push(initialValue);
+      const question = state.questions[questionIndex];
+      if (isMultipleQuestion(question) || isCheckboxQuestion(question) || isDropdownQuestion(question)) {
+        const newIndex = Number(question.options.length) + 1;
+        const initialValue = `옵션${newIndex}`;
+        question.options.push(initialValue);
+      }
     },
 
     // 질문(객관식, 체크박스, 드롭다운 유형) option 삭제
-    deleteQuestionOption(
-      state,
-      action: PayloadAction<{ questionIndex: number; optionIndex: number }>
-    ) {
+    deleteQuestionOption(state, action: PayloadAction<{ questionIndex: number; optionIndex: number }>) {
       const { questionIndex, optionIndex } = action.payload;
-      state.questions[questionIndex].options!.splice(optionIndex, 1);
+      const question = state.questions[questionIndex];
+      if (isMultipleQuestion(question) || isCheckboxQuestion(question) || isDropdownQuestion(question)) {
+        question.options.splice(optionIndex, 1);
+      }
     },
 
     // 질문 복사
@@ -140,30 +146,31 @@ export const surveySlice = createSlice({
     addQuestion(state) {
       const newQuestion = {
         questionTitle: "제목 없는 질문",
-        type: QUESTION_TYPE.MULTIPLECHOICE,
+        type: QUESTION_TYPE_MAP.MULTIPLECHOICE,
         required: true,
         options: ["옵션1"],
+        optionAnswer: "",
       };
 
       state.questions.push(newQuestion);
     },
 
     // 미리보기 답변(단답형, 장문형) 입력받은 값으로 업데이트
-    setTextAnswer(
-      state,
-      action: PayloadAction<{ questionIndex: number; textAnswer: string }>
-    ) {
+    setTextAnswer(state, action: PayloadAction<{ questionIndex: number; textAnswer: string }>) {
       const { questionIndex, textAnswer } = action.payload;
-      state.questions[questionIndex].textAnswer = textAnswer;
+      const question = state.questions[questionIndex];
+      if (isShortQuestion(question) || isLongQuestion(question)) {
+        question.textAnswer = textAnswer;
+      }
     },
 
-    // 미리보기 답변(객관식) 입력받은 값으로 업데이트
-    setOptionAnswer(
-      state,
-      action: PayloadAction<{ questionIndex: number; clickedOption: string }>
-    ) {
+    // 미리보기 답변(객관식, 드롭다운) 입력받은 값으로 업데이트
+    setOptionAnswer(state, action: PayloadAction<{ questionIndex: number; clickedOption: string }>) {
       const { questionIndex, clickedOption } = action.payload;
-      state.questions[questionIndex].optionAnswer = clickedOption;
+      const question = state.questions[questionIndex];
+      if (isMultipleQuestion(question) || isDropdownQuestion(question)) {
+        question.optionAnswer = clickedOption;
+      }
     },
 
     // 미리보기 답변(체크박스) 체크한 값 업데이트
@@ -175,43 +182,40 @@ export const surveySlice = createSlice({
       }>
     ) {
       const { questionIndex, optionIndex } = action.payload;
-
-      state.questions[questionIndex].checkboxAnswer![optionIndex] =
-        !state.questions[questionIndex].checkboxAnswer![optionIndex];
+      const question = state.questions[questionIndex];
+      if (isCheckboxQuestion(question)) {
+        question.checkboxAnswer[optionIndex] = !question.checkboxAnswer[optionIndex];
+      }
     },
 
     // 양식 지우기
     clearAnswer(state) {
       state.questions.forEach((question) => {
-        const type = question.type;
+        if (isShortQuestion(question)) {
+          question.textAnswer = "";
+        }
 
-        switch (type) {
-          case QUESTION_TYPE.SHORT:
-          case QUESTION_TYPE.LONG:
-            question.textAnswer = "";
-            return;
+        if (isLongQuestion(question)) {
+          question.textAnswer = "";
+        }
 
-          case QUESTION_TYPE.MULTIPLECHOICE:
-          case QUESTION_TYPE.DROPDOWN:
-            question.optionAnswer = "";
-            return;
+        if (isMultipleQuestion(question)) {
+          question.optionAnswer = "";
+        }
 
-          case QUESTION_TYPE.CHECKBOX:
-            const length = question.options?.length;
-            question.checkboxAnswer = Array(length).fill(false);
-            return;
+        if (isDropdownQuestion(question)) {
+          question.optionAnswer = "";
+        }
 
-          default:
-            break;
+        if (isCheckboxQuestion(question)) {
+          const length = question.options.length;
+          question.checkboxAnswer = Array(length).fill(false);
         }
       });
     },
 
     // 질문 드래그앤드롭
-    questionDragAndDrop(
-      state,
-      action: PayloadAction<{ dragStartIndex: number; dragEndIndex: number }>
-    ) {
+    questionDragAndDrop(state, action: PayloadAction<{ dragStartIndex: number; dragEndIndex: number }>) {
       const { dragStartIndex, dragEndIndex } = action.payload;
       const dragStartItem = state.questions[dragStartIndex];
 
@@ -229,10 +233,12 @@ export const surveySlice = createSlice({
       }>
     ) {
       const { questionIndex, dragStartIndex, dragEndIndex } = action.payload;
-      const dragStartItem = state.questions[questionIndex].options![dragStartIndex];
-
-      state.questions[questionIndex].options!.splice(dragStartIndex, 1);
-      state.questions[questionIndex].options!.splice(dragEndIndex, 0, dragStartItem);
+      const question = state.questions[questionIndex];
+      if (isMultipleQuestion(question) || isDropdownQuestion(question) || isCheckboxQuestion(question)) {
+        const dragStartItem = question.options[dragStartIndex];
+        question.options.splice(dragStartIndex, 1);
+        question.options.splice(dragEndIndex, 0, dragStartItem);
+      }
     },
   },
 });

@@ -1,4 +1,4 @@
-import { QUESTION_TYPE } from "../../../constant";
+import { QUESTION_TYPE_MAP } from "../../../type";
 import { useAppSelector } from "../../../store";
 import { Wrapper, StyledH, StyledP } from "./SubmitDataStyle";
 
@@ -13,15 +13,15 @@ export default function SubmitData({ questionIndex }: SubmitDataProps) {
 
   function renderer(type: string) {
     switch (type) {
-      case QUESTION_TYPE.SHORT:
-      case QUESTION_TYPE.LONG:
+      case QUESTION_TYPE_MAP.SHORT:
+      case QUESTION_TYPE_MAP.LONG:
         return textAnswer;
 
-      case QUESTION_TYPE.MULTIPLECHOICE:
-      case QUESTION_TYPE.DROPDOWN:
+      case QUESTION_TYPE_MAP.MULTIPLECHOICE:
+      case QUESTION_TYPE_MAP.DROPDOWN:
         return optionAnswer;
 
-      case QUESTION_TYPE.CHECKBOX:
+      case QUESTION_TYPE_MAP.CHECKBOX:
         const filtered = options?.filter((_, index) => checkboxAnswer![index]);
         return filtered?.join(", ");
 

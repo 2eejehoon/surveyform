@@ -11,16 +11,9 @@ interface MultipleChoiceOptionProps {
   dragEndRef: MutableRefObject<number | null>;
 }
 
-function MultipleChoiceOption({
-  questionIndex,
-  optionIndex,
-  dragStartRef,
-  dragEndRef,
-}: MultipleChoiceOptionProps) {
+function MultipleChoiceOption({ questionIndex, optionIndex, dragStartRef, dragEndRef }: MultipleChoiceOptionProps) {
   const dispatch = useAppDispatch();
-  const option = useAppSelector(
-    (state) => state.survey.questions[questionIndex].options![optionIndex]
-  );
+  const option = useAppSelector((state) => state.survey.questions[questionIndex].options[optionIndex]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(

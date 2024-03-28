@@ -15,17 +15,9 @@ interface OptionContainerProps {
   optionIndex: number;
 }
 
-function OptionContainer({
-  children,
-  dragStartRef,
-  dragEndRef,
-  questionIndex,
-  optionIndex,
-}: OptionContainerProps) {
-  const [isOptionHover, handleMouseEnterOption, handleMouseLeaveOption] =
-    useHover();
-  const [isButtonHover, handleMouseEnterButton, handleMouseLeaveButton] =
-    useHover();
+function OptionContainer({ children, dragStartRef, dragEndRef, questionIndex, optionIndex }: OptionContainerProps) {
+  const [isOptionHover, handleMouseEnterOption, handleMouseLeaveOption] = useHover();
+  const [isButtonHover, handleMouseEnterButton, handleMouseLeaveButton] = useHover();
 
   const dispatch = useAppDispatch();
 
@@ -39,8 +31,11 @@ function OptionContainer({
     );
   };
 
-  const [handleDragStart, handleDragEnter, handleDragOver, handleDragEnd] =
-    useDragAndDrop(dragStartRef, dragEndRef, dispatchQuestionOptionDragAndDrop);
+  const [handleDragStart, handleDragEnter, handleDragOver, handleDragEnd] = useDragAndDrop(
+    dragStartRef,
+    dragEndRef,
+    dispatchQuestionOptionDragAndDrop
+  );
 
   return (
     <StyledLi
@@ -53,20 +48,12 @@ function OptionContainer({
       onMouseLeave={handleMouseLeaveOption}
     >
       {isOptionHover && (
-        <DragButton
-          onMouseEnter={handleMouseEnterButton}
-          onMouseLeave={handleMouseLeaveButton}
-        >
+        <DragButton onMouseEnter={handleMouseEnterButton} onMouseLeave={handleMouseLeaveButton}>
           &#58;
         </DragButton>
       )}
       {children}
-      {isOptionHover && (
-        <DeleteOptionButton
-          questionIndex={questionIndex}
-          optionIndex={optionIndex}
-        />
-      )}
+      {isOptionHover && <DeleteOptionButton questionIndex={questionIndex} optionIndex={optionIndex} />}
     </StyledLi>
   );
 }

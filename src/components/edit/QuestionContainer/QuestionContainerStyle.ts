@@ -35,7 +35,6 @@ export const DragButton = styled.div`
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
   cursor: pointer;
-
   &:focus-within,
   :hover {
     color: black;

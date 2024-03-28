@@ -12,14 +12,7 @@ function QuestionList() {
   return (
     <StyledList>
       {questions.map((_, index) => {
-        return (
-          <Question
-            key={index}
-            questionIndex={index}
-            dragStartRef={dragStartRef}
-            dragEndRef={dragEndRef}
-          />
-        );
+        return <Question key={index} questionIndex={index} dragStartRef={dragStartRef} dragEndRef={dragEndRef} />;
       })}
     </StyledList>
   );

@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { QUESTION_TYPE_ARRAY } from "../../../constant";
+import { QUESTION_TYPE_ARRAY } from "../../../type";
 import { StyledSelect } from "./QuestionTypeSelectStyle";
 import { useAppDispatch, useAppSelector } from "../../../store/index";
 import { setQuestionType } from "../../../store/surveySlice";
@@ -10,9 +10,7 @@ interface QuestionTypeSelectProps {
 
 function QuestionTypeSelect({ questionIndex }: QuestionTypeSelectProps) {
   const dispatch = useAppDispatch();
-  const defaultType = useAppSelector(
-    (state) => state.survey.questions[questionIndex].type
-  );
+  const defaultType = useAppSelector((state) => state.survey.questions[questionIndex].type);
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(setQuestionType({ questionIndex, type: e.target.value }));

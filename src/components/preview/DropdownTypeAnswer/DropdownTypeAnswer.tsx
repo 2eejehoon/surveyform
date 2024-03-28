@@ -10,9 +10,7 @@ interface DropdownTypeAnswerProps {
 
 function DropdownTypeAnswer({ questionIndex }: DropdownTypeAnswerProps) {
   const dispatch = useAppDispatch();
-  const { options, optionAnswer, required } = useAppSelector(
-    (state) => state.survey.questions[questionIndex]
-  );
+  const { options, optionAnswer, required } = useAppSelector((state) => state.survey.questions[questionIndex]);
 
   const seletedValue = optionAnswer || "default";
 

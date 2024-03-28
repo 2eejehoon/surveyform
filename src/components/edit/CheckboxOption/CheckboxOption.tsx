@@ -11,16 +11,9 @@ interface CheckboxOptionProps {
   dragEndRef: MutableRefObject<number | null>;
 }
 
-function CheckboxOption({
-  questionIndex,
-  optionIndex,
-  dragStartRef,
-  dragEndRef,
-}: CheckboxOptionProps) {
+function CheckboxOption({ questionIndex, optionIndex, dragStartRef, dragEndRef }: CheckboxOptionProps) {
   const dispatch = useAppDispatch();
-  const option = useAppSelector(
-    (state) => state.survey.questions[questionIndex].options![optionIndex]
-  );
+  const option = useAppSelector((state) => state.survey.questions[questionIndex].options[optionIndex]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(

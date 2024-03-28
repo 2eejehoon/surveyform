@@ -2,13 +2,7 @@ import { ChangeEvent, memo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { setOptionAnswer } from "../../../store/surveySlice";
 import RequiredMessage from "../RequiredMessage/RequiredMessage";
-import {
-  RadioWrapper,
-  StyledFieldset,
-  StyledRadioInput,
-  StyledLabel,
-  Wrapper,
-} from "./MultipleTypeAnswerStyle";
+import { RadioWrapper, StyledFieldset, StyledRadioInput, StyledLabel, Wrapper } from "./MultipleTypeAnswerStyle";
 
 interface MultipleTypeAnswerProps {
   questionIndex: number;
@@ -16,9 +10,7 @@ interface MultipleTypeAnswerProps {
 
 function MultipleTypeAnswer({ questionIndex }: MultipleTypeAnswerProps) {
   const dispatch = useAppDispatch();
-  const { options, required, optionAnswer } = useAppSelector(
-    (state) => state.survey.questions[questionIndex]
-  );
+  const { options, required, optionAnswer } = useAppSelector((state) => state.survey.questions[questionIndex]);
 
   const handleOptionClick = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setOptionAnswer({ questionIndex, clickedOption: e.target.value }));

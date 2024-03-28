@@ -12,14 +12,8 @@ interface QuestionContainerProps {
   questionIndex: number;
 }
 
-function QuestionContainer({
-  children,
-  dragStartRef,
-  dragEndRef,
-  questionIndex,
-}: QuestionContainerProps) {
-  const [isQuestionHover, handleMouseEnterQuestion, handleMouseLeaveQuestion] =
-    useHover();
+function QuestionContainer({ children, dragStartRef, dragEndRef, questionIndex }: QuestionContainerProps) {
+  const [isQuestionHover, handleMouseEnterQuestion, handleMouseLeaveQuestion] = useHover();
   const [isButtonHover, handleMouseEnterButton, handleMouseLeaveButton] = useHover();
 
   const dispatch = useAppDispatch();
@@ -35,8 +29,11 @@ function QuestionContainer({
   };
 
   // useDragAndDrop 훅에 ref 객체와 함수를 인자로 전달
-  const [handleDragStart, handleDragEnter, handleDragOver, handleDragEnd] =
-    useDragAndDrop(dragStartRef, dragEndRef, dispatchQuestionDragAndDrop);
+  const [handleDragStart, handleDragEnter, handleDragOver, handleDragEnd] = useDragAndDrop(
+    dragStartRef,
+    dragEndRef,
+    dispatchQuestionDragAndDrop
+  );
 
   return (
     <StyledLi
@@ -49,10 +46,7 @@ function QuestionContainer({
       onMouseLeave={handleMouseLeaveQuestion}
     >
       {isQuestionHover && (
-        <DragButton
-          onMouseEnter={handleMouseEnterButton}
-          onMouseLeave={handleMouseLeaveButton}
-        >
+        <DragButton onMouseEnter={handleMouseEnterButton} onMouseLeave={handleMouseLeaveButton}>
           &#58;
         </DragButton>
       )}
