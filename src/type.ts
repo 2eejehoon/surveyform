@@ -50,7 +50,7 @@ export const QUESTION_TYPE_MAP = {
 
 export type QUESTION_TYPE = "단답형" | "장문형" | "객관식" | "체크박스" | "드롭다운";
 
-export const QUESTION_TYPE_ARRAY = ["단답형", "장문형", "객관식", "체크박스", "드롭다운"] as const;
+export const QUESTION_TYPE_ARRAY: QUESTION_TYPE[] = ["단답형", "장문형", "객관식", "체크박스", "드롭다운"];
 
 export const isShortQuestion = (question: Question): question is ShortQuestion => {
   return question.type === QUESTION_TYPE_MAP.SHORT;
