@@ -51,10 +51,10 @@ export const surveySlice = createSlice({
     },
 
     // 질문의 유형 업데이트
-    setQuestionType(state, action: PayloadAction<{ questionIndex: number; type: QUESTION_TYPE }>) {
+    setQuestionType(state, action: PayloadAction<{ questionIndex: number; type: string }>) {
       const { questionIndex, type } = action.payload;
       const question = state.questions[questionIndex];
-      question.type = type;
+      question.type = type as QUESTION_TYPE;
 
       // 질문 유형에 따라 초깃값 설정
       if (isShortQuestion(question)) {
