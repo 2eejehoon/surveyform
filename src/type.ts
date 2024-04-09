@@ -1,41 +1,32 @@
 export type Question = ShortQuestion | LongQuestion | MultipleQuestion | DropdownQuestion | CheckboxQuestion;
 
-export type ShortQuestion = {
+export type BaseQuestion = {
   questionTitle: string;
   type: QUESTION_TYPE;
   required: boolean;
+};
+
+export type ShortQuestion = BaseQuestion & {
   text: string;
   textAnswer: string;
 };
 
-export type LongQuestion = {
-  questionTitle: string;
-  type: QUESTION_TYPE;
-  required: boolean;
+export type LongQuestion = BaseQuestion & {
   text: string;
   textAnswer: string;
 };
 
-export type MultipleQuestion = {
-  questionTitle: string;
-  type: QUESTION_TYPE;
-  required: boolean;
+export type MultipleQuestion = BaseQuestion & {
   options: string[];
   optionAnswer: string;
 };
 
-export type DropdownQuestion = {
-  questionTitle: string;
-  type: QUESTION_TYPE;
-  required: boolean;
+export type DropdownQuestion = BaseQuestion & {
   options: string[];
   optionAnswer: string;
 };
 
-export type CheckboxQuestion = {
-  questionTitle: string;
-  type: QUESTION_TYPE;
-  required: boolean;
+export type CheckboxQuestion = BaseQuestion & {
   options: string[];
   checkboxAnswer: boolean[];
 };
